@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c9885c79-d8e5-4090-bf8d-ba84d8ae3b1f" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/dataset_class/data_folder/Base_Train/train_df.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset_class/data_folder/FB1_Dataset/train.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset_class/data_folder/FB2_Dataset/train.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset_class/data_folder/FB3_Dataset/sample_submission.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset_class/data_folder/FB3_Dataset/test.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset_class/data_folder/FB3_Dataset/train.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset_class/data_folder/MPL/train_df.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fbp3-baseline-single-model-inference.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/fbp3_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/image2text_config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/FBP34_Final_Score.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/FBP3_Final_Rank.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2PGz3qF0NJX36xRtMglzyV7LG1X" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "/Users/qcqced/Desktop/GitHub/image2text",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="애플리케이션 수준" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="디폴트 작업">
+      <changelist id="c9885c79-d8e5-4090-bf8d-ba84d8ae3b1f" name="변경" comment="" />
+      <created>1683098009785</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1683098009785</updated>
+      <workItem from="1683098011279" duration="363000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

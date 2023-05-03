@@ -47,4 +47,4 @@ if __name__ == '__main__':
     #     CustomArgs(['--bs', '--batch_size'], type=int, target='dataset_class;args;batch_size')
     # ]
     # cli_config = ConfigParser.from_args(args, options)
-    main('fbp3_config.json', CFG)
+    main('image2text_config.json', CFG)
