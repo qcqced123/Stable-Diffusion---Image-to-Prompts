@@ -1,6 +1,8 @@
 import re, gc
 import pandas as pd
 import numpy as np
+import polars as pl
+import faiss
 from sklearn.model_selection import KFold
 from iterstrat.ml_stratifiers import MultilabelStratifiedKFold
 from nltk.corpus import stopwords

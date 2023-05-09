@@ -2,8 +2,18 @@ import torch
 import torch.nn as nn
 import model.pooling as pooling
 from torch import Tensor
-from transformers import AutoConfig, AutoModel
+from transformers import AutoConfig, AutoModel, AutoProcessor
 from model.model_utils import freeze, reinit_topk
+
+
+class SD2Model(nn.Module):
+    def __init__(self, cfg):
+        super().__init__()
+        self.cfg = cfg
+        self.auto_cfg = AutoConfig.from_pretrained(
+            cfg.model,
+            output_hidden_states=True
+        )
 
 
 class FBPModel(nn.Module):
@@ -49,7 +59,7 @@ class FBPModel(nn.Module):
             if module.padding_idx is not None:
                 module.weight.data[module.padding_idx].zero_()
         elif isinstance(module, nn.LayerNorm):
-            """ reference from torch.nn.Layernorm with elementwise_affine=True "" "
+            """ reference from torch.nn.Layernorm with elementwise_affine=True """
             module.weight.data.fill_(1.0)
             module.bias.data.zero_()
 
