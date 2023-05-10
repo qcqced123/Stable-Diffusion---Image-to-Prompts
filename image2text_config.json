@@ -9,9 +9,9 @@
         "name": "FBPTrainer",
         "loop": "train_loop",
         "dataset": "FBPDataset",
-        "model_arch": "FBPModel",
-        "model": "microsoft/deberta-v3-large",
-        "pooling": "WeightedLayerPooling"
+        "model_arch": "SD2Model",
+        "model": "openai/clip-vit-large-patch14",
+        "pooling": "GEMPooling"
     },
     "common_settings": {
         "wandb": true,
@@ -29,7 +29,7 @@
         "batch_size": 32
     },
     "gradient_settings": {
-        "amp_scaler": false,
+        "amp_scaler": true,
         "gradient_checkpoint": true,
         "clipping_grad": true,
         "n_gradient_accumulation_steps": 1,

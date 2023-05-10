@@ -1,7 +1,26 @@
 import torch
 import pandas as pd
 import numpy as np
+from PIL import Image
 from torch.utils.data import Dataset
+from transformers import AutoProcessor
+
+
+class IMGDataset:
+    """ Image Dataset For OpenAI CLIP Pipeline """
+    def __init__(self, cfg, df: pd.DataFrame) -> None:
+        self.cfg = cfg
+        self.df = df
+        self.input_processor = AutoProcessor.from_pretrained(self.cfg.model)
+
+    def __len__(self):
+        return len(self.df)
+
+    def __getitem__(self, item):
+        image = Image.open(self.images[item])
+        image = self.input_processor(image)
+        target = self.labels[item]
+        return image, target
 
 
 class FBPDataset(Dataset):

@@ -37,7 +37,7 @@ class SelectDistances(nn.Module):
 class ContrastiveLoss(nn.Module):
     """
     Contrastive Loss which is basic method of Metric Learning
-    More closer distance between data points in intra-class, more longer distance between data points in inter-class
+    Closer distance between data points in intra-class, more longer distance between data points in inter-class
 
     Distance:
         Euclidean Distance: sqrt(sum((x1 - x2)**2))
