@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c9885c79-d8e5-4090-bf8d-ba84d8ae3b1f" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/dataset_class/data_folder/ChatGPT_SDDB2/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dataset_class/data_folder/SDDB2_2M_75/diffusiondb.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/image2text.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/image2text.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataset_class/dataclass.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataset_class/dataclass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset_class/text_preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataset_class/data_preprocessing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trainer/trainer.py" beforeDir="false" afterPath="$PROJECT_DIR$/trainer/trainer.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +42,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "/home/qcqced/바탕화면/ML_Test/image2text/dataset_class/data_folder/ChatGPT_SDDB2",
+    "last_opened_file_path": "/home/qcqced/바탕화면/ML_Test/image2text/dataset_class/data_folder/SDDB2_2M_75/SDDB2-images",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -56,12 +54,13 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/dataset_class/data_folder/SDDB2_2M_75/SDDB2-images" />
       <recent name="$PROJECT_DIR$/dataset_class/data_folder/ChatGPT_SDDB2" />
       <recent name="$PROJECT_DIR$/dataset_class/data_folder/SDDB2_2M_75" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/img" />
       <recent name="$PROJECT_DIR$/dataset_class/data_folder/90k_public" />
+      <recent name="$PROJECT_DIR$/img" />
       <recent name="$PROJECT_DIR$/dataset_class/data_folder/ChatGPT_SDDB2" />
     </key>
   </component>
@@ -84,6 +83,7 @@
       <workItem from="1683643298572" duration="303000" />
       <workItem from="1683643673670" duration="3631000" />
       <workItem from="1683672284266" duration="282000" />
+      <workItem from="1683677227762" duration="11434000" />
     </task>
     <servers />
   </component>
