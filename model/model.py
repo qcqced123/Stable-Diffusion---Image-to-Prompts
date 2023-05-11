@@ -33,7 +33,7 @@ class SD2Model(nn.Module):
             cfg.model,
             config=self.auto_cfg
         ).vision_model
-        self.fc = nn.Linear(self.auto_cfg.hidden_size, 384)
+        self.fc = nn.Linear(self.auto_cfg.hidden_size, 384)  # maybe need to append
         self.pooling = getattr(pooling, cfg.pooling)(self.auto_cfg)
         if self.cfg.load_pretrained:
             self.model.load_state_dict(
@@ -76,7 +76,7 @@ class SD2Model(nn.Module):
         feature = outputs.last_hidden_state
         if self.cfg.pooling == 'WeightedLayerPooling':
             feature = outputs.hidden_states
-        embedding = self.pooling(feature, inputs['attention_mask'])
+        embedding = self.pooling(feature, inputs['attention_mask'])  # maybe need to append
         logit = self.fc(embedding)
         return logit
 
@@ -88,6 +88,9 @@ class StyleExtractModel(nn.Module):
     And then, Feature will be concatenated with CLIP's Image embedding
     This Model is used ONLY extracting embedding, just Only forward pass
 
+    In CLIP Model's Code in Huggingface, AutoProcessor do center crop to image in resizing 224x224
+    But in many prompt sentences, they have a lot of word for background called feature.
+    So we need to style-extractor for more good performance in generate prompt text
     option:
         style_model: efficientnet_b7, convnext_base
 
@@ -126,3 +129,5 @@ class StyleExtractModel(nn.Module):
         g3 = self.gram_matrix(x3)
         g = [self.avg(g1).squeeze(2), self.avg(g2).squeeze(2), self.avg(g3).squeeze(2)]
         return torch.cat(g, dim=1)
+
+

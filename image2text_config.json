@@ -5,10 +5,10 @@
         "checkpoint_dir": "./saved/model/fine_tuned_gempool/",
         "load_pretrained": false,
         "resume": false,
-        "state_dict": "MPL_Student_microsoft-deberta-v3-large_state_dict.pth",
-        "name": "FBPTrainer",
+        "state_dict": "",
+        "name": "SD2Trainer",
         "loop": "train_loop",
-        "dataset": "FBPDataset",
+        "dataset": "SD2Dataset",
         "model_arch": "SD2Model",
         "style_model_arch": "StyleExtractModel",
         "model": "openai/clip-vit-large-patch14",
@@ -38,12 +38,11 @@
         "max_grad_norm": 1
     },
     "loss_options": {
-        "loss_fn": "SmoothL1Loss",
-        "val_loss_fn": "MCRMSELoss",
+        "loss_fn": "CLIPMultipleNegativeRankingLoss",
         "reduction": "mean"
     },
     "metrics_options": {
-        "metrics": ["WeightMCRMSELoss", "f_beta", "recall"]
+        "metrics": "CosineSimilarity"
     },
     "optimizer_options": {
         "optimizer": "AdamW",

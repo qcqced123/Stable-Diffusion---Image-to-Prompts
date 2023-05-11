@@ -1,5 +1,7 @@
 import numpy as np
 import torch
+import torch.nn as nn
+import torch.nn.functional as F
 from torch import Tensor
 from numpy import ndarray
 
@@ -85,3 +87,40 @@ def map_k(y_true: any, y_pred: any, k: int) -> Tensor:
     score = np.array([1 / (pred[:k].index(label) + 1) for label, pred in zip(y_true, y_pred)])
     return round(score.mean(), 4)
 
+
+class PearsonScore(nn.Module):
+    """ Pearson Correlation Coefficient Score class"""
+    def __init__(self):
+        super(PearsonScore, self).__init__()
+
+    @staticmethod
+    def forward(y_true, y_pred) -> float:
+        x, y = y_pred, y_true
+        vx = x - np.mean(x)
+        vy = y - np.mean(y)
+        cov = np.sum(vx * vy)
+        corr = cov / (np.sqrt(np.sum(vx ** 2)) * np.sqrt(np.sum(vy ** 2)) + 1e-12)
+        return corr
+
+
+class CosineSimilarity(nn.Module):
+    """
+    Returns cosine similarity between `x_1` and `x_2`, computed along `dim`
+    Source code from pytorch.org
+    Args:
+        dim (int, optional): Dimension where cosine similarity is computed. Default: 1
+        eps (float, optional): Small value to avoid division by zero.
+            Default: 1e-8
+    Shape:
+        - Input1: :math:`(\ast_1, D, \ast_2)` where D is at position `dim`
+        - Input2: :math:`(\ast_1, D, \ast_2)`, same number of dimensions as x1, matching x1 size at dimension `dim`,
+              and broadcastable with x1 at other dimensions.
+        - Output: :math:`(\ast_1, \ast_2)`
+    """
+    def __init__(self, dim: int = 1, eps: float = 1e-8) -> None:
+        super().__init__()
+        self.dim = dim
+        self.eps = eps
+
+    def forward(self, x1: Tensor, x2: Tensor) -> Tensor:
+        return F.cosine_similarity(x1, x2, self.dim, self.eps)  # need to add mean for batch

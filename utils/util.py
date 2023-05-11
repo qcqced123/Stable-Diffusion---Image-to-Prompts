@@ -112,7 +112,7 @@ def sync_config(json_config: json) -> None:
 
     """ Loss Options """
     CFG.loss_fn = json_config.loss_options.loss_fn
-    CFG.val_loss_fn = json_config.loss_options.val_loss_fn
+    # CFG.val_loss_fn = json_config.loss_options.val_loss_fn
     CFG.reduction = json_config.loss_options.reduction
 
     """ Metrics Options """

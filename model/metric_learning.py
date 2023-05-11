@@ -73,12 +73,62 @@ class ContrastiveLoss(nn.Module):
         return contrastive_loss.mean()
 
 
+# Metric Learning: Multiple Negative Ranking Loss for CLIP Model (Image to Text)
+class CLIPMultipleNegativeRankingLoss(nn.Module):
+    """
+    Multiple Negative Ranking Loss for CLIP Model
+    main concept is same as original one, but append suitable for other type of model (Not Sentence-Transformers)
+    if you set more batch size, you can get more negative pairs for each anchor & positive pair
+    Args:
+        scale: output of similarity function is multiplied by this value
+        similarity_fct: standard of distance metrics, default cosine similarity
+
+    Example:
+        model = SentenceTransformer('distil-bert-base-uncased')
+        train_examples = [InputExample(texts=['Anchor 1', 'Positive 1']),
+        InputExample(texts=['Anchor 2', 'Positive 2'])]
+        train_dataloader = DataLoader(train_examples, shuffle=True, batch_size=32)
+        train_loss = losses.MultipleNegativesRankingLoss(model=model)
+
+    Reference:
+        https://arxiv.org/pdf/1705.00652.pdf
+        https://www.sbert.net/docs/package_reference/losses.html
+        https://github.com/UKPLab/sentence-transformers/blob/master/sentence_transformers/losses/MultipleNegativesRankingLoss.py
+        https://www.kaggle.com/code/nbroad/multiple-negatives-ranking-loss-lecr/notebook
+        https://github.com/KevinMusgrave/pytorch-metric-learning
+        https://www.youtube.com/watch?v=b_2v9Hpfnbw&ab_channel=NicholasBroad
+    """
+    def __init__(self, reduction: str, scale: float = 20.0, similarity_fct=cos_sim) -> None:
+        super().__init__()
+        self.reduction = reduction
+        self.scale = scale
+        self.similarity_fct = similarity_fct
+        self.reduction = reduction
+        self.cross_entropy_loss = CrossEntropyLoss(self.reduction)
+
+    def forward(self, embeddings_a, embeddings_b):
+        """
+        Compute similarity between `a` and `b`.
+        Labels have the index of the row number at each row, same index means that they are ground truth
+        This indicates that `a_i` and `b_j` have high similarity
+        when `i==j` and low similarity when `i!=j`.
+        Example a[i] should match with b[i]
+        """
+        similarity_scores = self.similarity_fct(embeddings_a, embeddings_b) * self.scale
+        labels = torch.tensor(
+            range(len(similarity_scores)),
+            dtype=torch.long,
+            device=similarity_scores.device,
+        )
+        return self.cross_entropy_loss(similarity_scores, labels)
+
+
 # Multiple Negative Ranking Loss, source code from UKPLab
 class MultipleNegativeRankingLoss(nn.Module):
     """
     Multiple Negative Ranking Loss (MNRL)
     main concept is same as contrastive loss, but it can be useful when label data have only positive value
-
+    if you set more batch size, you can get more negative pairs for each anchor & positive pair
     Args:
         scale: output of similarity function is multiplied by this value
         similarity_fct: standard of distance metrics, default cosine similarity
@@ -106,9 +156,14 @@ class MultipleNegativeRankingLoss(nn.Module):
         self.cross_entropy_loss = CrossEntropyLoss('mean')  # default setting: mean
 
     def forward(self, sentence_features: Iterable[Dict[str, Tensor]]) -> Tensor:
+        """
+        need to append reps for CLIP Pipeline, not sentence-transformers
+        In original code, embedding_b for concatenating reps start at index 1, but in this code, it start at index 0
+        Because in starting from 1, it doesn't calculate cosine similarity between anchor and positive pair
+        """
         reps = [self.model(sentence_feature)['sentence_embedding'] for sentence_feature in sentence_features]
         embedding_a = reps[0]  # Embedding which is stacking N sentence(text, paragraph, document, etc.)
-        embedding_b = torch.cat(reps[1:])  # Embedding which is stacking N sentence(text, paragraph, document, etc.)
+        embedding_b = torch.cat(reps[0:])  # Embedding which is stacking N sentence(text, paragraph, document, etc.)
 
         scores = self.similarity_fct(embedding_a, embedding_b) * self.scale
         labels = torch.tensor(range(len(scores)), dtype=torch.long)

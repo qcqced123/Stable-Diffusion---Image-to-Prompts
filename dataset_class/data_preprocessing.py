@@ -1,13 +1,10 @@
 import re, gc
 import pandas as pd
 import numpy as np
-import polars as pl
-import faiss
 from sklearn.model_selection import KFold
 from iterstrat.ml_stratifiers import MultilabelStratifiedKFold
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer, PorterStemmer
-from tqdm.auto import tqdm
 
 
 def kfold(df: pd.DataFrame, cfg) -> pd.DataFrame:
@@ -45,100 +42,6 @@ def load_data(data_path: str) -> pd.DataFrame:
     """
     df = pd.read_csv(data_path)
     return df
-
-
-def text_preprocess(df: pd.DataFrame, cfg) -> pd.DataFrame:
-    """
-    For FB3 Text Data
-    FB3 Text data_folder has '\n\n', meaning that separate paragraphs are separated by '\n\n'
-    DeBERTa does not handle '\n\n' well, so we need to change them into token '[PARAGRAPH]'
-    """
-    text_list = df['full_text'].values.tolist()
-    text_list = [text.replace('\n\n', '[PARAGRAPH] ') for text in text_list]
-    df['full_text'] = text_list
-    df.reset_index(drop=True, inplace=True)
-    df = mls_kfold(df, cfg)
-    return df
-
-
-def fb1_preprocess(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    For FB1 Text Data
-    Make FB1 Text Data for Meta Pseudo Labeling
-    """
-    unique_id, essay = 0, ''
-    df = df[['id', 'discourse_text']]
-    df.rename(columns={'id': 'text_id', 'discourse_text': 'full_text'}, inplace=True)
-
-    tmp_df = pd.DataFrame(columns=['text_id', 'full_text'])
-    unique_list = df['text_id'].unique()
-    tmp_df['text_id'] = unique_list
-
-    for idx in tqdm(range(len(df))):
-        """
-        Except Example for last idx
-        """
-        if df.iloc[idx, 0] == unique_list[unique_id]:
-            if idx == len(df) - 1:
-                essay += df.iloc[idx, 1]
-                tmp_df.iloc[unique_id, 1] = essay
-                break
-
-            if df.iloc[idx + 1, 0] != unique_list[unique_id]:
-                essay += df.iloc[idx, 1]
-                tmp_df.iloc[unique_id, 1] = essay
-                essay = ''
-                unique_id += 1
-
-            else:
-                essay += df.iloc[idx, 1] + '[PARAGRAPH]'
-    return tmp_df
-
-
-def fb2_preprocess(df: pd.DataFrame) -> pd.DataFrame:
-    """
-    For FB2 Text Data
-    Make FB2 Text Data for Meta Pseudo Labeling
-    """
-    unique_id, essay = 0, ''
-    df = df[['discourse_id', 'discourse_text']]
-    df.rename(columns={'discourse_id': 'text_id', 'discourse_text': 'full_text'}, inplace=True)
-
-    tmp_df = pd.DataFrame(columns=['text_id', 'full_text'])
-    unique_list = df['text_id'].unique()
-    tmp_df['text_id'] = unique_list
-
-    for idx in tqdm(range(len(df))):
-        """
-        Except Example for last idx
-        """
-        if df.iloc[idx, 0] == unique_list[unique_id]:
-            if idx == len(df) - 1:
-                essay += df.iloc[idx, 1]
-                tmp_df.iloc[unique_id, 1] = essay
-                break
-
-            if df.iloc[idx + 1, 0] != unique_list[unique_id]:
-                essay += df.iloc[idx, 1]
-                tmp_df.iloc[unique_id, 1] = essay
-                essay = ''
-                unique_id += 1
-
-            else:
-                essay += df.iloc[idx, 1] + '[PARAGRAPH]'
-    return tmp_df
-
-
-def pseudo_dataframe(df1: pd.DataFrame, df2: pd.DataFrame, cfg) -> pd.DataFrame:
-    """
-    Make Pseudo DataFrame for Meta Pseudo Labeling
-    Data from FB1 and FB2 are combined
-    This DataSet is Un-Labled Data
-    """
-    pseudo_df = pd.concat([df1, df2], axis=0, ignore_index=True)
-    pseudo_df.reset_index(drop=True, inplace=True)
-    pseudo_df = kfold(pseudo_df, cfg)
-    return pseudo_df
 
 
 def create_word_normalizer():

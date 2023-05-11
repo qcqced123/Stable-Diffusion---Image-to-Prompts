@@ -44,7 +44,7 @@ class CFG:
 
     """ Loss & Metrics Options """
     loss_fn = 'SmoothL1Loss'
-    val_loss_fn = 'WeightedMSELoss'
+    # val_loss_fn = 'WeightedMSELoss'
     reduction = 'mean'
     metrics = ['MCRMSE', 'f_beta', 'recall']
 
