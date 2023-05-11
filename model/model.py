@@ -26,6 +26,7 @@ class SD2Model(nn.Module):
     def __init__(self, cfg) -> None:
         super().__init__()
         self.cfg = cfg
+        self.drop = 0.0
         self.auto_cfg = AutoConfig.from_pretrained(
             cfg.model,
             output_hidden_states=True
@@ -40,7 +41,20 @@ class SD2Model(nn.Module):
         self.vision_model = self.model.vision_model
         self.text_model = self.model.text_model
 
-        # self.image_fc = nn.Linear(self.vision_config.hidden_size, 384) => later use
+        self.vision_fc = nn.Sequential(
+            nn.Linear(2048, 4096),  # will be added with style feature => 1024(ViT) + 1024(Style Model) = 2048
+            nn.SiLU(),
+            nn.Dropout(self.drop),
+            nn.Linear(4096, 4096),
+            nn.SiLU(),
+            nn.Dropout(self.drop),
+            nn.Linear(4096, 4096),
+            nn.SiLU(),
+            nn.Dropout(self.drop),
+            nn.Linear(4096, 4096),
+            nn.SiLU(),
+            nn.Linear(4096, 384)
+        )
         self.vision_pooling = getattr(pooling, cfg.image_pooling)(self.auto_cfg)  # for text pooling
 
         self.text_fc = nn.Linear(self.text_config.hidden_size, 384)  # for text embedding
@@ -82,12 +96,16 @@ class SD2Model(nn.Module):
             module.weight.data.fill_(1.0)
             module.bias.data.zero_()
 
-    def forward(self, inputs: dict, mode: str) -> list[Tensor]:
+    def forward(self, inputs: dict, mode: str, style_inputs: Tensor = None) -> list[Tensor]:
         """ forward pass function with mode (vision or text) """
         if mode == 'vision':
             outputs = self.vision_model(**inputs)
             feature = outputs.last_hidden_state
             embedding = self.vision_pooling(feature)  # [batch_size, hidden_size(1024)]
+
+            clip_features = clip_features / clip_features.norm(dim=-1, keepdim=True)  # normalize
+
+            style_inputs = style_inputs / style_inputs.norm(dim=-1, keepdim=True)  # normalize
             return embedding
 
         if mode == 'text':
@@ -122,13 +140,6 @@ class StyleExtractModel(nn.Module):
             pretrained=True,
             features_only=True,  # will be drop classifier or regression head
         )
-        self.p1 = self.style_model.features[:11]
-        self.p1[4] = nn.AvgPool2d(kernel_size=2)
-        self.p1[9] = nn.AvgPool2d(kernel_size=2)
-        self.p2 = self.style_model.features[11:20]
-        self.p2[7] = nn.AvgPool2d(kernel_size=2)
-        self.p3 = self.style_model.features[20:29]
-        self.p3[7] = nn.AvgPool2d(kernel_size=2)
         self.avg = nn.AdaptiveAvgPool1d(1)
 
     @staticmethod
@@ -138,38 +149,17 @@ class StyleExtractModel(nn.Module):
         g = torch.bmm(f, f.transpose(1, 2)) / (h * w)
         return g
 
-    def forward(self, x: torch.Tensor) -> torch.Tensor:
-        x1 = self.p1(x)
-        x2 = self.p2(x1)
-        x3 = self.p3(x2)
+    def forward(self, inputs: torch.Tensor) -> torch.Tensor:
+        embeddings = self.style_model(inputs)
+        x1 = embeddings[:11]
+        x1[4] = nn.AvgPool2d(kernel_size=2)
+        x1[9] = nn.AvgPool2d(kernel_size=2)
+        x2 = embeddings[11:20]
+        x2[7] = nn.AvgPool2d(kernel_size=2)
+        x3 = embeddings[20:29]
+        x3[7] = nn.AvgPool2d(kernel_size=2)
         g1 = self.gram_matrix(x1)
         g2 = self.gram_matrix(x2)
         g3 = self.gram_matrix(x3)
         g = [self.avg(g1).squeeze(2), self.avg(g2).squeeze(2), self.avg(g3).squeeze(2)]
         return torch.cat(g, dim=1)
-
-
-def fcn_layer(drop=0.):
-    """
-    Transform shapes and styles to targets with fully connected networks
-
-    [Reference]
-    https://www.kaggle.com/code/tanreinama/style-extract-from-vgg-clip-object-extract
-    """
-    fully_connected = nn.Sequential(
-        nn.Linear(2048, 4096),
-        nn.SiLU(),
-        nn.Dropout(drop),
-        nn.Linear(4096, 4096),
-        nn.SiLU(),
-        nn.Dropout(drop),
-        nn.Linear(4096, 4096),
-        nn.SiLU(),
-        nn.Dropout(drop),
-        nn.Linear(4096, 4096),
-        nn.SiLU(),
-        nn.Linear(4096, 384)
-    )
-    # fc.load_state_dict(torch.load(fn))
-    # fc.eval()
-    return fully_connected

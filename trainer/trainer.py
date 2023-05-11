@@ -105,12 +105,10 @@ class SD2Trainer:
             batch_size = labels.size(0)
 
             style_features = style_model(images)  # style image to style feature
-            style_features = style_features / style_features.norm(dim=-1, keepdim=True)  # normalize
 
             with torch.cuda.amp.autocast(enabled=self.cfg.amp_scaler):
-                clip_features = model(clip_images, 'vision')
+                clip_features = model(clip_images, 'vision', style_inputs=style_features)
                 text_features = model(labels, 'text')
-                clip_features = clip_features / clip_features.norm(dim=-1, keepdim=True)  # normalize
                 text_features = text_features / text_features.norm(dim=-1, keepdim=True)  # normalize
 
                 image_features = torch.cat([clip_features, style_features], dim=1)  # same as pandas concat
