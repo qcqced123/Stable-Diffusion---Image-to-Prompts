@@ -9,7 +9,7 @@
 /dataset_class/data_folder/ChatGPT_SDDB2/chatgpt-images/
 /dataset_class/data_folder/90k_public/90k-images/
 /dataset_class/data_folder/SDDB2_2M_75/SDDB2-images/
-/dataset_class/data_folder/90k_public/90k-eval_images/
-/dataset_class/data_folder/90k_public/90k-train_images/
+/dataset_class/data_folder/90k_public/eval_images/
+/dataset_class/data_folder/90k_public/train_images/
 /dataset_class/data_folder/30k_public/artifacts/
 .DS_Store

@@ -12,8 +12,9 @@
         "model_arch": "SD2Model",
         "style_model_arch": "StyleExtractModel",
         "model": "openai/clip-vit-large-patch14",
-        "style_model": "efficientnet_b7",
-        "pooling": "GEMPooling"
+        "style_model": "convnext_base",
+        "image_pooling": "CLIPGEMPooling",
+        "text_pooling": "GEMPooling"
     },
     "common_settings": {
         "wandb": true,
@@ -69,10 +70,12 @@
     "model_utils": {
         "stop_mode": "min",
         "freeze": true,
-        "num_freeze": 4,
+        "vision_num_freeze": 16,
+        "text_num_freeze": 8,
         "reinit": true,
-        "num_reinit": 2,
-        "awp": true,
+        "vision_num_reinit": 2,
+        "text_num_reinit": 1,
+        "awp": false,
         "nth_awp_start_epoch": 2,
         "awp_eps": 1e-2,
         "awp_lr": 1e-4

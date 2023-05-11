@@ -61,6 +61,65 @@ class AttentionPooling(nn.Module):
         return attention_embeddings
 
 
+# Generalized Mean Pooling for Vision Task
+class VisionGEMPooling(nn.Module):
+    """
+    Generalized Mean Pooling for Natural Language Processing
+    This class version of GEMPooling for CLIP, Transfer from NLP Task Code
+
+    Mean Pooling <= GEMPooling <= Max Pooling
+    Because of doing exponent to each token embeddings, GEMPooling is like as weight to more activation token
+
+    In original paper, they use p=3, but in this class, we use p=4 because torch doesn't support pow calculation
+    for negative value tensor, only for non-negative value in odd number exponent
+
+    [Reference]
+    https://paperswithcode.com/method/generalized-mean-pooling
+    """
+    def __init__(self, auto_cfg, p: float = 3, eps: float = 1e-6) -> None:
+        super(VisionGEMPooling, self).__init__()
+        self.p = nn.Parameter(torch.ones(1) * p)
+        self.eps = eps
+
+    def gem(self, x: Tensor, eps=1e-6) -> Tensor:
+        return F.avg_pool2d(x.clamp(min=eps).pow(self.p), (x.size(-2), x.size(-1))).pow(1. / self.p)
+
+    def forward(self, x) -> Tensor:
+        return self.gem(x, eps=self.eps)
+
+
+# Mean Pooling
+class CLIPGEMPooling(nn.Module):
+    """
+    Generalized Mean Pooling for Natural Language Processing
+    This class version of GEMPooling for CLIP, Transfer from NLP Task Code
+
+    Mean Pooling <= GEMPooling <= Max Pooling
+    Because of doing exponent to each token embeddings, GEMPooling is like as weight to more activation token
+
+    In original paper, they use p=3, but in this class, we use p=4 because torch doesn't support pow calculation
+    for negative value tensor, only for non-negative value in odd number exponent
+
+    [Reference]
+    https://paperswithcode.com/method/generalized-mean-pooling
+    """
+    def __init__(self, auto_cfg) -> None:
+        super(CLIPGEMPooling, self).__init__()
+
+    @staticmethod
+    def forward(last_hidden_state, p: int = 3) -> Tensor:
+        """
+        last_hidden_state.size: [batch_size, patches_sequence, hidden_size]
+        1) Pow last_hidden_state with p and then take a averaging
+        2) pow sum_embeddings with 1/p
+        """
+        sum_embeddings = torch.mean(
+            torch.pow(last_hidden_state, p), 1
+        )
+        gem_embeddings = torch.pow(sum_embeddings, 1 / p)
+        return gem_embeddings
+
+
 # Mean Pooling
 class GEMPooling(nn.Module):
     """
@@ -82,8 +141,10 @@ class GEMPooling(nn.Module):
     def forward(last_hidden_state, attention_mask, p: int = 4) -> Tensor:
         """
         1) Expand Attention Mask from [batch_size, max_len] to [batch_size, max_len, hidden_size]
+            1-1) For remove padding token, padding token's attention mask is 0
         2) Sum Embeddings along max_len axis so now we have [batch_size, hidden_size]
         3) Sum Mask along max_len axis, This is done so that we can ignore padding tokens
+            3-1) torch.clamp: If sum_mask is 0, it will be 1e-9
         4) Average
         """
         input_mask_expanded = attention_mask.unsqueeze(-1).expand(last_hidden_state.size()).float()

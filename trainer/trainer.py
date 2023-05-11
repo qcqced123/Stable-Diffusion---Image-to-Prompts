@@ -103,14 +103,19 @@ class SD2Trainer:
             images = images.to(self.cfg.device)  # style image to GPU
             clip_images = clip_images.to(self.cfg.device)  # clip image to GPU
             batch_size = labels.size(0)
-            style_features = style_model(images)
+
+            style_features = style_model(images)  # style image to style feature
+            style_features = style_features / style_features.norm(dim=-1, keepdim=True)  # normalize
 
             with torch.cuda.amp.autocast(enabled=self.cfg.amp_scaler):
-                clip_features = model.encode_image(clip_images)
-                text_features = model.encode_text(labels)
+                clip_features = model(clip_images, 'vision')
+                text_features = model(labels, 'text')
+                clip_features = clip_features / clip_features.norm(dim=-1, keepdim=True)  # normalize
+                text_features = text_features / text_features.norm(dim=-1, keepdim=True)  # normalize
+
                 image_features = torch.cat([clip_features, style_features], dim=1)  # same as pandas concat
 
-                loss = criterion(image_features, text_features)  # Multiple Negative Ranking Loss
+                loss = (criterion(image_features, text_features) + criterion(text_features, image_features)) / 2
                 losses.update(loss, batch_size)
 
             if self.cfg.n_gradient_accumulation_steps > 1:
@@ -146,10 +151,15 @@ class SD2Trainer:
                 images = images.to(self.cfg.device)  # style image to GPU
                 clip_images = clip_images.to(self.cfg.device)  # clip image to GPU
                 batch_size = labels.size(0)
+
                 style_features = style_model(images)
+                style_features = style_features / style_features.norm(dim=-1, keepdim=True)  # normalize
 
                 clip_features = model.encode_image(clip_images)
                 text_features = model.encode_text(labels)
+                clip_features = clip_features / clip_features.norm(dim=-1, keepdim=True)  # normalize
+                text_features = text_features / text_features.norm(dim=-1, keepdim=True)  # normalize
+
                 image_features = torch.cat([clip_features, style_features], dim=1)
 
                 val_metrics = val_metrics(image_features, text_features)

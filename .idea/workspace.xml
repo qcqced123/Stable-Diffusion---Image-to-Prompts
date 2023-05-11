@@ -5,15 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c9885c79-d8e5-4090-bf8d-ba84d8ae3b1f" name="변경" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/image2text.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/image2text.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configuration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataset_class/data_preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataset_class/data_preprocessing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataset_class/dataclass.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataset_class/dataclass.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/image2text_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/image2text_config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/metric.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/metric.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/metric_learning.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/metric_learning.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trainer/train_loop.py" beforeDir="false" afterPath="$PROJECT_DIR$/trainer/train_loop.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/pooling.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/pooling.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/trainer/trainer.py" beforeDir="false" afterPath="$PROJECT_DIR$/trainer/trainer.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/util.py" afterDir="false" />
     </list>
@@ -97,6 +96,8 @@
       <workItem from="1683724532043" duration="2891000" />
       <workItem from="1683750048233" duration="3778000" />
       <workItem from="1683764251661" duration="25757000" />
+      <workItem from="1683828805696" duration="2878000" />
+      <workItem from="1683832048338" duration="212000" />
     </task>
     <servers />
   </component>

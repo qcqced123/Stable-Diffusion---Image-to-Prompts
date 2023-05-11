@@ -2,6 +2,7 @@ import torch
 import torch.nn as nn
 import timm
 import model.pooling as pooling
+from configuration import CFG
 from torch import Tensor
 from transformers import AutoConfig, AutoModel
 from model.model_utils import freeze, reinit_topk
@@ -29,25 +30,39 @@ class SD2Model(nn.Module):
             cfg.model,
             output_hidden_states=True
         )
+        self.vision_config = self.auto_config.vision_config
+        self.text_config = self.auto_config.text_config
+
         self.model = AutoModel.from_pretrained(
             cfg.model,
             config=self.auto_cfg
-        ).vision_model
-        self.fc = nn.Linear(self.auto_cfg.hidden_size, 384)  # maybe need to append
-        self.pooling = getattr(pooling, cfg.pooling)(self.auto_cfg)
+        )
+        self.vision_model = self.model.vision_model
+        self.text_model = self.model.text_model
+
+        # self.image_fc = nn.Linear(self.vision_config.hidden_size, 384) => later use
+        self.vision_pooling = getattr(pooling, cfg.image_pooling)(self.auto_cfg)  # for text pooling
+
+        self.text_fc = nn.Linear(self.text_config.hidden_size, 384)  # for text embedding
+        self.text_pooling = getattr(pooling, cfg.text_pooling)(self.auto_cfg)  # for text pooling
+
         if self.cfg.load_pretrained:
             self.model.load_state_dict(
                 torch.load(cfg.checkpoint_dir + cfg.state_dict),
                 strict=False
-            )  # load student model's weight: it already has fc layer, so need to init fc layer later
+            )  # I don't know how to save those vision & text, maybe need to save separately
 
         if cfg.reinit:
-            self._init_weights(self.fc)
-            reinit_topk(self.model, cfg.num_reinit)
+            self._init_weights(self.text_fc)
+            reinit_topk(self.vision_model, cfg.vision_num_reinit)
+            reinit_topk(self.text_model, cfg.text_num_reinit)
 
         if cfg.freeze:
-            freeze(self.model.embeddings)
-            freeze(self.model.encoder.layer[:cfg.num_freeze])
+            freeze(self.vision_model.embeddings)
+            freeze(self.vision_model.encoder.layer[:cfg.vision_num_freeze])
+
+            freeze(self.text_model.embeddings)
+            freeze(self.text_model.encoder.layer[:cfg.text_num_freeze])
 
         if cfg.gradient_checkpoint:
             self.model.gradient_checkpointing_enable()
@@ -67,18 +82,20 @@ class SD2Model(nn.Module):
             module.weight.data.fill_(1.0)
             module.bias.data.zero_()
 
-    def feature(self, inputs: dict):
-        outputs = self.model(**inputs)
-        return outputs
+    def forward(self, inputs: dict, mode: str) -> list[Tensor]:
+        """ forward pass function with mode (vision or text) """
+        if mode == 'vision':
+            outputs = self.vision_model(**inputs)
+            feature = outputs.last_hidden_state
+            embedding = self.vision_pooling(feature)  # [batch_size, hidden_size(1024)]
+            return embedding
 
-    def forward(self, inputs: dict) -> list[Tensor]:
-        outputs = self.feature(inputs)
-        feature = outputs.last_hidden_state
-        if self.cfg.pooling == 'WeightedLayerPooling':
-            feature = outputs.hidden_states
-        embedding = self.pooling(feature, inputs['attention_mask'])  # maybe need to append
-        logit = self.fc(embedding)
-        return logit
+        if mode == 'text':
+            outputs = self.text_model(**inputs)
+            feature = outputs.last_hidden_state
+            embedding = self.pooling(feature, inputs['attention_mask'])
+            logit = self.fc(embedding)
+            return logit
 
 
 class StyleExtractModel(nn.Module):
@@ -102,7 +119,8 @@ class StyleExtractModel(nn.Module):
         self.cfg = cfg
         self.style_model = timm.create_model(
             self.cfg.style_model,
-            pretrained=True
+            pretrained=True,
+            features_only=True,  # will be drop classifier or regression head
         )
         self.p1 = self.style_model.features[:11]
         self.p1[4] = nn.AvgPool2d(kernel_size=2)
@@ -131,3 +149,27 @@ class StyleExtractModel(nn.Module):
         return torch.cat(g, dim=1)
 
 
+def fcn_layer(drop=0.):
+    """
+    Transform shapes and styles to targets with fully connected networks
+
+    [Reference]
+    https://www.kaggle.com/code/tanreinama/style-extract-from-vgg-clip-object-extract
+    """
+    fully_connected = nn.Sequential(
+        nn.Linear(2048, 4096),
+        nn.SiLU(),
+        nn.Dropout(drop),
+        nn.Linear(4096, 4096),
+        nn.SiLU(),
+        nn.Dropout(drop),
+        nn.Linear(4096, 4096),
+        nn.SiLU(),
+        nn.Dropout(drop),
+        nn.Linear(4096, 4096),
+        nn.SiLU(),
+        nn.Linear(4096, 384)
+    )
+    # fc.load_state_dict(torch.load(fn))
+    # fc.eval()
+    return fully_connected

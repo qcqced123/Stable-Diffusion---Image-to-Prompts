@@ -16,7 +16,8 @@ class CFG:
     model = 'openai/clip-vit-large-patch14'
     style_model = 'efficientnet_b7'
     tokenizer = AutoTokenizer.from_pretrained(model)
-    pooling = 'MeanPooling'  # mean, attention, max, weightedlayer, concat, conv1d, lstm
+    image_pooling = 'MeanPooling'  # mean, attention, max, weightedlayer, concat, conv1d, lstm
+    text_pooling = 'MeanPooling'  # mean, attention, max, weightedlayer, concat, conv1d, lstm
 
     """ Common Options """
     wandb = True
@@ -74,9 +75,11 @@ class CFG:
     """ Model_Utils Options """
     stop_mode = 'min'
     freeze = False
-    num_freeze = 2
+    vision_num_freeze = 2
+    text_num_freeze = 2
     reinit = True
-    num_reinit = 0
+    vision_num_reinit = 0
+    text_num_reinit = 0
     awp = False
     nth_awp_start_epoch = 10
     awp_eps = 1e-2
