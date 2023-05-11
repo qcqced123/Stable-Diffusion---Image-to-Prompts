@@ -10,7 +10,9 @@
         "loop": "train_loop",
         "dataset": "FBPDataset",
         "model_arch": "SD2Model",
+        "style_model_arch": "StyleExtractModel",
         "model": "openai/clip-vit-large-patch14",
+        "style_model": "efficientnet_b7",
         "pooling": "GEMPooling"
     },
     "common_settings": {

@@ -84,7 +84,9 @@ def sync_config(json_config: json) -> None:
     CFG.loop = json_config.pipeline_setting.loop
     CFG.dataset = json_config.pipeline_setting.dataset
     CFG.model_arch = json_config.pipeline_setting.model_arch
+    CFG.style_model_arch = json_config.pipeline_setting.style_model_arch
     CFG.model = json_config.pipeline_setting.model
+    CFG.style_model = json_config.pipeline_setting.style_model
     CFG.pooling = json_config.pipeline_setting.pooling
 
     """ Common Options """
