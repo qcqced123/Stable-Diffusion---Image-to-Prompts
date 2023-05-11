@@ -80,7 +80,7 @@ class CLIPMultipleNegativeRankingLoss(nn.Module):
     main concept is same as original one, but append suitable for other type of model (Not Sentence-Transformers)
     if you set more batch size, you can get more negative pairs for each anchor & positive pair
     Args:
-        scale: output of similarity function is multiplied by this value
+        scale: output of similarity function is multiplied by this value => I don't know why this is needed
         similarity_fct: standard of distance metrics, default cosine similarity
 
     Example:

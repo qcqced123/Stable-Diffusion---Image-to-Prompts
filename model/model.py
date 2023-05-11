@@ -2,7 +2,6 @@ import torch
 import torch.nn as nn
 import timm
 import model.pooling as pooling
-from configuration import CFG
 from torch import Tensor
 from transformers import AutoConfig, AutoModel
 from model.model_utils import freeze, reinit_topk
@@ -96,24 +95,25 @@ class SD2Model(nn.Module):
             module.weight.data.fill_(1.0)
             module.bias.data.zero_()
 
-    def forward(self, inputs: dict, mode: str, style_inputs: Tensor = None) -> list[Tensor]:
+    def forward(self, inputs: dict, mode: str, style_features: Tensor = None) -> list[Tensor]:
         """ forward pass function with mode (vision or text) """
         if mode == 'vision':
             outputs = self.vision_model(**inputs)
             feature = outputs.last_hidden_state
             embedding = self.vision_pooling(feature)  # [batch_size, hidden_size(1024)]
 
-            clip_features = clip_features / clip_features.norm(dim=-1, keepdim=True)  # normalize
+            clip_feature = embedding / embedding.norm(dim=-1, keepdim=True)  # normalize
+            style_feature = style_features / style_features.norm(dim=-1, keepdim=True)  # normalize
+            logit = self.vision_fc(torch.cat([clip_feature, style_feature], dim=-1))
 
-            style_inputs = style_inputs / style_inputs.norm(dim=-1, keepdim=True)  # normalize
-            return embedding
-
-        if mode == 'text':
+        else:  # mode == 'text'
             outputs = self.text_model(**inputs)
             feature = outputs.last_hidden_state
             embedding = self.pooling(feature, inputs['attention_mask'])
-            logit = self.fc(embedding)
-            return logit
+            text_features = embedding / embedding.norm(dim=-1, keepdim=True)  # normalize
+            logit = self.text_fc(text_features)
+
+        return logit
 
 
 class StyleExtractModel(nn.Module):

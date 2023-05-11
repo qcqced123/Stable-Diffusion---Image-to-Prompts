@@ -105,14 +105,9 @@ class SD2Trainer:
             batch_size = labels.size(0)
 
             style_features = style_model(images)  # style image to style feature
-
             with torch.cuda.amp.autocast(enabled=self.cfg.amp_scaler):
-                clip_features = model(clip_images, 'vision', style_inputs=style_features)
+                image_features = model(clip_images, 'vision', style_inputs=style_features)
                 text_features = model(labels, 'text')
-                text_features = text_features / text_features.norm(dim=-1, keepdim=True)  # normalize
-
-                image_features = torch.cat([clip_features, style_features], dim=1)  # same as pandas concat
-
                 loss = (criterion(image_features, text_features) + criterion(text_features, image_features)) / 2
                 losses.update(loss, batch_size)
 
@@ -151,16 +146,11 @@ class SD2Trainer:
                 batch_size = labels.size(0)
 
                 style_features = style_model(images)
-                style_features = style_features / style_features.norm(dim=-1, keepdim=True)  # normalize
+                image_features = model(clip_images, 'vision', style_inputs=style_features)
+                text_features = model(labels, 'text')
 
-                clip_features = model.encode_image(clip_images)
-                text_features = model.encode_text(labels)
-                clip_features = clip_features / clip_features.norm(dim=-1, keepdim=True)  # normalize
-                text_features = text_features / text_features.norm(dim=-1, keepdim=True)  # normalize
-
-                image_features = torch.cat([clip_features, style_features], dim=1)
-
-                val_metrics = val_metrics(image_features, text_features)
+                val_metrics = val_metrics(image_features, text_features).mean()
                 valid_metrics.update(val_metrics, batch_size)
+
         metric = valid_metrics.avg.detach().cpu().numpy()
         return metric
