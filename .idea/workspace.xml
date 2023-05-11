@@ -5,20 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c9885c79-d8e5-4090-bf8d-ba84d8ae3b1f" name="변경" comment="">
-      <change afterPath="$PROJECT_DIR$/dataset_class/data_folder/30k_public/three_thousand_prompt.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dataset_class/data_folder/ChatGPT_SDDB2/chatgpt_prompt.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/image2text.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/image2text.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dataset_class/all_prompt.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configuration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataset_class/data_folder/30k_public/30k_dataset_prompt.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataset_class/data_folder/90k_public/90k_public.csv" beforeDir="false" afterPath="$PROJECT_DIR$/dataset_class/data_folder/90k_public/nine_thousand_prompt.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataset_class/data_folder/ChatGPT_SDDB2/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataset_class/data_folder/ChatGPT_SDDB2/chatgpt_SDDB2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataset_class/data_folder/SDDB2_2M_75/diffusiondb.csv" beforeDir="false" afterPath="$PROJECT_DIR$/dataset_class/data_folder/SDDB2_2M_75/SDDB2_prompt.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image2text_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/image2text_config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/util.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,7 +87,7 @@
       <workItem from="1683713851918" duration="5448000" />
       <workItem from="1683724532043" duration="2891000" />
       <workItem from="1683750048233" duration="3778000" />
-      <workItem from="1683764251661" duration="8706000" />
+      <workItem from="1683764251661" duration="10455000" />
     </task>
     <servers />
   </component>
