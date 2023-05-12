@@ -22,11 +22,11 @@ def train_loop(cfg: any) -> None:
             project=cfg.name,
             name=f'SD2_fold{fold}/' + cfg.model,
             config=class2dict(cfg),
-            group=f'SD2_{cfg.pooling}/{cfg.model}',
+            group=f'SD2_{cfg.image_pooling}/{cfg.model}',
             job_type='train',
             entity="qcqced"
         )
-        early_stopping = EarlyStopping(mode=cfg.stop_mode)
+        early_stopping = EarlyStopping(mode=cfg.stop_mode, patience=2)
         early_stopping.detecting_anomaly()
 
         val_score_max = -np.inf
@@ -56,7 +56,7 @@ def train_loop(cfg: any) -> None:
                 print(f'[Update] Valid Score : ({val_score_max:.4f} => {valid_metric:.4f}) Save Parameter')
                 print(f'Best Score: {valid_metric}')
                 torch.save(model.state_dict(),
-                           f'{cfg.checkpoint_dir}fold{fold}_{cfg.pooling}_{cfg.max_len}_{get_name(cfg)}_state_dict.pth')
+                           f'{cfg.checkpoint_dir}fold{fold}_{cfg.image_pooling}_{get_name(cfg)}_state_dict.pth')
                 val_score_max = valid_metric
 
             # Check if Trainer need to Early Stop

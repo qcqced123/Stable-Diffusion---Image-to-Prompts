@@ -1,7 +1,6 @@
 import optuna
 import argparse, collections
 from omegaconf import OmegaConf
-from optuna.integration.wandb import WeightsAndBiasesCallback
 
 import trainer.train_loop as train_loop
 from parse_config import ConfigParser

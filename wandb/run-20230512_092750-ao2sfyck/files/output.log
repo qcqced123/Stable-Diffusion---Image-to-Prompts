@@ -1,0 +1,22 @@
+
+`text_config_dict` is provided which will be used to initialize `CLIPTextConfig`. The value `text_config["id2label"]` will be overriden.
+`text_config_dict` is provided which will be used to initialize `CLIPTextConfig`. The value `text_config["id2label"]` will be overriden.
+`text_config_dict` is provided which will be used to initialize `CLIPTextConfig`. The value `text_config["id2label"]` will be overriden.
+/home/qcqced/anaconda3/lib/python3.9/site-packages/transformers/optimization.py:391: FutureWarning: This implementation of AdamW is deprecated and will be removed in a future version. Use the PyTorch implementation torch.optim.AdamW instead, or set `no_deprecation_warning=True` to disable this warning
+  warnings.warn(
+Traceback (most recent call last):
+  File "/home/qcqced/바탕화면/ML_Test/image2text/train.py", line 49, in <module>
+    main('image2text_config.json', CFG)
+  File "/home/qcqced/바탕화면/ML_Test/image2text/train.py", line 30, in main
+    getattr(train_loop, cfg.loop)(cfg)  # init object
+  File "/home/qcqced/바탕화면/ML_Test/image2text/trainer/train_loop.py", line 36, in train_loop
+    t_optimizer, v_lr_scheduler, t_lr_scheduler = train_input.model_setting(len(train))
+  File "/home/qcqced/바탕화면/ML_Test/image2text/trainer/trainer.py", line 85, in model_setting
+    v_optimizer = getattr(transformers, self.cfg.optimizer)(
+  File "/home/qcqced/anaconda3/lib/python3.9/site-packages/transformers/optimization.py", line 407, in __init__
+    super().__init__(params, defaults)
+  File "/home/qcqced/anaconda3/lib/python3.9/site-packages/torch/optim/optimizer.py", line 192, in __init__
+    self.add_param_group(param_group)
+  File "/home/qcqced/anaconda3/lib/python3.9/site-packages/torch/optim/optimizer.py", line 535, in add_param_group
+    raise ValueError("some parameters appear in more than one parameter group")
+ValueError: some parameters appear in more than one parameter group

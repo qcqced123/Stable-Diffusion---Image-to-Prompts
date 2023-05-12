@@ -1,0 +1,252 @@
+wandb_version: 1
+
+amp_scaler:
+  desc: null
+  value: true
+anneal_epochs:
+  desc: null
+  value: 1
+anneal_strategy:
+  desc: null
+  value: cos
+awp:
+  desc: null
+  value: false
+awp_eps:
+  desc: null
+  value: 0.01
+awp_lr:
+  desc: null
+  value: 0.0001
+batch_scheduler:
+  desc: null
+  value: true
+batch_size:
+  desc: null
+  value: 64
+betas:
+  desc: null
+  value:
+  - 0.9
+  - 0.999
+cfg_name:
+  desc: null
+  value: CFG
+checkpoint_dir:
+  desc: null
+  value: ./saved/model/
+clipping_grad:
+  desc: null
+  value: true
+competition:
+  desc: null
+  value: SD2
+dataset:
+  desc: null
+  value: SD2Dataset
+device:
+  desc: null
+  value: cuda:0
+epochs:
+  desc: null
+  value: 5
+freeze:
+  desc: null
+  value: false
+gpu_id:
+  desc: null
+  value: 0
+gradient_checkpoint:
+  desc: null
+  value: true
+image_pooling:
+  desc: null
+  value: CLIPGEMPooling
+layerwise_adam_epsilon:
+  desc: null
+  value: 1.0e-06
+layerwise_lr:
+  desc: null
+  value: 5.0e-06
+layerwise_lr_decay:
+  desc: null
+  value: 0.9
+layerwise_use_bertadam:
+  desc: null
+  value: false
+layerwise_weight_decay:
+  desc: null
+  value: 0.01
+llrd:
+  desc: null
+  value: true
+load_pretrained:
+  desc: null
+  value: false
+loop:
+  desc: null
+  value: train_loop
+loss_fn:
+  desc: null
+  value: CLIPMultipleNegativeRankingLoss
+max_grad_norm:
+  desc: null
+  value: 1
+max_len:
+  desc: null
+  value: 128
+metrics:
+  desc: null
+  value: CosineSimilarity
+model:
+  desc: null
+  value: openai/clip-vit-large-patch14
+model_arch:
+  desc: null
+  value: SD2Model
+n_folds:
+  desc: null
+  value: 5
+n_gpu:
+  desc: null
+  value: 1
+n_gradient_accumulation_steps:
+  desc: null
+  value: 1
+name:
+  desc: null
+  value: SD2Trainer
+nth_awp_start_epoch:
+  desc: null
+  value: 2
+num_cycles:
+  desc: null
+  value: 1
+num_workers:
+  desc: null
+  value: 2
+optimizer:
+  desc: null
+  value: AdamW
+optuna:
+  desc: null
+  value: false
+reduction:
+  desc: null
+  value: mean
+reinit:
+  desc: null
+  value: true
+resume:
+  desc: null
+  value: false
+scheduler:
+  desc: null
+  value: cosine_annealing
+seed:
+  desc: null
+  value: 42
+state_dict:
+  desc: null
+  value: ''
+stop_mode:
+  desc: null
+  value: min
+style_model:
+  desc: null
+  value: convnext_base
+style_model_arch:
+  desc: null
+  value: StyleExtractModel
+swa:
+  desc: null
+  value: true
+swa_lr:
+  desc: null
+  value: 1.0e-06
+swa_start:
+  desc: null
+  value: 135
+test:
+  desc: null
+  value: false
+text_num_freeze:
+  desc: null
+  value: 8
+text_num_reinit:
+  desc: null
+  value: 1
+text_pooling:
+  desc: null
+  value: GEMPooling
+tokenizer:
+  desc: null
+  value: 'CLIPTokenizerFast(name_or_path=''openai/clip-vit-large-patch14'', vocab_size=49408,
+    model_max_length=77, is_fast=True, padding_side=''right'', truncation_side=''right'',
+    special_tokens={''bos_token'': AddedToken("<|startoftext|>", rstrip=False, lstrip=False,
+    single_word=False, normalized=True), ''eos_token'': AddedToken("<|endoftext|>",
+    rstrip=False, lstrip=False, single_word=False, normalized=True), ''unk_token'':
+    AddedToken("<|endoftext|>", rstrip=False, lstrip=False, single_word=False, normalized=True),
+    ''pad_token'': ''<|endoftext|>''}, clean_up_tokenization_spaces=True)'
+train:
+  desc: null
+  value: true
+vision_num_freeze:
+  desc: null
+  value: 16
+vision_num_reinit:
+  desc: null
+  value: 2
+wandb:
+  desc: null
+  value: true
+warmup_ratio:
+  desc: null
+  value: 0.1
+_wandb:
+  desc: null
+  value:
+    python_version: 3.9.13
+    cli_version: 0.15.2
+    framework: huggingface
+    huggingface_version: 4.28.1
+    is_jupyter_run: false
+    is_kaggle_kernel: true
+    start_time: 1683856663.66164
+    t:
+      1:
+      - 1
+      - 2
+      - 3
+      - 5
+      - 11
+      - 35
+      - 41
+      - 49
+      - 53
+      - 55
+      - 63
+      - 75
+      2:
+      - 1
+      - 2
+      - 3
+      - 5
+      - 11
+      - 35
+      - 41
+      - 49
+      - 53
+      - 55
+      - 63
+      - 75
+      3:
+      - 13
+      - 16
+      - 23
+      4: 3.9.13
+      5: 0.15.2
+      6: 4.28.1
+      8:
+      - 2
+      - 5

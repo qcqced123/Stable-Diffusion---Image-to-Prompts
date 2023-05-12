@@ -15,7 +15,7 @@ def get_optimizer_grouped_parameters(model, layerwise_lr, layerwise_weight_decay
                                      "lr": layerwise_lr,
                                      }, ]
     # initialize lrs for every layer
-    layers = [model.model.embeddings] + list(model.model.encoder.layer)
+    layers = [model.embeddings] + list(model.encoder.layers)
     layers.reverse()
     lr = layerwise_lr
     for layer in layers:

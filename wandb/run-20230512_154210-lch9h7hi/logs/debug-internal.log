@@ -1,0 +1,411 @@
+2023-05-12 15:42:10,944 INFO    StreamThr :28538 [internal.py:wandb_internal():86] W&B internal server running at pid: 28538, started at: 2023-05-12 15:42:10.944210
+2023-05-12 15:42:10,945 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status
+2023-05-12 15:42:10,949 INFO    WriterThread:28538 [datastore.py:open_for_write():85] open: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/run-lch9h7hi.wandb
+2023-05-12 15:42:10,950 DEBUG   SenderThread:28538 [sender.py:send():375] send: header
+2023-05-12 15:42:10,967 DEBUG   SenderThread:28538 [sender.py:send():375] send: run
+2023-05-12 15:42:11,471 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: check_version
+2023-05-12 15:42:11,472 INFO    SenderThread:28538 [dir_watcher.py:__init__():219] watching files in: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files
+2023-05-12 15:42:11,472 INFO    SenderThread:28538 [sender.py:_start_run_threads():1124] run started: lch9h7hi with start time 1683873730.945052
+2023-05-12 15:42:11,472 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: summary_record
+2023-05-12 15:42:11,472 INFO    SenderThread:28538 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-05-12 15:42:11,472 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: check_version
+2023-05-12 15:42:11,541 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: run_start
+2023-05-12 15:42:11,546 DEBUG   HandlerThread:28538 [system_info.py:__init__():31] System info init
+2023-05-12 15:42:11,546 DEBUG   HandlerThread:28538 [system_info.py:__init__():46] System info init done
+2023-05-12 15:42:11,546 INFO    HandlerThread:28538 [system_monitor.py:start():181] Starting system monitor
+2023-05-12 15:42:11,546 INFO    SystemMonitor:28538 [system_monitor.py:_start():145] Starting system asset monitoring threads
+2023-05-12 15:42:11,546 INFO    HandlerThread:28538 [system_monitor.py:probe():201] Collecting system info
+2023-05-12 15:42:11,547 INFO    SystemMonitor:28538 [interfaces.py:start():190] Started cpu monitoring
+2023-05-12 15:42:11,547 INFO    SystemMonitor:28538 [interfaces.py:start():190] Started disk monitoring
+2023-05-12 15:42:11,547 INFO    SystemMonitor:28538 [interfaces.py:start():190] Started gpu monitoring
+2023-05-12 15:42:11,548 INFO    SystemMonitor:28538 [interfaces.py:start():190] Started memory monitoring
+2023-05-12 15:42:11,548 INFO    SystemMonitor:28538 [interfaces.py:start():190] Started network monitoring
+2023-05-12 15:42:11,558 DEBUG   HandlerThread:28538 [system_info.py:probe():195] Probing system
+2023-05-12 15:42:11,561 DEBUG   HandlerThread:28538 [system_info.py:_probe_git():180] Probing git
+2023-05-12 15:42:11,566 DEBUG   HandlerThread:28538 [system_info.py:_probe_git():188] Probing git done
+2023-05-12 15:42:11,566 DEBUG   HandlerThread:28538 [system_info.py:probe():240] Probing system done
+2023-05-12 15:42:11,566 DEBUG   HandlerThread:28538 [system_monitor.py:probe():210] {'os': 'Linux-5.19.0-41-generic-x86_64-with-glibc2.35', 'python': '3.9.13', 'heartbeatAt': '2023-05-12T06:42:11.558173', 'startedAt': '2023-05-12T06:42:10.936187', 'docker': None, 'cuda': None, 'args': (), 'state': 'running', 'program': '/home/qcqced/바탕화면/ML_Test/image2text/train.py', 'codePath': 'train.py', 'git': {'remote': 'https://github.com/qcqced123/image2text.git', 'commit': '7753112e69fe12a3a50073a5c74bb721d8562d0e'}, 'email': '97833081+qcqced123@users.noreply.github.com', 'root': '/home/qcqced/바탕화면/ML_Test/image2text', 'host': 'qcqced-B550M-H', 'username': 'qcqced', 'executable': '/home/qcqced/anaconda3/bin/python', 'cpu_count': 6, 'cpu_count_logical': 12, 'cpu_freq': {'current': 3.1498333333333335, 'min': 2200.0, 'max': 3700.0}, 'cpu_freq_per_core': [{'current': 2.2, 'min': 2200.0, 'max': 3700.0}, {'current': 3.96, 'min': 2200.0, 'max': 3700.0}, {'current': 3.714, 'min': 2200.0, 'max': 3700.0}, {'current': 4.641, 'min': 2200.0, 'max': 3700.0}, {'current': 3.217, 'min': 2200.0, 'max': 3700.0}, {'current': 2.2, 'min': 2200.0, 'max': 3700.0}, {'current': 3.78, 'min': 2200.0, 'max': 3700.0}, {'current': 3.161, 'min': 2200.0, 'max': 3700.0}, {'current': 4.298, 'min': 2200.0, 'max': 3700.0}, {'current': 3.7, 'min': 2200.0, 'max': 3700.0}, {'current': 2.2, 'min': 2200.0, 'max': 3700.0}, {'current': 3.618, 'min': 2200.0, 'max': 3700.0}], 'disk': {'total': 680.4048233032227, 'used': 119.62628936767578}, 'gpu': 'NVIDIA GeForce RTX 3090', 'gpu_count': 1, 'gpu_devices': [{'name': 'NVIDIA GeForce RTX 3090', 'memory_total': 25769803776}], 'memory': {'total': 23.377338409423828}}
+2023-05-12 15:42:11,566 INFO    HandlerThread:28538 [system_monitor.py:probe():211] Finished collecting system info
+2023-05-12 15:42:11,566 INFO    HandlerThread:28538 [system_monitor.py:probe():214] Publishing system info
+2023-05-12 15:42:11,566 DEBUG   HandlerThread:28538 [system_info.py:_save_pip():51] Saving list of pip packages installed into the current environment
+2023-05-12 15:42:11,567 DEBUG   HandlerThread:28538 [system_info.py:_save_pip():67] Saving pip packages done
+2023-05-12 15:42:11,567 DEBUG   HandlerThread:28538 [system_info.py:_save_conda():74] Saving list of conda packages installed into the current environment
+2023-05-12 15:42:12,473 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_created():278] file/dir created: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/requirements.txt
+2023-05-12 15:42:12,473 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_created():278] file/dir created: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/wandb-summary.json
+2023-05-12 15:42:12,473 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_created():278] file/dir created: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/conda-environment.yaml
+2023-05-12 15:42:16,314 DEBUG   HandlerThread:28538 [system_info.py:_save_conda():86] Saving conda packages done
+2023-05-12 15:42:16,315 INFO    HandlerThread:28538 [system_monitor.py:probe():216] Finished publishing system info
+2023-05-12 15:42:16,318 DEBUG   SenderThread:28538 [sender.py:send():375] send: files
+2023-05-12 15:42:16,318 INFO    SenderThread:28538 [sender.py:_save_file():1378] saving file wandb-metadata.json with policy now
+2023-05-12 15:42:16,319 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:42:16,322 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-12 15:42:16,322 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: stop_status
+2023-05-12 15:42:16,474 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/conda-environment.yaml
+2023-05-12 15:42:16,474 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_created():278] file/dir created: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/wandb-metadata.json
+2023-05-12 15:42:16,558 DEBUG   SenderThread:28538 [sender.py:send():375] send: telemetry
+2023-05-12 15:42:16,980 INFO    wandb-upload_0:28538 [upload_job.py:push():137] Uploaded file /tmp/tmpd5ciisudwandb/1y5rqea0-wandb-metadata.json
+2023-05-12 15:42:18,475 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_created():278] file/dir created: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:42:20,475 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:42:21,691 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:42:24,477 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:42:27,609 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:42:28,478 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:42:30,478 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:42:31,322 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-12 15:42:31,322 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: stop_status
+2023-05-12 15:42:32,478 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:42:33,490 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:42:34,479 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:42:36,480 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:42:38,480 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:42:39,369 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:42:40,480 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:42:42,481 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:42:44,482 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:42:45,258 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:42:46,322 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-12 15:42:46,322 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: stop_status
+2023-05-12 15:42:46,482 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:42:46,482 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/config.yaml
+2023-05-12 15:42:48,483 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:42:50,483 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:42:51,146 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:42:52,484 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:42:54,484 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:42:56,485 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:42:57,041 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:42:58,485 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:43:00,486 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:43:01,322 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-12 15:43:01,322 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: stop_status
+2023-05-12 15:43:02,486 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:43:02,510 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:43:04,487 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:43:06,487 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:43:07,607 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:43:08,488 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:43:10,488 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:43:11,548 DEBUG   SystemMonitor:28538 [system_monitor.py:_start():159] Starting system metrics aggregation loop
+2023-05-12 15:43:11,549 DEBUG   SenderThread:28538 [sender.py:send():375] send: stats
+2023-05-12 15:43:12,489 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:43:13,513 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:43:14,489 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:43:16,322 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-12 15:43:16,322 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: stop_status
+2023-05-12 15:43:16,490 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:43:18,490 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:43:19,418 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:43:20,491 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:43:22,491 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:43:24,473 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:43:24,492 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:43:26,492 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:43:28,493 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:43:30,209 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:43:30,493 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:43:31,322 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-12 15:43:31,322 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: stop_status
+2023-05-12 15:43:32,494 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:43:34,495 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:43:36,130 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:43:36,495 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:43:38,496 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:43:40,496 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:43:41,549 DEBUG   SenderThread:28538 [sender.py:send():375] send: stats
+2023-05-12 15:43:41,549 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:43:42,497 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:43:44,498 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:43:46,322 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-12 15:43:46,322 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: stop_status
+2023-05-12 15:43:46,498 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:43:46,971 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:43:48,498 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:43:50,499 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:43:52,500 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:43:52,694 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:43:54,500 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:43:56,501 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:43:58,501 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:43:58,611 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:44:00,502 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:44:01,322 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-12 15:44:01,323 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: stop_status
+2023-05-12 15:44:02,502 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:44:04,503 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:44:04,527 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:44:06,503 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:44:08,504 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:44:10,439 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:44:10,504 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:44:11,549 DEBUG   SenderThread:28538 [sender.py:send():375] send: stats
+2023-05-12 15:44:12,505 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:44:14,506 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:44:16,322 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-12 15:44:16,323 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: stop_status
+2023-05-12 15:44:16,506 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:44:16,524 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:44:18,507 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:44:20,507 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:44:22,282 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:44:22,508 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:44:24,508 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:44:26,509 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:44:28,194 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:44:28,509 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:44:30,510 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:44:31,322 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-12 15:44:31,323 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: stop_status
+2023-05-12 15:44:32,510 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:44:34,127 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:44:34,511 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:44:36,511 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:44:38,512 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:44:40,077 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:44:40,512 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:44:41,550 DEBUG   SenderThread:28538 [sender.py:send():375] send: stats
+2023-05-12 15:44:42,513 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:44:44,514 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:44:46,031 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:44:46,323 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-12 15:44:46,323 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: stop_status
+2023-05-12 15:44:46,514 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:44:48,515 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:44:50,515 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:44:51,979 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:44:52,515 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:44:54,516 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:44:56,516 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:44:57,095 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:44:58,517 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:45:00,518 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:45:01,323 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-12 15:45:01,323 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: stop_status
+2023-05-12 15:45:02,518 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:45:02,876 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:45:04,518 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:45:06,519 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:45:08,520 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:45:08,829 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:45:10,520 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:45:11,550 DEBUG   SenderThread:28538 [sender.py:send():375] send: stats
+2023-05-12 15:45:12,521 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:45:14,521 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:45:14,771 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:45:16,323 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-12 15:45:16,323 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: stop_status
+2023-05-12 15:45:16,522 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:45:18,522 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:45:20,523 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:45:20,721 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:45:22,523 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:45:24,524 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:45:26,524 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:45:26,698 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:45:28,525 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:45:30,525 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:45:31,323 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-12 15:45:31,323 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: stop_status
+2023-05-12 15:45:32,526 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:45:32,675 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:45:34,527 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:45:36,527 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:45:38,527 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:45:38,639 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:45:40,528 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:45:41,551 DEBUG   SenderThread:28538 [sender.py:send():375] send: stats
+2023-05-12 15:45:42,528 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:45:44,529 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:45:44,601 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:45:46,323 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-12 15:45:46,323 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: stop_status
+2023-05-12 15:45:46,529 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:45:48,530 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:45:50,530 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:45:50,569 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:45:52,531 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:45:54,531 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:45:56,532 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:45:56,536 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:45:58,532 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:46:00,532 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:46:01,323 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-12 15:46:01,323 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: stop_status
+2023-05-12 15:46:02,521 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:46:02,533 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:46:04,533 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:46:06,534 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:46:08,502 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:46:08,534 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:46:10,535 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:46:11,551 DEBUG   SenderThread:28538 [sender.py:send():375] send: stats
+2023-05-12 15:46:12,535 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:46:13,526 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:46:14,536 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:46:16,323 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-12 15:46:16,324 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: stop_status
+2023-05-12 15:46:16,536 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:46:18,536 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:46:19,304 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:46:20,537 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:46:22,537 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:46:24,307 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:46:24,538 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:46:26,538 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:46:28,539 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:46:30,105 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:46:30,539 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:46:31,324 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-12 15:46:31,324 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: stop_status
+2023-05-12 15:46:32,540 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:46:34,540 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:46:35,106 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:46:36,540 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:46:38,541 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:46:40,541 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:46:41,097 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:46:41,552 DEBUG   SenderThread:28538 [sender.py:send():375] send: stats
+2023-05-12 15:46:42,542 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:46:44,542 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:46:46,198 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:46:46,324 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-12 15:46:46,324 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: stop_status
+2023-05-12 15:46:46,543 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:46:48,543 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:46:50,544 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:46:51,358 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:46:52,544 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:46:54,545 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:46:56,433 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:46:56,545 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:46:57,614 DEBUG   SenderThread:28538 [sender.py:send():375] send: exit
+2023-05-12 15:46:57,614 INFO    SenderThread:28538 [sender.py:send_exit():598] handling exit code: 255
+2023-05-12 15:46:57,615 INFO    SenderThread:28538 [sender.py:send_exit():600] handling runtime: 286
+2023-05-12 15:46:57,615 INFO    SenderThread:28538 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-05-12 15:46:57,615 INFO    SenderThread:28538 [sender.py:send_exit():606] send defer
+2023-05-12 15:46:57,615 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: defer
+2023-05-12 15:46:57,615 INFO    HandlerThread:28538 [handler.py:handle_request_defer():170] handle defer: 0
+2023-05-12 15:46:57,615 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: defer
+2023-05-12 15:46:57,615 INFO    SenderThread:28538 [sender.py:send_request_defer():622] handle sender defer: 0
+2023-05-12 15:46:57,615 INFO    SenderThread:28538 [sender.py:transition_state():626] send defer: 1
+2023-05-12 15:46:57,615 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: defer
+2023-05-12 15:46:57,615 INFO    HandlerThread:28538 [handler.py:handle_request_defer():170] handle defer: 1
+2023-05-12 15:46:57,615 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: defer
+2023-05-12 15:46:57,615 INFO    SenderThread:28538 [sender.py:send_request_defer():622] handle sender defer: 1
+2023-05-12 15:46:57,615 INFO    SenderThread:28538 [sender.py:transition_state():626] send defer: 2
+2023-05-12 15:46:57,615 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: defer
+2023-05-12 15:46:57,615 INFO    HandlerThread:28538 [handler.py:handle_request_defer():170] handle defer: 2
+2023-05-12 15:46:57,615 INFO    HandlerThread:28538 [system_monitor.py:finish():190] Stopping system monitor
+2023-05-12 15:46:57,615 DEBUG   SystemMonitor:28538 [system_monitor.py:_start():166] Finished system metrics aggregation loop
+2023-05-12 15:46:57,616 INFO    HandlerThread:28538 [interfaces.py:finish():202] Joined cpu monitor
+2023-05-12 15:46:57,616 DEBUG   SystemMonitor:28538 [system_monitor.py:_start():170] Publishing last batch of metrics
+2023-05-12 15:46:57,616 INFO    HandlerThread:28538 [interfaces.py:finish():202] Joined disk monitor
+2023-05-12 15:46:57,633 INFO    HandlerThread:28538 [interfaces.py:finish():202] Joined gpu monitor
+2023-05-12 15:46:57,633 INFO    HandlerThread:28538 [interfaces.py:finish():202] Joined memory monitor
+2023-05-12 15:46:57,633 INFO    HandlerThread:28538 [interfaces.py:finish():202] Joined network monitor
+2023-05-12 15:46:57,633 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: defer
+2023-05-12 15:46:57,633 INFO    SenderThread:28538 [sender.py:send_request_defer():622] handle sender defer: 2
+2023-05-12 15:46:57,633 INFO    SenderThread:28538 [sender.py:transition_state():626] send defer: 3
+2023-05-12 15:46:57,633 DEBUG   SenderThread:28538 [sender.py:send():375] send: stats
+2023-05-12 15:46:57,634 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: defer
+2023-05-12 15:46:57,634 INFO    HandlerThread:28538 [handler.py:handle_request_defer():170] handle defer: 3
+2023-05-12 15:46:57,634 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: defer
+2023-05-12 15:46:57,634 INFO    SenderThread:28538 [sender.py:send_request_defer():622] handle sender defer: 3
+2023-05-12 15:46:57,634 INFO    SenderThread:28538 [sender.py:transition_state():626] send defer: 4
+2023-05-12 15:46:57,634 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: defer
+2023-05-12 15:46:57,634 INFO    HandlerThread:28538 [handler.py:handle_request_defer():170] handle defer: 4
+2023-05-12 15:46:57,634 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: defer
+2023-05-12 15:46:57,634 INFO    SenderThread:28538 [sender.py:send_request_defer():622] handle sender defer: 4
+2023-05-12 15:46:57,634 INFO    SenderThread:28538 [sender.py:transition_state():626] send defer: 5
+2023-05-12 15:46:57,634 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: defer
+2023-05-12 15:46:57,634 INFO    HandlerThread:28538 [handler.py:handle_request_defer():170] handle defer: 5
+2023-05-12 15:46:57,634 DEBUG   SenderThread:28538 [sender.py:send():375] send: summary
+2023-05-12 15:46:57,634 INFO    SenderThread:28538 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-05-12 15:46:57,634 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: defer
+2023-05-12 15:46:57,634 INFO    SenderThread:28538 [sender.py:send_request_defer():622] handle sender defer: 5
+2023-05-12 15:46:57,635 INFO    SenderThread:28538 [sender.py:transition_state():626] send defer: 6
+2023-05-12 15:46:57,635 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: defer
+2023-05-12 15:46:57,635 INFO    HandlerThread:28538 [handler.py:handle_request_defer():170] handle defer: 6
+2023-05-12 15:46:57,635 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: defer
+2023-05-12 15:46:57,635 INFO    SenderThread:28538 [sender.py:send_request_defer():622] handle sender defer: 6
+2023-05-12 15:46:57,635 INFO    SenderThread:28538 [sender.py:transition_state():626] send defer: 7
+2023-05-12 15:46:57,635 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 15:46:57,635 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: defer
+2023-05-12 15:46:57,635 INFO    HandlerThread:28538 [handler.py:handle_request_defer():170] handle defer: 7
+2023-05-12 15:46:57,635 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: defer
+2023-05-12 15:46:57,635 INFO    SenderThread:28538 [sender.py:send_request_defer():622] handle sender defer: 7
+2023-05-12 15:46:58,546 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:46:58,546 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/wandb-summary.json
+2023-05-12 15:46:58,615 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: poll_exit
+2023-05-12 15:47:00,547 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:47:00,729 INFO    SenderThread:28538 [sender.py:transition_state():626] send defer: 8
+2023-05-12 15:47:00,729 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: poll_exit
+2023-05-12 15:47:00,730 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: defer
+2023-05-12 15:47:00,730 INFO    HandlerThread:28538 [handler.py:handle_request_defer():170] handle defer: 8
+2023-05-12 15:47:00,730 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: defer
+2023-05-12 15:47:00,730 INFO    SenderThread:28538 [sender.py:send_request_defer():622] handle sender defer: 8
+2023-05-12 15:47:00,734 INFO    SenderThread:28538 [sender.py:transition_state():626] send defer: 9
+2023-05-12 15:47:00,734 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: defer
+2023-05-12 15:47:00,734 DEBUG   SenderThread:28538 [sender.py:send():375] send: artifact
+2023-05-12 15:47:00,734 INFO    HandlerThread:28538 [handler.py:handle_request_defer():170] handle defer: 9
+2023-05-12 15:47:01,547 INFO    Thread-12 :28538 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:47:01,838 INFO    SenderThread:28538 [sender.py:send_artifact():1474] sent artifact job-https___github.com_qcqced123_image2text.git_train.py - {'id': 'QXJ0aWZhY3Q6NDUxNzg0MzA1', 'digest': 'b5f6eea79ebfc1d0184583b2ed4b8347', 'state': 'COMMITTED', 'aliases': [{'artifactCollectionName': 'job-https___github.com_qcqced123_image2text.git_train.py', 'alias': 'latest'}, {'artifactCollectionName': 'job-https___github.com_qcqced123_image2text.git_train.py', 'alias': 'v0'}], 'artifactSequence': {'id': 'QXJ0aWZhY3RDb2xsZWN0aW9uOjY4NjcwMjU5', 'latestArtifact': {'id': 'QXJ0aWZhY3Q6NDUxNzg0MzA1', 'versionIndex': 0}}, 'version': 'v0'}
+2023-05-12 15:47:01,838 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: defer
+2023-05-12 15:47:01,838 INFO    SenderThread:28538 [sender.py:send_request_defer():622] handle sender defer: 9
+2023-05-12 15:47:01,838 INFO    SenderThread:28538 [dir_watcher.py:finish():365] shutting down directory watcher
+2023-05-12 15:47:02,548 INFO    SenderThread:28538 [dir_watcher.py:finish():395] scan: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files
+2023-05-12 15:47:02,548 INFO    SenderThread:28538 [dir_watcher.py:finish():409] scan save: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log output.log
+2023-05-12 15:47:02,548 INFO    SenderThread:28538 [dir_watcher.py:finish():409] scan save: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/config.yaml config.yaml
+2023-05-12 15:47:02,549 INFO    SenderThread:28538 [dir_watcher.py:finish():409] scan save: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/wandb-metadata.json wandb-metadata.json
+2023-05-12 15:47:02,549 INFO    SenderThread:28538 [dir_watcher.py:finish():409] scan save: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/requirements.txt requirements.txt
+2023-05-12 15:47:02,551 INFO    SenderThread:28538 [dir_watcher.py:finish():409] scan save: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/conda-environment.yaml conda-environment.yaml
+2023-05-12 15:47:02,553 INFO    SenderThread:28538 [dir_watcher.py:finish():409] scan save: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/wandb-summary.json wandb-summary.json
+2023-05-12 15:47:02,554 INFO    SenderThread:28538 [sender.py:transition_state():626] send defer: 10
+2023-05-12 15:47:02,556 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: defer
+2023-05-12 15:47:02,558 INFO    HandlerThread:28538 [handler.py:handle_request_defer():170] handle defer: 10
+2023-05-12 15:47:02,558 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: defer
+2023-05-12 15:47:02,558 INFO    SenderThread:28538 [sender.py:send_request_defer():622] handle sender defer: 10
+2023-05-12 15:47:02,558 INFO    SenderThread:28538 [file_pusher.py:finish():167] shutting down file pusher
+2023-05-12 15:47:03,154 INFO    wandb-upload_1:28538 [upload_job.py:push():137] Uploaded file /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/output.log
+2023-05-12 15:47:03,212 INFO    wandb-upload_4:28538 [upload_job.py:push():137] Uploaded file /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/wandb-summary.json
+2023-05-12 15:47:03,251 INFO    wandb-upload_2:28538 [upload_job.py:push():137] Uploaded file /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/requirements.txt
+2023-05-12 15:47:03,258 INFO    wandb-upload_3:28538 [upload_job.py:push():137] Uploaded file /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/conda-environment.yaml
+2023-05-12 15:47:03,261 INFO    wandb-upload_0:28538 [upload_job.py:push():137] Uploaded file /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/files/config.yaml
+2023-05-12 15:47:03,461 INFO    Thread-11 :28538 [sender.py:transition_state():626] send defer: 11
+2023-05-12 15:47:03,461 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: defer
+2023-05-12 15:47:03,461 INFO    HandlerThread:28538 [handler.py:handle_request_defer():170] handle defer: 11
+2023-05-12 15:47:03,462 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: defer
+2023-05-12 15:47:03,462 INFO    SenderThread:28538 [sender.py:send_request_defer():622] handle sender defer: 11
+2023-05-12 15:47:03,462 INFO    SenderThread:28538 [file_pusher.py:join():172] waiting for file pusher
+2023-05-12 15:47:03,462 INFO    SenderThread:28538 [sender.py:transition_state():626] send defer: 12
+2023-05-12 15:47:03,462 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: defer
+2023-05-12 15:47:03,462 INFO    HandlerThread:28538 [handler.py:handle_request_defer():170] handle defer: 12
+2023-05-12 15:47:03,462 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: defer
+2023-05-12 15:47:03,462 INFO    SenderThread:28538 [sender.py:send_request_defer():622] handle sender defer: 12
+2023-05-12 15:47:03,616 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: keepalive
+2023-05-12 15:47:03,692 INFO    SenderThread:28538 [sender.py:transition_state():626] send defer: 13
+2023-05-12 15:47:03,693 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: defer
+2023-05-12 15:47:03,693 INFO    HandlerThread:28538 [handler.py:handle_request_defer():170] handle defer: 13
+2023-05-12 15:47:03,693 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: defer
+2023-05-12 15:47:03,693 INFO    SenderThread:28538 [sender.py:send_request_defer():622] handle sender defer: 13
+2023-05-12 15:47:03,693 INFO    SenderThread:28538 [sender.py:transition_state():626] send defer: 14
+2023-05-12 15:47:03,693 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: defer
+2023-05-12 15:47:03,693 DEBUG   SenderThread:28538 [sender.py:send():375] send: final
+2023-05-12 15:47:03,693 INFO    HandlerThread:28538 [handler.py:handle_request_defer():170] handle defer: 14
+2023-05-12 15:47:03,694 DEBUG   SenderThread:28538 [sender.py:send():375] send: footer
+2023-05-12 15:47:03,694 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: defer
+2023-05-12 15:47:03,694 INFO    SenderThread:28538 [sender.py:send_request_defer():622] handle sender defer: 14
+2023-05-12 15:47:03,694 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: poll_exit
+2023-05-12 15:47:03,694 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: poll_exit
+2023-05-12 15:47:03,695 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: server_info
+2023-05-12 15:47:03,695 DEBUG   SenderThread:28538 [sender.py:send_request():402] send_request: server_info
+2023-05-12 15:47:03,697 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: get_summary
+2023-05-12 15:47:03,697 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: sampled_history
+2023-05-12 15:47:03,888 INFO    MainThread:28538 [wandb_run.py:_footer_history_summary_info():3469] rendering history
+2023-05-12 15:47:03,888 INFO    MainThread:28538 [wandb_run.py:_footer_history_summary_info():3501] rendering summary
+2023-05-12 15:47:03,888 INFO    MainThread:28538 [wandb_run.py:_footer_sync_info():3428] logging synced files
+2023-05-12 15:47:03,888 DEBUG   HandlerThread:28538 [handler.py:handle_request():144] handle_request: shutdown
+2023-05-12 15:47:03,889 INFO    HandlerThread:28538 [handler.py:finish():845] shutting down handler
+2023-05-12 15:47:04,695 INFO    WriterThread:28538 [datastore.py:close():298] close: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/run-lch9h7hi.wandb
+2023-05-12 15:47:04,888 INFO    SenderThread:28538 [sender.py:finish():1550] shutting down sender
+2023-05-12 15:47:04,888 INFO    SenderThread:28538 [file_pusher.py:finish():167] shutting down file pusher
+2023-05-12 15:47:04,888 INFO    SenderThread:28538 [file_pusher.py:join():172] waiting for file pusher

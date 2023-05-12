@@ -1,0 +1,27 @@
+2023-05-12 15:42:10,938 INFO    MainThread:28505 [wandb_setup.py:_flush():76] Current SDK version is 0.15.2
+2023-05-12 15:42:10,938 INFO    MainThread:28505 [wandb_setup.py:_flush():76] Configure stats pid to 28505
+2023-05-12 15:42:10,938 INFO    MainThread:28505 [wandb_setup.py:_flush():76] Loading settings from /home/qcqced/.config/wandb/settings
+2023-05-12 15:42:10,938 INFO    MainThread:28505 [wandb_setup.py:_flush():76] Loading settings from /home/qcqced/바탕화면/ML_Test/image2text/wandb/settings
+2023-05-12 15:42:10,938 INFO    MainThread:28505 [wandb_setup.py:_flush():76] Loading settings from environment variables: {}
+2023-05-12 15:42:10,938 INFO    MainThread:28505 [wandb_setup.py:_flush():76] Applying setup settings: {'_disable_service': False}
+2023-05-12 15:42:10,938 INFO    MainThread:28505 [wandb_setup.py:_flush():76] Inferring run settings from compute environment: {'program_relpath': 'train.py', 'program': '/home/qcqced/바탕화면/ML_Test/image2text/train.py'}
+2023-05-12 15:42:10,938 INFO    MainThread:28505 [wandb_init.py:_log_setup():507] Logging user logs to /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/logs/debug.log
+2023-05-12 15:42:10,938 INFO    MainThread:28505 [wandb_init.py:_log_setup():508] Logging internal logs to /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_154210-lch9h7hi/logs/debug-internal.log
+2023-05-12 15:42:10,938 INFO    MainThread:28505 [wandb_init.py:init():547] calling init triggers
+2023-05-12 15:42:10,938 INFO    MainThread:28505 [wandb_init.py:init():554] wandb.init called with sweep_config: {}
+config: {'amp_scaler': True, 'anneal_epochs': 1, 'anneal_strategy': 'cos', 'awp': False, 'awp_eps': 0.01, 'awp_lr': 0.0001, 'batch_scheduler': True, 'batch_size': 16, 'betas': [0.9, 0.999], 'cfg_name': 'CFG', 'checkpoint_dir': './saved/model/', 'clipping_grad': True, 'competition': 'SD2', 'dataset': 'SD2Dataset', 'device': device(type='cuda', index=0), 'epochs': 5, 'freeze': False, 'gpu_id': 0, 'gradient_checkpoint': True, 'image_pooling': 'CLIPGEMPooling', 'layerwise_adam_epsilon': 1e-06, 'layerwise_lr': 5e-06, 'layerwise_lr_decay': 0.9, 'layerwise_use_bertadam': False, 'layerwise_weight_decay': 0.01, 'llrd': True, 'load_pretrained': False, 'loop': 'train_loop', 'loss_fn': 'CLIPMultipleNegativeRankingLoss', 'max_grad_norm': 1000, 'max_len': 77, 'metrics': 'CosineSimilarity', 'model': 'openai/clip-vit-large-patch14', 'model_arch': 'SD2Model', 'n_folds': 5, 'n_gpu': 1, 'n_gradient_accumulation_steps': 1, 'name': 'SD2Trainer', 'nth_awp_start_epoch': 2, 'num_cycles': 1, 'num_workers': 2, 'optimizer': 'AdamW', 'optuna': False, 'reduction': 'mean', 'reinit': True, 'resume': False, 'scheduler': 'cosine_annealing', 'seed': 42, 'state_dict': '', 'stop_mode': 'max', 'style_model': 'convnext_base', 'style_model_arch': 'StyleExtractModel', 'swa': True, 'swa_lr': 1e-06, 'swa_start': 135, 'test': False, 'text_num_freeze': 8, 'text_num_reinit': 1, 'text_pooling': 'GEMPooling', 'tokenizer': CLIPTokenizerFast(name_or_path='openai/clip-vit-large-patch14', vocab_size=49408, model_max_length=77, is_fast=True, padding_side='right', truncation_side='right', special_tokens={'bos_token': AddedToken("<|startoftext|>", rstrip=False, lstrip=False, single_word=False, normalized=True), 'eos_token': AddedToken("<|endoftext|>", rstrip=False, lstrip=False, single_word=False, normalized=True), 'unk_token': AddedToken("<|endoftext|>", rstrip=False, lstrip=False, single_word=False, normalized=True), 'pad_token': '<|endoftext|>'}, clean_up_tokenization_spaces=True), 'train': True, 'vision_num_freeze': 16, 'vision_num_reinit': 2, 'wandb': True, 'warmup_ratio': 0.1}
+2023-05-12 15:42:10,938 INFO    MainThread:28505 [wandb_init.py:init():596] starting backend
+2023-05-12 15:42:10,938 INFO    MainThread:28505 [wandb_init.py:init():600] setting up manager
+2023-05-12 15:42:10,941 INFO    MainThread:28505 [backend.py:_multiprocessing_setup():106] multiprocessing start_methods=fork,spawn,forkserver, using: spawn
+2023-05-12 15:42:10,944 INFO    MainThread:28505 [wandb_init.py:init():606] backend started and connected
+2023-05-12 15:42:10,949 INFO    MainThread:28505 [wandb_init.py:init():700] updated telemetry
+2023-05-12 15:42:10,966 INFO    MainThread:28505 [wandb_init.py:init():737] communicating run to backend with 60.0 second timeout
+2023-05-12 15:42:11,470 INFO    MainThread:28505 [wandb_run.py:_on_init():2177] communicating current version
+2023-05-12 15:42:11,498 INFO    MainThread:28505 [wandb_run.py:_on_init():2186] got version response 
+2023-05-12 15:42:11,498 INFO    MainThread:28505 [wandb_init.py:init():787] starting run threads in backend
+2023-05-12 15:42:16,321 INFO    MainThread:28505 [wandb_run.py:_console_start():2158] atexit reg
+2023-05-12 15:42:16,322 INFO    MainThread:28505 [wandb_run.py:_redirect():2013] redirect: SettingsConsole.WRAP_RAW
+2023-05-12 15:42:16,322 INFO    MainThread:28505 [wandb_run.py:_redirect():2078] Wrapping output streams.
+2023-05-12 15:42:16,322 INFO    MainThread:28505 [wandb_run.py:_redirect():2103] Redirects installed.
+2023-05-12 15:42:16,322 INFO    MainThread:28505 [wandb_init.py:init():829] run started, returning control to user process
+2023-05-12 15:47:05,011 WARNING MsgRouterThr:28505 [router.py:message_loop():77] message_loop has been closed

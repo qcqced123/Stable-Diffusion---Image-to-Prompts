@@ -8,10 +8,18 @@
       <change beforePath="$PROJECT_DIR$/.idea/image2text.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/image2text.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/Untitled-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/.ipynb_checkpoints/Untitled-checkpoint.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Untitled.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/Untitled.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset_class/all_prompt.csv" beforeDir="false" afterPath="$PROJECT_DIR$/dataset_class/final_prompt.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset_class/dataclass.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataset_class/dataclass.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/image2text_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/image2text_config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/metric_learning.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/metric_learning.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/model_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/model_utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/pooling.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/pooling.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trainer/train_loop.py" beforeDir="false" afterPath="$PROJECT_DIR$/trainer/train_loop.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/trainer/trainer.py" beforeDir="false" afterPath="$PROJECT_DIR$/trainer/trainer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trainer/trainer_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/trainer/trainer_utils.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

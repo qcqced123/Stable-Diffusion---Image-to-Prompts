@@ -1,0 +1,37 @@
+
+`text_config_dict` is provided which will be used to initialize `CLIPTextConfig`. The value `text_config["id2label"]` will be overriden.
+/home/qcqced/anaconda3/lib/python3.9/site-packages/transformers/optimization.py:391: FutureWarning: This implementation of AdamW is deprecated and will be removed in a future version. Use the PyTorch implementation torch.optim.AdamW instead, or set `no_deprecation_warning=True` to disable this warning
+  warnings.warn(
+  0%|                                                                                                                        | 0/11005 [00:00<?, ?it/s]
+  grad_norm = torch.nn.utils.clip_grad_norm(                                                                                 | 0/11005 [00:00<?, ?it/s]
+  0%|                                                                                                             | 1/11005 [00:04<12:56:47,  4.24s/it]
+Traceback (most recent call last):                                                                                | 1/11005 [00:03<11:14:39,  3.68s/it]
+  File "/home/qcqced/바탕화면/ML_Test/image2text/train.py", line 49, in <module>
+    main('image2text_config.json', CFG)
+  File "/home/qcqced/바탕화면/ML_Test/image2text/train.py", line 30, in main
+    getattr(train_loop, cfg.loop)(cfg)  # init object
+  File "/home/qcqced/바탕화면/ML_Test/image2text/trainer/train_loop.py", line 39, in train_loop
+    train_loss, grad_norm, lr = train_input.train_fn(
+  File "/home/qcqced/바탕화면/ML_Test/image2text/trainer/trainer.py", line 100, in train_fn
+    style_features = style_model(images)  # style image to style feature
+  File "/home/qcqced/anaconda3/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/qcqced/바탕화면/ML_Test/image2text/model/model.py", line 182, in forward
+    embedding3 = feature3(embedding2)
+  File "/home/qcqced/anaconda3/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/qcqced/anaconda3/lib/python3.9/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/qcqced/anaconda3/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/qcqced/anaconda3/lib/python3.9/site-packages/timm/models/convnext.py", line 250, in forward
+    x = self.blocks(x)
+  File "/home/qcqced/anaconda3/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/qcqced/anaconda3/lib/python3.9/site-packages/torch/nn/modules/container.py", line 217, in forward
+    input = module(input)
+  File "/home/qcqced/anaconda3/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/qcqced/anaconda3/lib/python3.9/site-packages/timm/models/convnext.py", line 187, in forward
+    x = x.mul(self.gamma.reshape(1, -1, 1, 1))
+torch.cuda.OutOfMemoryError: CUDA out of memory. Tried to allocate 28.00 MiB (GPU 0; 23.69 GiB total capacity; 20.92 GiB already allocated; 43.44 MiB free; 21.85 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF

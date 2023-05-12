@@ -30,8 +30,8 @@ class SD2Model(nn.Module):
             cfg.model,
             output_hidden_states=True
         )
-        self.vision_config = self.auto_config.vision_config
-        self.text_config = self.auto_config.text_config
+        self.vision_config = self.auto_cfg.vision_config
+        self.text_config = self.auto_cfg.text_config
 
         self.model = AutoModel.from_pretrained(
             cfg.model,
@@ -41,7 +41,7 @@ class SD2Model(nn.Module):
         self.text_model = self.model.text_model
 
         self.vision_fc = nn.Sequential(
-            nn.Linear(2048, 4096),  # will be added with style feature => 1024(ViT) + 1024(Style Model) = 2048
+            nn.Linear(2944, 4096),  # will be added with style feature => 1024(ViT) + 1920(Style Model) = 2944
             nn.SiLU(),
             nn.Dropout(self.drop),
             nn.Linear(4096, 4096),
@@ -66,9 +66,10 @@ class SD2Model(nn.Module):
             )  # I don't know how to save those vision & text, maybe need to save separately
 
         if cfg.reinit:
+            self._init_weights(self.vision_fc)
             self._init_weights(self.text_fc)
-            reinit_topk(self.vision_model, cfg.vision_num_reinit)
-            reinit_topk(self.text_model, cfg.text_num_reinit)
+            self.reinit_topk(self.vision_model, cfg.vision_num_reinit)
+            self.reinit_topk(self.text_model, cfg.text_num_reinit)
 
         if cfg.freeze:
             freeze(self.vision_model.embeddings)
@@ -80,14 +81,26 @@ class SD2Model(nn.Module):
         if cfg.gradient_checkpoint:
             self.model.gradient_checkpointing_enable()
 
-    def _init_weights(self, module) -> None:
+    def reinit_topk(self, model, num_layers):
+        """
+        Re-initialize the last-k transformer Encoder layers.
+        Encoder Layer: Embedding, Attention Head, LayerNorm, Feed Forward
+        Args:
+            model: The target transformer model.
+            num_layers: The number of layers to be re-initialized.
+        """
+        if num_layers > 0:
+            model.encoder.layers[-num_layers:].apply(self._init_weights)
+
+    @staticmethod
+    def _init_weights(module) -> None:
         """ over-ride initializes weights of the given module function (+initializes LayerNorm) """
         if isinstance(module, nn.Linear):
-            module.weight.data.normal_(mean=0.0, std=self.auto_cfg.initializer_range)
+            module.weight.data.normal_(mean=0.0, std=0.02)
             if module.bias is not None:
                 module.bias.data.zero_()
         elif isinstance(module, nn.Embedding):
-            module.weight.data.normal_(mean=0.0, std=self.auto_cfg.initializer_range)
+            module.weight.data.normal_(mean=0.0, std=0.02)
             if module.padding_idx is not None:
                 module.weight.data[module.padding_idx].zero_()
         elif isinstance(module, nn.LayerNorm):
@@ -98,7 +111,7 @@ class SD2Model(nn.Module):
     def forward(self, inputs: dict, mode: str, style_features: Tensor = None) -> list[Tensor]:
         """ forward pass function with mode (vision or text) """
         if mode == 'vision':
-            outputs = self.vision_model(**inputs)
+            outputs = self.vision_model(inputs)
             feature = outputs.last_hidden_state
             embedding = self.vision_pooling(feature)  # [batch_size, hidden_size(1024)]
 
@@ -109,7 +122,7 @@ class SD2Model(nn.Module):
         else:  # mode == 'text'
             outputs = self.text_model(**inputs)
             feature = outputs.last_hidden_state
-            embedding = self.pooling(feature, inputs['attention_mask'])
+            embedding = self.text_pooling(feature, inputs['attention_mask'])
             text_features = embedding / embedding.norm(dim=-1, keepdim=True)  # normalize
             logit = self.text_fc(text_features)
 
@@ -127,7 +140,10 @@ class StyleExtractModel(nn.Module):
     But in many prompt sentences, they have a lot of word for background called feature.
     So we need to style-extractor for more good performance in generate prompt text
     option:
-        style_model: efficientnet_b7, convnext_base
+        style_model: efficientnet family, convnext_base, resent family
+        efficientnet: pass keyword 'blocks' to forward function
+        convnext_base: pass keyword 'stage' to forward function
+        resnet: pass keyword 'layer1 ~ layer4' to forward function
 
     [Reference]
     https://www.kaggle.com/code/tanreinama/style-extract-from-vgg-clip-object-extract
@@ -138,9 +154,15 @@ class StyleExtractModel(nn.Module):
         self.style_model = timm.create_model(
             self.cfg.style_model,
             pretrained=True,
-            features_only=True,  # will be drop classifier or regression head
+            features_only=False,  # will be drop classifier or regression head
         )
         self.avg = nn.AdaptiveAvgPool1d(1)
+        if 'efficientnet' in self.cfg.style_model:
+            layer_name = 'blocks'
+        elif 'convnext' in self.cfg.style_model:
+            layer_name = 'stages'
+        elif 'resnet' in self.cfg.style_model:
+            layer_name = ['layer1', 'layer2','layer3', 'layer4']
 
     @staticmethod
     def gram_matrix(x: torch.Tensor) -> torch.Tensor:
@@ -149,17 +171,20 @@ class StyleExtractModel(nn.Module):
         g = torch.bmm(f, f.transpose(1, 2)) / (h * w)
         return g
 
-    def forward(self, inputs: torch.Tensor) -> torch.Tensor:
-        embeddings = self.style_model(inputs)
-        x1 = embeddings[:11]
-        x1[4] = nn.AvgPool2d(kernel_size=2)
-        x1[9] = nn.AvgPool2d(kernel_size=2)
-        x2 = embeddings[11:20]
-        x2[7] = nn.AvgPool2d(kernel_size=2)
-        x3 = embeddings[20:29]
-        x3[7] = nn.AvgPool2d(kernel_size=2)
-        g1 = self.gram_matrix(x1)
-        g2 = self.gram_matrix(x2)
-        g3 = self.gram_matrix(x3)
-        g = [self.avg(g1).squeeze(2), self.avg(g2).squeeze(2), self.avg(g3).squeeze(2)]
+    def forward(self, x: torch.Tensor) -> torch.Tensor:
+        feature1 = self.style_model.stem + self.style_model.stages[0:1]
+        feature2 = self.style_model.stages[1:2]
+        feature3 = self.style_model.stages[2:3]
+        feature4 = self.style_model.stages[3:4]
+
+        embedding1 = feature1(x)
+        embedding2 = feature2(embedding1)
+        embedding3 = feature3(embedding2)
+        embedding4 = feature4(embedding3)
+
+        g1 = self.gram_matrix(embedding1)
+        g2 = self.gram_matrix(embedding2)
+        g3 = self.gram_matrix(embedding3)
+        g4 = self.gram_matrix(embedding4)
+        g = [self.avg(g1).squeeze(2), self.avg(g2).squeeze(2), self.avg(g3).squeeze(2), self.avg(g4).squeeze(2)]
         return torch.cat(g, dim=1)

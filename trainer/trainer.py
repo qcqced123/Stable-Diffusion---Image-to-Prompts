@@ -1,6 +1,7 @@
 import dataset_class.dataclass as dataset_class
 import model.metric as model_metric
 import model.loss as model_loss
+import model.metric_learning as metric_learning
 import model.model as model_arch
 from torch.optim.swa_utils import AveragedModel
 from torch.utils.data import DataLoader
@@ -18,7 +19,7 @@ class SD2Trainer:
         self.model_name = self.cfg.model.split('/')[1]
         self.generator = generator
         self.df = kfold(
-            load_data('./dataset_class/data_folder/all_prompt.csv'),
+            load_data('./dataset_class/final_prompt.csv'),
             self.cfg
         )
         if self.cfg.gradient_checkpoint:
@@ -66,28 +67,20 @@ class SD2Trainer:
         model.to(self.cfg.device)
         style_model.to(self.cfg.device)
 
-        criterion = getattr(model_loss, self.cfg.loss_fn)(self.cfg.reduction)
+        criterion = getattr(metric_learning, self.cfg.loss_fn)(self.cfg.reduction)
         val_metrics = getattr(model_metric, self.cfg.metrics)()
-
-        grouped_optimizer_params = get_optimizer_grouped_parameters(
-            model,
-            self.cfg.layerwise_lr,
-            self.cfg.layerwise_weight_decay,
-            self.cfg.layerwise_lr_decay
-        )
         optimizer = getattr(transformers, self.cfg.optimizer)(
-            params=grouped_optimizer_params,
+            params=model.parameters(),
             lr=self.cfg.layerwise_lr,
             eps=self.cfg.layerwise_adam_epsilon,
             correct_bias=not self.cfg.layerwise_use_bertadam
         )
-
         lr_scheduler = get_scheduler(self.cfg, optimizer, len_train)
 
         return model, style_model, criterion, val_metrics, optimizer, lr_scheduler
 
     # Train Function
-    def train_fn(self, loader_train, model, style_model, criterion, optimizer, scheduler):
+    def train_fn(self, loader_train, model, style_model, criterion, optimizer, lr_scheduler):
         """ Training Function """
         torch.autograd.set_detect_anomaly(True)
         scaler = torch.cuda.amp.GradScaler(enabled=self.cfg.amp_scaler)
@@ -101,12 +94,12 @@ class SD2Trainer:
                 labels[k] = v.to(self.cfg.device)  # prompt to GPU
 
             images = images.to(self.cfg.device)  # style image to GPU
-            clip_images = clip_images.to(self.cfg.device)  # clip image to GPU
-            batch_size = labels.size(0)
+            clip_images = clip_images.squeeze().to(self.cfg.device)  # clip image to GPU
+            batch_size = self.cfg.batch_size
 
             style_features = style_model(images)  # style image to style feature
             with torch.cuda.amp.autocast(enabled=self.cfg.amp_scaler):
-                image_features = model(clip_images, 'vision', style_inputs=style_features)
+                image_features = model(clip_images, 'vision', style_features=style_features)
                 text_features = model(labels, 'text')
                 loss = (criterion(image_features, text_features) + criterion(text_features, image_features)) / 2
                 losses.update(loss, batch_size)
@@ -125,11 +118,11 @@ class SD2Trainer:
                 scaler.step(optimizer)
                 scaler.update()
                 global_step += 1
-                scheduler.step()
+                lr_scheduler.step()
 
         train_loss = losses.avg.detach().cpu().numpy()
         grad_norm = grad_norm.detach().cpu().numpy()
-        return train_loss, grad_norm, scheduler.get_lr()[0]
+        return train_loss, grad_norm, lr_scheduler.get_lr()[0]
 
     # Validation Function
     def valid_fn(self, loader_valid, model, style_model, val_metrics) -> float:
@@ -143,7 +136,7 @@ class SD2Trainer:
 
                 images = images.to(self.cfg.device)  # style image to GPU
                 clip_images = clip_images.to(self.cfg.device)  # clip image to GPU
-                batch_size = labels.size(0)
+                batch_size = self.cfg.batch_size
 
                 style_features = style_model(images)
                 image_features = model(clip_images, 'vision', style_inputs=style_features)

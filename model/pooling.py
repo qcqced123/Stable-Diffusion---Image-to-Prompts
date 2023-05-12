@@ -62,7 +62,7 @@ class AttentionPooling(nn.Module):
 
 
 # Generalized Mean Pooling for Vision Task
-class VisionGEMPooling(nn.Module):
+class ConvGEMPooling(nn.Module):
     """
     Generalized Mean Pooling for Natural Language Processing
     This class version of GEMPooling for CLIP, Transfer from NLP Task Code
@@ -77,7 +77,7 @@ class VisionGEMPooling(nn.Module):
     https://paperswithcode.com/method/generalized-mean-pooling
     """
     def __init__(self, auto_cfg, p: float = 3, eps: float = 1e-6) -> None:
-        super(VisionGEMPooling, self).__init__()
+        super(ConvGEMPooling, self).__init__()
         self.p = nn.Parameter(torch.ones(1) * p)
         self.eps = eps
 
@@ -107,7 +107,7 @@ class CLIPGEMPooling(nn.Module):
         super(CLIPGEMPooling, self).__init__()
 
     @staticmethod
-    def forward(last_hidden_state, p: int = 3) -> Tensor:
+    def forward(last_hidden_state, p: int = 4) -> Tensor:
         """
         last_hidden_state.size: [batch_size, patches_sequence, hidden_size]
         1) Pow last_hidden_state with p and then take a averaging

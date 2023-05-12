@@ -1,0 +1,94 @@
+
+`text_config_dict` is provided which will be used to initialize `CLIPTextConfig`. The value `text_config["id2label"]` will be overriden.
+`text_config_dict` is provided which will be used to initialize `CLIPTextConfig`. The value `text_config["id2label"]` will be overriden.
+`text_config_dict` is provided which will be used to initialize `CLIPTextConfig`. The value `text_config["id2label"]` will be overriden.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Traceback (most recent call last):%|██████████████████████████████████████████████████████████████████████████████| 1.71G/1.71G [02:28<00:00, 11.5MB/s]
+  File "/home/qcqced/바탕화면/ML_Test/image2text/train.py", line 49, in <module>
+    main('image2text_config.json', CFG)
+  File "/home/qcqced/바탕화면/ML_Test/image2text/train.py", line 30, in main
+    getattr(train_loop, cfg.loop)(cfg)  # init object
+  File "/home/qcqced/바탕화면/ML_Test/image2text/trainer/train_loop.py", line 35, in train_loop
+    model, style_model, criterion, val_metrics, optimizer, lr_scheduler = train_input.model_setting(len(train))
+  File "/home/qcqced/바탕화면/ML_Test/image2text/trainer/trainer.py", line 62, in model_setting
+    model = getattr(model_arch, self.cfg.model_arch)(self.cfg)
+  File "/home/qcqced/바탕화면/ML_Test/image2text/model/model.py", line 69, in __init__
+    self._init_weights(self.text_fc)
+  File "/home/qcqced/바탕화면/ML_Test/image2text/model/model.py", line 86, in _init_weights
+    module.weight.data.normal_(mean=0.0, std=self.auto_cfg.initializer_range)
+  File "/home/qcqced/anaconda3/lib/python3.9/site-packages/transformers/configuration_utils.py", line 260, in __getattribute__
+    return super().__getattribute__(key)
+AttributeError: 'CLIPConfig' object has no attribute 'initializer_range'

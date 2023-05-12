@@ -12,7 +12,7 @@
         "model_arch": "SD2Model",
         "style_model_arch": "StyleExtractModel",
         "model": "openai/clip-vit-large-patch14",
-        "style_model": "convnext_base",
+        "style_model": "convnext_base_384_in22ft1k",
         "image_pooling": "CLIPGEMPooling",
         "text_pooling": "GEMPooling"
     },
@@ -27,16 +27,16 @@
     },
     "data_settings": {
         "n_folds": 5,
-        "max_len": 512,
+        "max_len": 77,
         "epochs": 5,
-        "batch_size": 64
+        "batch_size": 16
     },
     "gradient_settings": {
         "amp_scaler": true,
         "gradient_checkpoint": true,
         "clipping_grad": true,
         "n_gradient_accumulation_steps": 1,
-        "max_grad_norm": 1
+        "max_grad_norm": 1000
     },
     "loss_options": {
         "loss_fn": "CLIPMultipleNegativeRankingLoss",
@@ -68,7 +68,7 @@
         "anneal_strategy": "cos"
     },
     "model_utils": {
-        "stop_mode": "min",
+        "stop_mode": "max",
         "freeze": true,
         "vision_num_freeze": 16,
         "text_num_freeze": 8,

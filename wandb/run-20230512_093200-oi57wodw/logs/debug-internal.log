@@ -1,0 +1,184 @@
+2023-05-12 09:32:00,079 INFO    StreamThr :15307 [internal.py:wandb_internal():86] W&B internal server running at pid: 15307, started at: 2023-05-12 09:32:00.079701
+2023-05-12 09:32:00,080 DEBUG   HandlerThread:15307 [handler.py:handle_request():144] handle_request: status
+2023-05-12 09:32:00,083 INFO    WriterThread:15307 [datastore.py:open_for_write():85] open: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_093200-oi57wodw/run-oi57wodw.wandb
+2023-05-12 09:32:00,084 DEBUG   SenderThread:15307 [sender.py:send():375] send: header
+2023-05-12 09:32:00,094 DEBUG   SenderThread:15307 [sender.py:send():375] send: run
+2023-05-12 09:32:00,608 INFO    SenderThread:15307 [dir_watcher.py:__init__():219] watching files in: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_093200-oi57wodw/files
+2023-05-12 09:32:00,609 INFO    SenderThread:15307 [sender.py:_start_run_threads():1124] run started: oi57wodw with start time 1683851520.080732
+2023-05-12 09:32:00,609 DEBUG   SenderThread:15307 [sender.py:send_request():402] send_request: summary_record
+2023-05-12 09:32:00,609 INFO    SenderThread:15307 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-05-12 09:32:00,609 DEBUG   HandlerThread:15307 [handler.py:handle_request():144] handle_request: check_version
+2023-05-12 09:32:00,609 DEBUG   SenderThread:15307 [sender.py:send_request():402] send_request: check_version
+2023-05-12 09:32:00,677 DEBUG   HandlerThread:15307 [handler.py:handle_request():144] handle_request: run_start
+2023-05-12 09:32:00,684 DEBUG   HandlerThread:15307 [system_info.py:__init__():31] System info init
+2023-05-12 09:32:00,684 DEBUG   HandlerThread:15307 [system_info.py:__init__():46] System info init done
+2023-05-12 09:32:00,684 INFO    HandlerThread:15307 [system_monitor.py:start():181] Starting system monitor
+2023-05-12 09:32:00,684 INFO    SystemMonitor:15307 [system_monitor.py:_start():145] Starting system asset monitoring threads
+2023-05-12 09:32:00,684 INFO    HandlerThread:15307 [system_monitor.py:probe():201] Collecting system info
+2023-05-12 09:32:00,684 INFO    SystemMonitor:15307 [interfaces.py:start():190] Started cpu monitoring
+2023-05-12 09:32:00,684 INFO    SystemMonitor:15307 [interfaces.py:start():190] Started disk monitoring
+2023-05-12 09:32:00,685 INFO    SystemMonitor:15307 [interfaces.py:start():190] Started gpu monitoring
+2023-05-12 09:32:00,685 INFO    SystemMonitor:15307 [interfaces.py:start():190] Started memory monitoring
+2023-05-12 09:32:00,686 INFO    SystemMonitor:15307 [interfaces.py:start():190] Started network monitoring
+2023-05-12 09:32:00,694 DEBUG   HandlerThread:15307 [system_info.py:probe():195] Probing system
+2023-05-12 09:32:00,697 DEBUG   HandlerThread:15307 [system_info.py:_probe_git():180] Probing git
+2023-05-12 09:32:00,703 DEBUG   HandlerThread:15307 [system_info.py:_probe_git():188] Probing git done
+2023-05-12 09:32:00,703 DEBUG   HandlerThread:15307 [system_info.py:probe():240] Probing system done
+2023-05-12 09:32:00,703 DEBUG   HandlerThread:15307 [system_monitor.py:probe():210] {'os': 'Linux-5.19.0-41-generic-x86_64-with-glibc2.35', 'python': '3.9.13', 'heartbeatAt': '2023-05-12T00:32:00.694924', 'startedAt': '2023-05-12T00:32:00.072932', 'docker': None, 'cuda': None, 'args': (), 'state': 'running', 'program': '/home/qcqced/바탕화면/ML_Test/image2text/train.py', 'codePath': 'train.py', 'git': {'remote': 'https://github.com/qcqced123/image2text.git', 'commit': '7753112e69fe12a3a50073a5c74bb721d8562d0e'}, 'email': '97833081+qcqced123@users.noreply.github.com', 'root': '/home/qcqced/바탕화면/ML_Test/image2text', 'host': 'qcqced-B550M-H', 'username': 'qcqced', 'executable': '/home/qcqced/anaconda3/bin/python', 'cpu_count': 6, 'cpu_count_logical': 12, 'cpu_freq': {'current': 3.1489999999999996, 'min': 2200.0, 'max': 3700.0}, 'cpu_freq_per_core': [{'current': 2.878, 'min': 2200.0, 'max': 3700.0}, {'current': 3.7, 'min': 2200.0, 'max': 3700.0}, {'current': 2.891, 'min': 2200.0, 'max': 3700.0}, {'current': 2.977, 'min': 2200.0, 'max': 3700.0}, {'current': 3.131, 'min': 2200.0, 'max': 3700.0}, {'current': 3.7, 'min': 2200.0, 'max': 3700.0}, {'current': 2.98, 'min': 2200.0, 'max': 3700.0}, {'current': 3.098, 'min': 2200.0, 'max': 3700.0}, {'current': 2.888, 'min': 2200.0, 'max': 3700.0}, {'current': 3.072, 'min': 2200.0, 'max': 3700.0}, {'current': 2.878, 'min': 2200.0, 'max': 3700.0}, {'current': 3.595, 'min': 2200.0, 'max': 3700.0}], 'disk': {'total': 680.4048233032227, 'used': 119.52039337158203}, 'gpu': 'NVIDIA GeForce RTX 3090', 'gpu_count': 1, 'gpu_devices': [{'name': 'NVIDIA GeForce RTX 3090', 'memory_total': 25769803776}], 'memory': {'total': 23.377338409423828}}
+2023-05-12 09:32:00,703 INFO    HandlerThread:15307 [system_monitor.py:probe():211] Finished collecting system info
+2023-05-12 09:32:00,703 INFO    HandlerThread:15307 [system_monitor.py:probe():214] Publishing system info
+2023-05-12 09:32:00,703 DEBUG   HandlerThread:15307 [system_info.py:_save_pip():51] Saving list of pip packages installed into the current environment
+2023-05-12 09:32:00,703 DEBUG   HandlerThread:15307 [system_info.py:_save_pip():67] Saving pip packages done
+2023-05-12 09:32:00,703 DEBUG   HandlerThread:15307 [system_info.py:_save_conda():74] Saving list of conda packages installed into the current environment
+2023-05-12 09:32:01,610 INFO    Thread-12 :15307 [dir_watcher.py:_on_file_created():278] file/dir created: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_093200-oi57wodw/files/requirements.txt
+2023-05-12 09:32:01,610 INFO    Thread-12 :15307 [dir_watcher.py:_on_file_created():278] file/dir created: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_093200-oi57wodw/files/wandb-summary.json
+2023-05-12 09:32:01,610 INFO    Thread-12 :15307 [dir_watcher.py:_on_file_created():278] file/dir created: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_093200-oi57wodw/files/conda-environment.yaml
+2023-05-12 09:32:05,491 DEBUG   HandlerThread:15307 [system_info.py:_save_conda():86] Saving conda packages done
+2023-05-12 09:32:05,492 INFO    HandlerThread:15307 [system_monitor.py:probe():216] Finished publishing system info
+2023-05-12 09:32:05,495 DEBUG   SenderThread:15307 [sender.py:send():375] send: files
+2023-05-12 09:32:05,495 INFO    SenderThread:15307 [sender.py:_save_file():1378] saving file wandb-metadata.json with policy now
+2023-05-12 09:32:05,496 DEBUG   HandlerThread:15307 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 09:32:05,499 DEBUG   HandlerThread:15307 [handler.py:handle_request():144] handle_request: stop_status
+2023-05-12 09:32:05,499 DEBUG   SenderThread:15307 [sender.py:send_request():402] send_request: stop_status
+2023-05-12 09:32:05,611 INFO    Thread-12 :15307 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_093200-oi57wodw/files/conda-environment.yaml
+2023-05-12 09:32:05,611 INFO    Thread-12 :15307 [dir_watcher.py:_on_file_created():278] file/dir created: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_093200-oi57wodw/files/wandb-metadata.json
+2023-05-12 09:32:05,711 DEBUG   SenderThread:15307 [sender.py:send():375] send: telemetry
+2023-05-12 09:32:06,105 INFO    wandb-upload_0:15307 [upload_job.py:push():137] Uploaded file /tmp/tmpqgzwqnozwandb/v4z3pk0a-wandb-metadata.json
+2023-05-12 09:32:07,612 INFO    Thread-12 :15307 [dir_watcher.py:_on_file_created():278] file/dir created: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_093200-oi57wodw/files/output.log
+2023-05-12 09:32:08,206 DEBUG   SenderThread:15307 [sender.py:send():375] send: telemetry
+2023-05-12 09:32:08,230 DEBUG   SenderThread:15307 [sender.py:send():375] send: telemetry
+2023-05-12 09:32:09,612 INFO    Thread-12 :15307 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_093200-oi57wodw/files/output.log
+2023-05-12 09:32:11,179 DEBUG   HandlerThread:15307 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 09:32:11,613 INFO    Thread-12 :15307 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_093200-oi57wodw/files/output.log
+2023-05-12 09:32:14,875 DEBUG   SenderThread:15307 [sender.py:send():375] send: exit
+2023-05-12 09:32:14,875 INFO    SenderThread:15307 [sender.py:send_exit():598] handling exit code: 1
+2023-05-12 09:32:14,875 INFO    SenderThread:15307 [sender.py:send_exit():600] handling runtime: 14
+2023-05-12 09:32:14,877 INFO    SenderThread:15307 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-05-12 09:32:14,877 INFO    SenderThread:15307 [sender.py:send_exit():606] send defer
+2023-05-12 09:32:14,877 DEBUG   HandlerThread:15307 [handler.py:handle_request():144] handle_request: defer
+2023-05-12 09:32:14,877 INFO    HandlerThread:15307 [handler.py:handle_request_defer():170] handle defer: 0
+2023-05-12 09:32:14,877 DEBUG   SenderThread:15307 [sender.py:send_request():402] send_request: defer
+2023-05-12 09:32:14,877 INFO    SenderThread:15307 [sender.py:send_request_defer():622] handle sender defer: 0
+2023-05-12 09:32:14,877 INFO    SenderThread:15307 [sender.py:transition_state():626] send defer: 1
+2023-05-12 09:32:14,877 DEBUG   HandlerThread:15307 [handler.py:handle_request():144] handle_request: defer
+2023-05-12 09:32:14,877 INFO    HandlerThread:15307 [handler.py:handle_request_defer():170] handle defer: 1
+2023-05-12 09:32:14,877 DEBUG   SenderThread:15307 [sender.py:send_request():402] send_request: defer
+2023-05-12 09:32:14,877 INFO    SenderThread:15307 [sender.py:send_request_defer():622] handle sender defer: 1
+2023-05-12 09:32:14,877 INFO    SenderThread:15307 [sender.py:transition_state():626] send defer: 2
+2023-05-12 09:32:14,878 DEBUG   HandlerThread:15307 [handler.py:handle_request():144] handle_request: defer
+2023-05-12 09:32:14,878 INFO    HandlerThread:15307 [handler.py:handle_request_defer():170] handle defer: 2
+2023-05-12 09:32:14,878 INFO    HandlerThread:15307 [system_monitor.py:finish():190] Stopping system monitor
+2023-05-12 09:32:14,878 INFO    HandlerThread:15307 [interfaces.py:finish():202] Joined cpu monitor
+2023-05-12 09:32:14,878 DEBUG   SystemMonitor:15307 [system_monitor.py:_start():159] Starting system metrics aggregation loop
+2023-05-12 09:32:14,878 INFO    HandlerThread:15307 [interfaces.py:finish():202] Joined disk monitor
+2023-05-12 09:32:14,878 DEBUG   SystemMonitor:15307 [system_monitor.py:_start():166] Finished system metrics aggregation loop
+2023-05-12 09:32:14,878 DEBUG   SystemMonitor:15307 [system_monitor.py:_start():170] Publishing last batch of metrics
+2023-05-12 09:32:14,896 INFO    HandlerThread:15307 [interfaces.py:finish():202] Joined gpu monitor
+2023-05-12 09:32:14,896 INFO    HandlerThread:15307 [interfaces.py:finish():202] Joined memory monitor
+2023-05-12 09:32:14,896 INFO    HandlerThread:15307 [interfaces.py:finish():202] Joined network monitor
+2023-05-12 09:32:14,897 DEBUG   SenderThread:15307 [sender.py:send_request():402] send_request: defer
+2023-05-12 09:32:14,897 INFO    SenderThread:15307 [sender.py:send_request_defer():622] handle sender defer: 2
+2023-05-12 09:32:14,897 INFO    SenderThread:15307 [sender.py:transition_state():626] send defer: 3
+2023-05-12 09:32:14,897 DEBUG   SenderThread:15307 [sender.py:send():375] send: stats
+2023-05-12 09:32:14,897 DEBUG   HandlerThread:15307 [handler.py:handle_request():144] handle_request: defer
+2023-05-12 09:32:14,897 INFO    HandlerThread:15307 [handler.py:handle_request_defer():170] handle defer: 3
+2023-05-12 09:32:14,897 DEBUG   SenderThread:15307 [sender.py:send_request():402] send_request: defer
+2023-05-12 09:32:14,897 INFO    SenderThread:15307 [sender.py:send_request_defer():622] handle sender defer: 3
+2023-05-12 09:32:14,897 INFO    SenderThread:15307 [sender.py:transition_state():626] send defer: 4
+2023-05-12 09:32:14,897 DEBUG   HandlerThread:15307 [handler.py:handle_request():144] handle_request: defer
+2023-05-12 09:32:14,897 INFO    HandlerThread:15307 [handler.py:handle_request_defer():170] handle defer: 4
+2023-05-12 09:32:14,897 DEBUG   SenderThread:15307 [sender.py:send_request():402] send_request: defer
+2023-05-12 09:32:14,897 INFO    SenderThread:15307 [sender.py:send_request_defer():622] handle sender defer: 4
+2023-05-12 09:32:14,897 INFO    SenderThread:15307 [sender.py:transition_state():626] send defer: 5
+2023-05-12 09:32:14,897 DEBUG   HandlerThread:15307 [handler.py:handle_request():144] handle_request: defer
+2023-05-12 09:32:14,897 INFO    HandlerThread:15307 [handler.py:handle_request_defer():170] handle defer: 5
+2023-05-12 09:32:14,898 DEBUG   SenderThread:15307 [sender.py:send():375] send: summary
+2023-05-12 09:32:14,898 INFO    SenderThread:15307 [sender.py:_save_file():1378] saving file wandb-summary.json with policy end
+2023-05-12 09:32:14,898 DEBUG   SenderThread:15307 [sender.py:send_request():402] send_request: defer
+2023-05-12 09:32:14,898 INFO    SenderThread:15307 [sender.py:send_request_defer():622] handle sender defer: 5
+2023-05-12 09:32:14,898 INFO    SenderThread:15307 [sender.py:transition_state():626] send defer: 6
+2023-05-12 09:32:14,898 DEBUG   HandlerThread:15307 [handler.py:handle_request():144] handle_request: defer
+2023-05-12 09:32:14,898 INFO    HandlerThread:15307 [handler.py:handle_request_defer():170] handle defer: 6
+2023-05-12 09:32:14,898 DEBUG   SenderThread:15307 [sender.py:send_request():402] send_request: defer
+2023-05-12 09:32:14,898 INFO    SenderThread:15307 [sender.py:send_request_defer():622] handle sender defer: 6
+2023-05-12 09:32:14,900 DEBUG   HandlerThread:15307 [handler.py:handle_request():144] handle_request: status_report
+2023-05-12 09:32:15,162 INFO    SenderThread:15307 [sender.py:transition_state():626] send defer: 7
+2023-05-12 09:32:15,162 DEBUG   HandlerThread:15307 [handler.py:handle_request():144] handle_request: defer
+2023-05-12 09:32:15,162 INFO    HandlerThread:15307 [handler.py:handle_request_defer():170] handle defer: 7
+2023-05-12 09:32:15,163 DEBUG   SenderThread:15307 [sender.py:send_request():402] send_request: defer
+2023-05-12 09:32:15,163 INFO    SenderThread:15307 [sender.py:send_request_defer():622] handle sender defer: 7
+2023-05-12 09:32:15,614 INFO    Thread-12 :15307 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_093200-oi57wodw/files/config.yaml
+2023-05-12 09:32:15,614 INFO    Thread-12 :15307 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_093200-oi57wodw/files/output.log
+2023-05-12 09:32:15,614 INFO    Thread-12 :15307 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_093200-oi57wodw/files/wandb-summary.json
+2023-05-12 09:32:15,876 DEBUG   HandlerThread:15307 [handler.py:handle_request():144] handle_request: poll_exit
+2023-05-12 09:32:17,123 INFO    SenderThread:15307 [sender.py:transition_state():626] send defer: 8
+2023-05-12 09:32:17,123 DEBUG   SenderThread:15307 [sender.py:send_request():402] send_request: poll_exit
+2023-05-12 09:32:17,123 DEBUG   HandlerThread:15307 [handler.py:handle_request():144] handle_request: defer
+2023-05-12 09:32:17,123 INFO    HandlerThread:15307 [handler.py:handle_request_defer():170] handle defer: 8
+2023-05-12 09:32:17,124 DEBUG   SenderThread:15307 [sender.py:send_request():402] send_request: defer
+2023-05-12 09:32:17,124 INFO    SenderThread:15307 [sender.py:send_request_defer():622] handle sender defer: 8
+2023-05-12 09:32:17,128 INFO    SenderThread:15307 [sender.py:transition_state():626] send defer: 9
+2023-05-12 09:32:17,128 DEBUG   SenderThread:15307 [sender.py:send():375] send: artifact
+2023-05-12 09:32:17,128 DEBUG   HandlerThread:15307 [handler.py:handle_request():144] handle_request: defer
+2023-05-12 09:32:17,130 INFO    HandlerThread:15307 [handler.py:handle_request_defer():170] handle defer: 9
+2023-05-12 09:32:17,615 INFO    Thread-12 :15307 [dir_watcher.py:_on_file_modified():295] file/dir modified: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_093200-oi57wodw/files/output.log
+2023-05-12 09:32:18,269 INFO    SenderThread:15307 [sender.py:send_artifact():1474] sent artifact job-https___github.com_qcqced123_image2text.git_train.py - {'id': 'QXJ0aWZhY3Q6NDUxNDUzNzk0', 'digest': 'b5f6eea79ebfc1d0184583b2ed4b8347', 'state': 'COMMITTED', 'aliases': [{'artifactCollectionName': 'job-https___github.com_qcqced123_image2text.git_train.py', 'alias': 'latest'}, {'artifactCollectionName': 'job-https___github.com_qcqced123_image2text.git_train.py', 'alias': 'v0'}], 'artifactSequence': {'id': 'QXJ0aWZhY3RDb2xsZWN0aW9uOjY4NjEwOTY4', 'latestArtifact': {'id': 'QXJ0aWZhY3Q6NDUxNDUzNzk0', 'versionIndex': 0}}, 'version': 'v0'}
+2023-05-12 09:32:18,269 DEBUG   SenderThread:15307 [sender.py:send_request():402] send_request: defer
+2023-05-12 09:32:18,269 INFO    SenderThread:15307 [sender.py:send_request_defer():622] handle sender defer: 9
+2023-05-12 09:32:18,269 INFO    SenderThread:15307 [dir_watcher.py:finish():365] shutting down directory watcher
+2023-05-12 09:32:18,615 INFO    SenderThread:15307 [dir_watcher.py:finish():395] scan: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_093200-oi57wodw/files
+2023-05-12 09:32:18,616 INFO    SenderThread:15307 [dir_watcher.py:finish():409] scan save: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_093200-oi57wodw/files/output.log output.log
+2023-05-12 09:32:18,616 INFO    SenderThread:15307 [dir_watcher.py:finish():409] scan save: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_093200-oi57wodw/files/config.yaml config.yaml
+2023-05-12 09:32:18,616 INFO    SenderThread:15307 [dir_watcher.py:finish():409] scan save: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_093200-oi57wodw/files/wandb-metadata.json wandb-metadata.json
+2023-05-12 09:32:18,616 INFO    SenderThread:15307 [dir_watcher.py:finish():409] scan save: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_093200-oi57wodw/files/requirements.txt requirements.txt
+2023-05-12 09:32:18,618 INFO    SenderThread:15307 [dir_watcher.py:finish():409] scan save: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_093200-oi57wodw/files/conda-environment.yaml conda-environment.yaml
+2023-05-12 09:32:18,618 INFO    SenderThread:15307 [dir_watcher.py:finish():409] scan save: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_093200-oi57wodw/files/wandb-summary.json wandb-summary.json
+2023-05-12 09:32:18,618 INFO    SenderThread:15307 [sender.py:transition_state():626] send defer: 10
+2023-05-12 09:32:18,619 DEBUG   HandlerThread:15307 [handler.py:handle_request():144] handle_request: defer
+2023-05-12 09:32:18,620 INFO    HandlerThread:15307 [handler.py:handle_request_defer():170] handle defer: 10
+2023-05-12 09:32:18,625 DEBUG   SenderThread:15307 [sender.py:send_request():402] send_request: defer
+2023-05-12 09:32:18,625 INFO    SenderThread:15307 [sender.py:send_request_defer():622] handle sender defer: 10
+2023-05-12 09:32:18,625 INFO    SenderThread:15307 [file_pusher.py:finish():167] shutting down file pusher
+2023-05-12 09:32:19,210 INFO    wandb-upload_1:15307 [upload_job.py:push():137] Uploaded file /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_093200-oi57wodw/files/config.yaml
+2023-05-12 09:32:19,232 INFO    wandb-upload_0:15307 [upload_job.py:push():137] Uploaded file /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_093200-oi57wodw/files/output.log
+2023-05-12 09:32:19,234 INFO    wandb-upload_4:15307 [upload_job.py:push():137] Uploaded file /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_093200-oi57wodw/files/wandb-summary.json
+2023-05-12 09:32:19,234 INFO    wandb-upload_2:15307 [upload_job.py:push():137] Uploaded file /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_093200-oi57wodw/files/requirements.txt
+2023-05-12 09:32:19,269 INFO    wandb-upload_3:15307 [upload_job.py:push():137] Uploaded file /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_093200-oi57wodw/files/conda-environment.yaml
+2023-05-12 09:32:19,470 INFO    Thread-11 :15307 [sender.py:transition_state():626] send defer: 11
+2023-05-12 09:32:19,470 DEBUG   HandlerThread:15307 [handler.py:handle_request():144] handle_request: defer
+2023-05-12 09:32:19,470 INFO    HandlerThread:15307 [handler.py:handle_request_defer():170] handle defer: 11
+2023-05-12 09:32:19,470 DEBUG   SenderThread:15307 [sender.py:send_request():402] send_request: defer
+2023-05-12 09:32:19,471 INFO    SenderThread:15307 [sender.py:send_request_defer():622] handle sender defer: 11
+2023-05-12 09:32:19,471 INFO    SenderThread:15307 [file_pusher.py:join():172] waiting for file pusher
+2023-05-12 09:32:19,471 INFO    SenderThread:15307 [sender.py:transition_state():626] send defer: 12
+2023-05-12 09:32:19,471 DEBUG   HandlerThread:15307 [handler.py:handle_request():144] handle_request: defer
+2023-05-12 09:32:19,471 INFO    HandlerThread:15307 [handler.py:handle_request_defer():170] handle defer: 12
+2023-05-12 09:32:19,471 DEBUG   SenderThread:15307 [sender.py:send_request():402] send_request: defer
+2023-05-12 09:32:19,471 INFO    SenderThread:15307 [sender.py:send_request_defer():622] handle sender defer: 12
+2023-05-12 09:32:19,724 INFO    SenderThread:15307 [sender.py:transition_state():626] send defer: 13
+2023-05-12 09:32:19,724 DEBUG   HandlerThread:15307 [handler.py:handle_request():144] handle_request: defer
+2023-05-12 09:32:19,724 INFO    HandlerThread:15307 [handler.py:handle_request_defer():170] handle defer: 13
+2023-05-12 09:32:19,724 DEBUG   SenderThread:15307 [sender.py:send_request():402] send_request: defer
+2023-05-12 09:32:19,724 INFO    SenderThread:15307 [sender.py:send_request_defer():622] handle sender defer: 13
+2023-05-12 09:32:19,724 INFO    SenderThread:15307 [sender.py:transition_state():626] send defer: 14
+2023-05-12 09:32:19,725 DEBUG   HandlerThread:15307 [handler.py:handle_request():144] handle_request: defer
+2023-05-12 09:32:19,725 DEBUG   SenderThread:15307 [sender.py:send():375] send: final
+2023-05-12 09:32:19,725 INFO    HandlerThread:15307 [handler.py:handle_request_defer():170] handle defer: 14
+2023-05-12 09:32:19,725 DEBUG   SenderThread:15307 [sender.py:send():375] send: footer
+2023-05-12 09:32:19,725 DEBUG   SenderThread:15307 [sender.py:send_request():402] send_request: defer
+2023-05-12 09:32:19,725 INFO    SenderThread:15307 [sender.py:send_request_defer():622] handle sender defer: 14
+2023-05-12 09:32:19,726 DEBUG   HandlerThread:15307 [handler.py:handle_request():144] handle_request: poll_exit
+2023-05-12 09:32:19,726 DEBUG   SenderThread:15307 [sender.py:send_request():402] send_request: poll_exit
+2023-05-12 09:32:19,726 DEBUG   HandlerThread:15307 [handler.py:handle_request():144] handle_request: server_info
+2023-05-12 09:32:19,726 DEBUG   HandlerThread:15307 [handler.py:handle_request():144] handle_request: get_summary
+2023-05-12 09:32:19,726 DEBUG   SenderThread:15307 [sender.py:send_request():402] send_request: server_info
+2023-05-12 09:32:19,728 DEBUG   HandlerThread:15307 [handler.py:handle_request():144] handle_request: sampled_history
+2023-05-12 09:32:19,917 INFO    MainThread:15307 [wandb_run.py:_footer_history_summary_info():3469] rendering history
+2023-05-12 09:32:19,917 INFO    MainThread:15307 [wandb_run.py:_footer_history_summary_info():3501] rendering summary
+2023-05-12 09:32:19,917 INFO    MainThread:15307 [wandb_run.py:_footer_sync_info():3428] logging synced files
+2023-05-12 09:32:19,917 DEBUG   HandlerThread:15307 [handler.py:handle_request():144] handle_request: shutdown
+2023-05-12 09:32:19,917 INFO    HandlerThread:15307 [handler.py:finish():845] shutting down handler
+2023-05-12 09:32:20,727 INFO    WriterThread:15307 [datastore.py:close():298] close: /home/qcqced/바탕화면/ML_Test/image2text/wandb/run-20230512_093200-oi57wodw/run-oi57wodw.wandb
+2023-05-12 09:32:20,917 INFO    SenderThread:15307 [sender.py:finish():1550] shutting down sender
+2023-05-12 09:32:20,917 INFO    SenderThread:15307 [file_pusher.py:finish():167] shutting down file pusher
+2023-05-12 09:32:20,917 INFO    SenderThread:15307 [file_pusher.py:join():172] waiting for file pusher

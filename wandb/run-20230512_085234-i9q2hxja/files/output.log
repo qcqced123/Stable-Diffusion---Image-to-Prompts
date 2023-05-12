@@ -1,0 +1,20 @@
+
+`text_config_dict` is provided which will be used to initialize `CLIPTextConfig`. The value `text_config["id2label"]` will be overriden.
+`text_config_dict` is provided which will be used to initialize `CLIPTextConfig`. The value `text_config["id2label"]` will be overriden.
+`text_config_dict` is provided which will be used to initialize `CLIPTextConfig`. The value `text_config["id2label"]` will be overriden.
+Traceback (most recent call last):
+  File "/home/qcqced/바탕화면/ML_Test/image2text/train.py", line 49, in <module>
+    main('image2text_config.json', CFG)
+  File "/home/qcqced/바탕화면/ML_Test/image2text/train.py", line 30, in main
+    getattr(train_loop, cfg.loop)(cfg)  # init object
+  File "/home/qcqced/바탕화면/ML_Test/image2text/trainer/train_loop.py", line 35, in train_loop
+    model, style_model, criterion, val_metrics, optimizer, lr_scheduler = train_input.model_setting(len(train))
+  File "/home/qcqced/바탕화면/ML_Test/image2text/trainer/trainer.py", line 62, in model_setting
+    model = getattr(model_arch, self.cfg.model_arch)(self.cfg)
+  File "/home/qcqced/바탕화면/ML_Test/image2text/model/model.py", line 71, in __init__
+    reinit_topk(self.vision_model, cfg.vision_num_reinit)
+  File "/home/qcqced/바탕화면/ML_Test/image2text/model/model_utils.py", line 62, in reinit_topk
+    model.encoder.layers[-num_layers:].apply(model.init_weights)
+  File "/home/qcqced/anaconda3/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1614, in __getattr__
+    raise AttributeError("'{}' object has no attribute '{}'".format(
+AttributeError: 'CLIPVisionTransformer' object has no attribute 'init_weights'

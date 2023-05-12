@@ -1,0 +1,45 @@
+
+`text_config_dict` is provided which will be used to initialize `CLIPTextConfig`. The value `text_config["id2label"]` will be overriden.
+/home/qcqced/anaconda3/lib/python3.9/site-packages/transformers/optimization.py:391: FutureWarning: This implementation of AdamW is deprecated and will be removed in a future version. Use the PyTorch implementation torch.optim.AdamW instead, or set `no_deprecation_warning=True` to disable this warning
+  warnings.warn(
+  0%|                                                                                                                        | 0/16507 [00:00<?, ?it/s]
+Traceback (most recent call last):                                                                                           | 0/16507 [00:00<?, ?it/s]
+  File "/home/qcqced/바탕화면/ML_Test/image2text/train.py", line 49, in <module>
+    main('image2text_config.json', CFG)
+  File "/home/qcqced/바탕화면/ML_Test/image2text/train.py", line 30, in main
+    getattr(train_loop, cfg.loop)(cfg)  # init object
+  File "/home/qcqced/바탕화면/ML_Test/image2text/trainer/train_loop.py", line 39, in train_loop
+    train_loss, grad_norm, lr = train_input.train_fn(
+  File "/home/qcqced/바탕화면/ML_Test/image2text/trainer/trainer.py", line 102, in train_fn
+    image_features = model(clip_images, 'vision', style_features=style_features)
+  File "/home/qcqced/anaconda3/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/qcqced/바탕화면/ML_Test/image2text/model/model.py", line 114, in forward
+    outputs = self.vision_model(**inputs)
+TypeError: CLIPVisionTransformer(
+  (embeddings): CLIPVisionEmbeddings(
+    (patch_embedding): Conv2d(3, 1024, kernel_size=(14, 14), stride=(14, 14), bias=False)
+    (position_embedding): Embedding(257, 1024)
+  )
+  (pre_layrnorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+  (encoder): CLIPEncoder(
+    (layers): ModuleList(
+      (0-23): 24 x CLIPEncoderLayer(
+        (self_attn): CLIPAttention(
+          (k_proj): Linear(in_features=1024, out_features=1024, bias=True)
+          (v_proj): Linear(in_features=1024, out_features=1024, bias=True)
+          (q_proj): Linear(in_features=1024, out_features=1024, bias=True)
+          (out_proj): Linear(in_features=1024, out_features=1024, bias=True)
+        )
+        (layer_norm1): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+        (mlp): CLIPMLP(
+          (activation_fn): QuickGELUActivation()
+          (fc1): Linear(in_features=1024, out_features=4096, bias=True)
+          (fc2): Linear(in_features=4096, out_features=1024, bias=True)
+        )
+        (layer_norm2): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+      )
+    )
+  )
+  (post_layernorm): LayerNorm((1024,), eps=1e-05, elementwise_affine=True)
+) argument after ** must be a mapping, not Tensor
