@@ -23,13 +23,14 @@
         "seed": 42,
         "n_gpu": 1,
         "gpu_id": 0,
-        "num_workers": 2
+        "num_workers": 4
     },
     "data_settings": {
         "n_folds": 5,
         "max_len": 77,
         "epochs": 5,
-        "batch_size": 16
+        "batch_size": 128,
+        "val_batch_size": 64
     },
     "gradient_settings": {
         "amp_scaler": true,

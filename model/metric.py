@@ -117,7 +117,7 @@ class CosineSimilarity(nn.Module):
               and broadcastable with x1 at other dimensions.
         - Output: :math:`(\ast_1, \ast_2)`
     """
-    def __init__(self, dim: int = 1, eps: float = 1e-8) -> None:
+    def __init__(self, dim: int = 0, eps: float = 1e-8) -> None:
         super().__init__()
         self.dim = dim
         self.eps = eps

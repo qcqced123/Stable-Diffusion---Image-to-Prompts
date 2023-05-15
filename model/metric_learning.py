@@ -6,7 +6,7 @@ from typing import Iterable, Dict
 from torch import Tensor
 import sentence_transformers
 from sentence_transformers.util import cos_sim
-from .loss import CrossEntropyLoss, BinaryCrossEntropyLoss
+from .loss import CrossEntropyLoss
 
 
 # Base Class for select Distance Metrics which is used in Metric Learning
@@ -85,6 +85,7 @@ class CLIPMultipleNegativeRankingLoss(nn.Module):
 
     Example:
         model = SentenceTransformer('distil-bert-base-uncased')
+        model = SentenceTransformer('distil-bert-base-uncased')
         train_examples = [InputExample(texts=['Anchor 1', 'Positive 1']),
         InputExample(texts=['Anchor 2', 'Positive 2'])]
         train_dataloader = DataLoader(train_examples, shuffle=True, batch_size=32)
@@ -101,6 +102,7 @@ class CLIPMultipleNegativeRankingLoss(nn.Module):
     def __init__(self, reduction: str, scale: float = 20.0, similarity_fct=cos_sim) -> None:
         super().__init__()
         self.reduction = reduction
+        self.eps = 1e-6
         self.scale = scale
         self.similarity_fct = similarity_fct
         self.reduction = reduction
@@ -114,7 +116,8 @@ class CLIPMultipleNegativeRankingLoss(nn.Module):
         when `i==j` and low similarity when `i!=j`.
         Example a[i] should match with b[i]
         """
-        similarity_scores = self.similarity_fct(embeddings_a, embeddings_b) * self.scale
+        similarity_scores = self.similarity_fct(embeddings_a, embeddings_b) * self.scale + self.eps
+
         labels = torch.tensor(
             range(len(similarity_scores)),
             dtype=torch.long,

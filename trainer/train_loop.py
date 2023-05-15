@@ -1,12 +1,7 @@
 import gc
 import wandb
-import torch
-import numpy as np
-from tqdm.auto import tqdm
-from torch.optim.swa_utils import update_bn
 from configuration import CFG
 from trainer import *
-from trainer.trainer_utils import get_name
 from utils.helper import class2dict
 
 g = torch.Generator()
@@ -36,7 +31,7 @@ def train_loop(cfg: any) -> None:
 
         for epoch in range(cfg.epochs):
             print(f'[{epoch + 1}/{cfg.epochs}] Train & Validation')
-            train_loss, grad_norm, lr = train_input.train_fn(
+            train_loss = train_input.train_fn(
                 loader_train, model, style_model, criterion, optimizer, lr_scheduler
             )
             valid_metric = train_input.valid_fn(
@@ -45,13 +40,9 @@ def train_loop(cfg: any) -> None:
             wandb.log({
                 '<epoch> Train Loss': train_loss,
                 '<epoch> Valid Metric': valid_metric,
-                '<epoch> Gradient Norm': grad_norm,
-                '<epoch> lr': lr
             })
             print(f'[{epoch + 1}/{cfg.epochs}] Train Loss: {np.round(train_loss, 4)}')
             print(f'[{epoch + 1}/{cfg.epochs}] Valid Metric: {np.round(valid_metric, 4)}')
-            print(f'[{epoch + 1}/{cfg.epochs}] Gradient Norm: {np.round(grad_norm, 4)}')
-            print(f'[{epoch + 1}/{cfg.epochs}] lr: {lr}')
             if val_score_max <= valid_metric:
                 print(f'[Update] Valid Score : ({val_score_max:.4f} => {valid_metric:.4f}) Save Parameter')
                 print(f'Best Score: {valid_metric}')
@@ -63,7 +54,7 @@ def train_loop(cfg: any) -> None:
             early_stopping(valid_metric)
             if early_stopping.early_stop:
                 break
-            del train_loss, valid_metric, grad_norm, lr
+            del train_loss, valid_metric
             gc.collect(), torch.cuda.empty_cache()
 
         wandb.finish()

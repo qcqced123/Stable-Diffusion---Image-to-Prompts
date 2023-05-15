@@ -1,5 +1,5 @@
 import torch
-from transformers import AutoTokenizer
+from transformers import AutoTokenizer, CLIPImageProcessor
 # from model.metric import *
 
 
@@ -16,6 +16,7 @@ class CFG:
     model = 'openai/clip-vit-large-patch14'
     style_model = 'efficientnet_b7'
     tokenizer = AutoTokenizer.from_pretrained(model)
+    img_processor = CLIPImageProcessor.from_pretrained(model)
     image_pooling = 'MeanPooling'  # mean, attention, max, weightedlayer, concat, conv1d, lstm
     text_pooling = 'MeanPooling'  # mean, attention, max, weightedlayer, concat, conv1d, lstm
 
@@ -35,6 +36,7 @@ class CFG:
     max_len = 512
     epochs = 180
     batch_size = 64
+    val_batch_size = 64
 
     """ Gradient Options """
     amp_scaler = False

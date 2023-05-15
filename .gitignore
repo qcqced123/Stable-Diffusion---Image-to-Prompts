@@ -13,3 +13,4 @@
 /dataset_class/data_folder/90k_public/train_images/
 /dataset_class/data_folder/30k_public/artifacts/
 .DS_Store
+dataset_class/embedding_table.pth

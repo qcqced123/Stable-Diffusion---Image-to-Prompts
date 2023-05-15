@@ -1,0 +1,27 @@
+
+`text_config_dict` is provided which will be used to initialize `CLIPTextConfig`. The value `text_config["id2label"]` will be overriden.
+/home/qcqced/anaconda3/lib/python3.9/site-packages/transformers/optimization.py:391: FutureWarning: This implementation of AdamW is deprecated and will be removed in a future version. Use the PyTorch implementation torch.optim.AdamW instead, or set `no_deprecation_warning=True` to disable this warning
+  warnings.warn(
+  0%|                                                                                                             | 0/43641 [00:00<?, ?it/s]
+Traceback (most recent call last):                                                                                | 0/43641 [00:00<?, ?it/s]
+  File "/home/qcqced/바탕화면/ML_Test/image2text/train.py", line 19, in <module>
+    main('image2text_config.json', CFG)
+  File "/home/qcqced/바탕화면/ML_Test/image2text/train.py", line 15, in main
+    getattr(train_loop, cfg.loop)(cfg)
+  File "/home/qcqced/바탕화면/ML_Test/image2text/trainer/train_loop.py", line 37, in train_loop
+    valid_metric = train_input.valid_fn(
+  File "/home/qcqced/바탕화면/ML_Test/image2text/trainer/trainer.py", line 148, in valid_fn
+    image_features = model(clip_images, 'vision', style_features=style_features)
+  File "/home/qcqced/anaconda3/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/qcqced/바탕화면/ML_Test/image2text/model/model.py", line 114, in forward
+    outputs = self.vision_model(inputs)
+  File "/home/qcqced/anaconda3/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/qcqced/anaconda3/lib/python3.9/site-packages/transformers/models/clip/modeling_clip.py", line 859, in forward
+    hidden_states = self.embeddings(pixel_values)
+  File "/home/qcqced/anaconda3/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1501, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "/home/qcqced/anaconda3/lib/python3.9/site-packages/transformers/models/clip/modeling_clip.py", line 199, in forward
+    embeddings = torch.cat([class_embeds, patch_embeds], dim=1)
+RuntimeError: Sizes of tensors must match except in dimension 1. Expected size 3 but got size 1024 for tensor number 1 in the list.

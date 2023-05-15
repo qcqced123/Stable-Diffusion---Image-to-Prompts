@@ -104,6 +104,7 @@ def sync_config(json_config: json) -> None:
     CFG.max_len = json_config.data_settings.max_len
     CFG.epochs = json_config.data_settings.epochs
     CFG.batch_size = json_config.data_settings.batch_size
+    CFG.val_batch_size = json_config.data_settings.val_batch_size
 
     """ Gradient Options """
     CFG.amp_scaler = json_config.gradient_settings.amp_scaler

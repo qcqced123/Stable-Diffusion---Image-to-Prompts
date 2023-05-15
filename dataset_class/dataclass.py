@@ -1,46 +1,23 @@
-import torch
+import gc
 import pandas as pd
-import numpy as np
-from PIL import Image
+import rasterio
+from rasterio.enums import Resampling
 from torch.utils.data import Dataset
 from torch import Tensor
-from transformers import AutoProcessor, CLIPImageProcessor
-import torchvision.transforms as T
+
+import configuration
+from .data_preprocessing import img_transform, tokenizing, clip_img_process, load_style_embedding
 
 
-class SD2Dataset:
+class SD2Dataset(Dataset):
     """ Image, Prompt Dataset For OpenAI CLIP Pipeline """
-    def __init__(self, cfg, df: pd.DataFrame) -> None:
+    def __init__(self, cfg: configuration.CFG, df: pd.DataFrame) -> None:
         self.cfg = cfg
-        self.df = df.applymap(str)
-        self.image_processor = CLIPImageProcessor.from_pretrained(self.cfg.model)
-        self.tokenizer = cfg.tokenizer
-
-    @staticmethod
-    def img_transform(img) -> Tensor:
-        """ Preprocess Image For Style-Extractor """
-        transform = T.Compose([
-            T.Resize(384),
-            T.ToTensor(),
-            T.Normalize(
-                mean=[0.485, 0.456, 0.406],
-                std=[0.229, 0.224, 0.225]
-            )
-        ])
-        return transform(img)
-
-    def tokenizing(self, text):
-        inputs = self.tokenizer(
-            text,
-            max_length=self.cfg.max_len,
-            padding='max_length',
-            truncation=True,
-            return_tensors=None,
-            add_special_tokens=True,
-        )
-        for k, v in inputs.items():
-            inputs[k] = torch.tensor(v)
-        return inputs
+        self.df = df
+        self.tokenizer = tokenizing
+        self.image_processor = clip_img_process
+        self.img_transform = img_transform
+        # self.style_table = load_style_embedding()
 
     def __len__(self) -> int:
         return len(self.df)
@@ -53,27 +30,17 @@ class SD2Dataset:
             clip_image: image for CLIP
             target: prompt for CLIP
         """
-        image = Image.open(self.df.iloc[item, 0])
-        target = self.df.iloc[item, 1]
-
-        clip_image = torch.tensor(self.image_processor(image)['pixel_values'])  # resize & crop for pretrained CLIP
-        target = self.tokenizing(target)  # tokenize & normalize for pretrained CLIP
-        image = self.img_transform(image)  # resize & normalize for style-extractor
-        return image, clip_image, target
-
-
-class TestDataset(Dataset):
-    """ For Inference Dataset Class """
-    def __init__(self, cfg, df: pd.DataFrame) -> None:
-        self.cfg = cfg
-        self.df = df
-        self.input_processor = AutoProcessor.from_pretrained(self.cfg.model)
-
-    def __len__(self) -> int:
-        return len(self.df)
-
-    def __getitem__(self, item) -> tuple:
-        """ No need to text(label), because our goal of competition is to inference(generate) text """
-        image = Image.open(self.df[item].image_name)
-        image = self.input_processor(image=image)
-        return image
+        image = rasterio.open(self.df.iloc[item, 0])
+        # style_feature = self.embedding_table[self.df.iloc[item, 3]]
+        tensor_image = image.read(
+            out_shape=(3, int(512), int(512)),
+            resampling=Resampling.bilinear
+        ).transpose(1, 2, 0)
+        pd_target = self.df.iloc[item, 1]
+        clip_image = self.image_processor(self.cfg, image=tensor_image)
+        target = self.tokenizer(self.cfg, pd_target)
+        # style_image = self.style_table[self.df.iloc[item, 3]]
+        style_image = self.img_transform(tensor_image)
+        del image
+        gc.collect()
+        return style_image, clip_image, target

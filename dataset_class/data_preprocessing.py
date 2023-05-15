@@ -1,10 +1,64 @@
 import re, gc
 import pandas as pd
 import numpy as np
+import torch
+import albumentations
+import configuration as configuration
+from torch import Tensor
 from sklearn.model_selection import KFold
 from iterstrat.ml_stratifiers import MultilabelStratifiedKFold
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer, PorterStemmer
+from albumentations.pytorch import ToTensorV2
+
+
+def load_style_embedding():
+    """ load style-embedding table (384x384x3 by convnext_base-384)"""
+    return torch.as_tensor(torch.load('./dataset_class/embedding_table.pth'))
+
+
+def clip_img_process(cfg: configuration.CFG, image: np.array) -> Tensor:
+    """
+    Preprocess Image For CLIP
+    Arges:
+        cfg: configuration.CFG, needed to load img_processor from Huggingface CLIPProcessor
+        img: image convert to np.array type
+    """
+    return torch.as_tensor(cfg.img_processor(images=image)['pixel_values'])
+
+
+def img_transform(image: np.ndarray) -> Tensor:
+    """
+    Preprocess image by albumentations
+    Args:
+        image: image convert to np.array type
+    """
+    transform = albumentations.Compose([
+        # albumentations.Resize(384, 384),
+        albumentations.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+        ToTensorV2()]
+    )
+    return transform(image=image)['image']
+
+
+def tokenizing(cfg: configuration.CFG, text: str):
+    """
+    Preprocess text for CLIP
+    Args:
+        cfg: configuration.CFG, needed to load tokenizer from Huggingface AutoTokenizer
+        text: text from dataframe or any other dataset, please pass str type
+    """
+    inputs = cfg.tokenizer(
+        text,
+        max_length=cfg.max_len,
+        padding='max_length',
+        truncation=True,
+        return_tensors=None,
+        add_special_tokens=True,
+    )
+    for k, v in inputs.items():
+        inputs[k] = torch.as_tensor(v)
+    return inputs
 
 
 def kfold(df: pd.DataFrame, cfg) -> pd.DataFrame:

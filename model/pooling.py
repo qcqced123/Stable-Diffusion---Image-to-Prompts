@@ -105,18 +105,16 @@ class CLIPGEMPooling(nn.Module):
     """
     def __init__(self, auto_cfg) -> None:
         super(CLIPGEMPooling, self).__init__()
+        self.eps = 1e-6
 
-    @staticmethod
-    def forward(last_hidden_state, p: int = 4) -> Tensor:
+    def forward(self, last_hidden_state, p: int = 4) -> Tensor:
         """
         last_hidden_state.size: [batch_size, patches_sequence, hidden_size]
         1) Pow last_hidden_state with p and then take a averaging
         2) pow sum_embeddings with 1/p
         """
-        sum_embeddings = torch.mean(
-            torch.pow(last_hidden_state, p), 1
-        )
-        gem_embeddings = torch.pow(sum_embeddings, 1 / p)
+        sum_embeddings = torch.mean(torch.pow(last_hidden_state, p), 1) + self.eps
+        gem_embeddings = torch.pow(sum_embeddings, 1 / p) + self.eps
         return gem_embeddings
 
 
@@ -136,9 +134,9 @@ class GEMPooling(nn.Module):
     """
     def __init__(self, auto_cfg) -> None:
         super(GEMPooling, self).__init__()
+        self.eps = 1e-6
 
-    @staticmethod
-    def forward(last_hidden_state, attention_mask, p: int = 4) -> Tensor:
+    def forward(self, last_hidden_state, attention_mask, p: int = 4) -> Tensor:
         """
         1) Expand Attention Mask from [batch_size, max_len] to [batch_size, max_len, hidden_size]
             1-1) For remove padding token, padding token's attention mask is 0
@@ -148,14 +146,22 @@ class GEMPooling(nn.Module):
         4) Average
         """
         input_mask_expanded = attention_mask.unsqueeze(-1).expand(last_hidden_state.size()).float()
-        sum_embeddings = torch.sum(
-            torch.pow(last_hidden_state * input_mask_expanded, p), 1
-        )
+        sum_embeddings = torch.sum(torch.pow(last_hidden_state * input_mask_expanded, p), 1) + self.eps
         sum_mask = input_mask_expanded.sum(1)
         sum_mask = torch.clamp(sum_mask, min=1e-9)
         tmp_embeddings = sum_embeddings / sum_mask
-        gem_embeddings = torch.pow(tmp_embeddings, 1/p)
+        gem_embeddings = torch.pow(tmp_embeddings, 1/p) + self.eps
         return gem_embeddings
+
+
+# Mean Pooling
+class CLIPMeanPooling(nn.Module):
+    def __init__(self, auto_cfg):
+        super(CLIPMeanPooling, self).__init__()
+
+    @staticmethod
+    def forward(last_hidden_state) -> Tensor:
+        return torch.mean(last_hidden_state, 1)
 
 
 # Mean Pooling
@@ -168,7 +174,7 @@ class MeanPooling(nn.Module):
         input_mask_expanded = attention_mask.unsqueeze(-1).expand(last_hidden_state.size()).float()
         sum_embeddings = torch.sum(last_hidden_state * input_mask_expanded, 1)
         sum_mask = input_mask_expanded.sum(1)
-        sum_mask = torch.clamp(sum_mask, min=1e-9)  # if lower than threshold, replace value to threshold (parameter min)
+        sum_mask = torch.clamp(sum_mask, min=1e-9)
         mean_embeddings = sum_embeddings / sum_mask
         return mean_embeddings
 

@@ -63,7 +63,7 @@ class SD2Model(nn.Module):
             self.model.load_state_dict(
                 torch.load(cfg.checkpoint_dir + cfg.state_dict),
                 strict=False
-            )  # I don't know how to save those vision & text, maybe need to save separately
+            )
 
         if cfg.reinit:
             self._init_weights(self.vision_fc)
@@ -115,16 +115,17 @@ class SD2Model(nn.Module):
             feature = outputs.last_hidden_state
             embedding = self.vision_pooling(feature)  # [batch_size, hidden_size(1024)]
 
-            clip_feature = embedding / embedding.norm(dim=-1, keepdim=True)  # normalize
-            style_feature = style_features / style_features.norm(dim=-1, keepdim=True)  # normalize
-            logit = self.vision_fc(torch.cat([clip_feature, style_feature], dim=-1))
+            # clip_feature = embedding / embedding.norm(dim=-1, keepdim=True)  # normalize
+            # style_feature = style_features / style_features.norm(dim=-1, keepdim=True)  # normalize
+            # logit = self.vision_fc(torch.cat([clip_feature, style_feature], dim=-1))
+            logit = self.vision_fc(torch.cat([embedding, style_features], dim=-1))
 
         else:  # mode == 'text'
             outputs = self.text_model(**inputs)
             feature = outputs.last_hidden_state
             embedding = self.text_pooling(feature, inputs['attention_mask'])
-            text_features = embedding / embedding.norm(dim=-1, keepdim=True)  # normalize
-            logit = self.text_fc(text_features)
+            # text_features = embedding / embedding.norm(dim=-1, keepdim=True)  # normalize
+            logit = self.text_fc(embedding)
 
         return logit
 
@@ -162,7 +163,11 @@ class StyleExtractModel(nn.Module):
         elif 'convnext' in self.cfg.style_model:
             layer_name = 'stages'
         elif 'resnet' in self.cfg.style_model:
-            layer_name = ['layer1', 'layer2','layer3', 'layer4']
+            layer_name = ['layer1', 'layer2', 'layer3', 'layer4']
+        self.feature1 = self.style_model.stem + self.style_model.stages[0:1]
+        self.feature2 = self.style_model.stages[1:2]
+        self.feature3 = self.style_model.stages[2:3]
+        self.feature4 = self.style_model.stages[3:4]
 
     @staticmethod
     def gram_matrix(x: torch.Tensor) -> torch.Tensor:
@@ -172,15 +177,10 @@ class StyleExtractModel(nn.Module):
         return g
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        feature1 = self.style_model.stem + self.style_model.stages[0:1]
-        feature2 = self.style_model.stages[1:2]
-        feature3 = self.style_model.stages[2:3]
-        feature4 = self.style_model.stages[3:4]
-
-        embedding1 = feature1(x)
-        embedding2 = feature2(embedding1)
-        embedding3 = feature3(embedding2)
-        embedding4 = feature4(embedding3)
+        embedding1 = self.feature1(x)
+        embedding2 = self.feature2(embedding1)
+        embedding3 = self.feature3(embedding2)
+        embedding4 = self.feature4(embedding3)
 
         g1 = self.gram_matrix(embedding1)
         g2 = self.gram_matrix(embedding2)
