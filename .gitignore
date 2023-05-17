@@ -14,3 +14,4 @@
 /dataset_class/data_folder/30k_public/artifacts/
 .DS_Store
 dataset_class/embedding_table.pth
+saved/model/fold0_CLIPGEMPooling_openai-clip-vit-large-patch14_state_dict.pth

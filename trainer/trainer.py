@@ -137,7 +137,7 @@ class SD2Trainer:
                     labels[k] = v.to(self.cfg.device)  # prompt to GPU
 
                 clip_images = clip_images.squeeze().to(self.cfg.device)  # clip image to GPU
-                val_batch_size = self.cfg.val_batch_size
+                val_batch_size = clip_images.shape[0]
 
                 style_images = style_images.to(self.cfg.device)  # style image to GPU
                 style_features = style_model(style_images)  # style image to style feature

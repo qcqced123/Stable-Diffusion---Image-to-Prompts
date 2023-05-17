@@ -11,7 +11,7 @@ g.manual_seed(CFG.seed)
 def train_loop(cfg: any) -> None:
     """ Base Trainer Loop Function """
     fold_list = [i for i in range(cfg.n_folds)]
-    for fold in tqdm(fold_list):
+    for fold in tqdm(fold_list[1:2]):
         print(f'============== {fold}th Fold Train & Validation ==============')
         wandb.init(
             project=cfg.name,
