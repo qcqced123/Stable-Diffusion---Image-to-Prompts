@@ -57,4 +57,6 @@ def train_loop(cfg: any) -> None:
             del train_loss, valid_metric
             gc.collect(), torch.cuda.empty_cache()
 
+        del model, style_model, loader_train, loader_valid, train  # delete for next fold
+        gc.collect(), torch.cuda.empty_cache()
         wandb.finish()
