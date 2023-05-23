@@ -6,16 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="c9885c79-d8e5-4090-bf8d-ba84d8ae3b1f" name="변경" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/Untitled-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/example_extract_style-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/style_extract-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.ipynb_checkpoints/untitled-checkpoint.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/example_extract_style.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/example_extract_style.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/metric_learning.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/metric_learning.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/trainer/train_loop.py" beforeDir="false" afterPath="$PROJECT_DIR$/trainer/train_loop.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/trainer/trainer.py" beforeDir="false" afterPath="$PROJECT_DIR$/trainer/trainer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wandb/debug-internal.log" beforeDir="false" afterPath="$PROJECT_DIR$/wandb/debug-internal.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wandb/debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/wandb/debug.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wandb/latest-run" beforeDir="false" afterPath="$PROJECT_DIR$/wandb/latest-run" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wandb/run-20230516_034656-573myynh/files/output.log" beforeDir="false" afterPath="$PROJECT_DIR$/wandb/run-20230516_034656-573myynh/files/output.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wandb/run-20230516_034656-573myynh/files/wandb-summary.json" beforeDir="false" afterPath="$PROJECT_DIR$/wandb/run-20230516_034656-573myynh/files/wandb-summary.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wandb/run-20230516_034656-573myynh/logs/debug-internal.log" beforeDir="false" afterPath="$PROJECT_DIR$/wandb/run-20230516_034656-573myynh/logs/debug-internal.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wandb/run-20230516_034656-573myynh/logs/debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/wandb/run-20230516_034656-573myynh/logs/debug.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wandb/run-20230516_034656-573myynh/run-573myynh.wandb" beforeDir="false" afterPath="$PROJECT_DIR$/wandb/run-20230516_034656-573myynh/run-573myynh.wandb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,6 +177,16 @@
       <workItem from="1684189430945" duration="174000" />
       <workItem from="1684279210420" duration="61000" />
       <workItem from="1684279495967" duration="19000" />
+      <workItem from="1684355524456" duration="47000" />
+      <workItem from="1684409495966" duration="17000" />
+      <workItem from="1684409520965" duration="2000" />
+      <workItem from="1684475286409" duration="21000" />
+      <workItem from="1684527911071" duration="826000" />
+      <workItem from="1684648262736" duration="219000" />
+      <workItem from="1684701167692" duration="101000" />
+      <workItem from="1684838126675" duration="32000" />
+      <workItem from="1684838165183" duration="4095000" />
+      <workItem from="1684847168996" duration="24000" />
     </task>
     <servers />
   </component>

@@ -1,4 +1,3 @@
-import gc
 import math
 import dataset_class.dataclass as dataset_class
 import model.metric as model_metric

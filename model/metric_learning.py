@@ -108,7 +108,7 @@ class CLIPMultipleNegativeRankingLoss(nn.Module):
         self.reduction = reduction
         self.cross_entropy_loss = CrossEntropyLoss(self.reduction)
 
-    def forward(self, embeddings_a, embeddings_b):
+    def forward(self, embeddings_a: Tensor, embeddings_b: Tensor) -> Tensor:
         """
         Compute similarity between `a` and `b`.
         Labels have the index of the row number at each row, same index means that they are ground truth
