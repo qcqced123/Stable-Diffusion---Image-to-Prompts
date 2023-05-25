@@ -60,18 +60,21 @@ class SD2Model(nn.Module):
         self.text_pooling = getattr(pooling, cfg.text_pooling)(self.auto_cfg)  # for text pooling
 
         if self.cfg.load_pretrained:
+            """ option for load checkpoint """
             self.model.load_state_dict(
                 torch.load(cfg.checkpoint_dir + cfg.state_dict),
                 strict=False
             )
 
         if cfg.reinit:
+            """ option for re-initialize FCN layers & Top-k transformer Encoder layers """
             self._init_weights(self.vision_fc)
             self._init_weights(self.text_fc)
             self.reinit_topk(self.vision_model, cfg.vision_num_reinit)
             self.reinit_topk(self.text_model, cfg.text_num_reinit)
 
         if cfg.freeze:
+            """ option for freeze Bottom-k transformer Encoder layers """
             freeze(self.vision_model.embeddings)
             freeze(self.vision_model.encoder.layer[:cfg.vision_num_freeze])
 
@@ -109,7 +112,11 @@ class SD2Model(nn.Module):
             module.bias.data.zero_()
 
     def forward(self, inputs: dict, mode: str, style_features: Tensor = None) -> list[Tensor]:
-        """ forward pass function with mode (vision or text) """
+        """
+        forward pass function with mode (vision or text)
+        Later, We must copy vision model's last_hidden_state
+        Because, One Embedding goes to Open AI CLIP Embedding Space and the other goes to GPT-2 Decoder
+        """
         if mode == 'vision':
             outputs = self.vision_model(inputs)
             feature = outputs.last_hidden_state

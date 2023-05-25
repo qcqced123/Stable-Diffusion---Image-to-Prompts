@@ -1,3 +1,4 @@
+import gc
 import math
 import dataset_class.dataclass as dataset_class
 import model.metric as model_metric
@@ -73,7 +74,6 @@ class SD2Trainer:
             correct_bias=not self.cfg.layerwise_use_bertadam
         )
         lr_scheduler = get_scheduler(self.cfg, optimizer, len_train)
-
         return model, style_model, criterion, val_metrics, optimizer, lr_scheduler
 
     # Train Function

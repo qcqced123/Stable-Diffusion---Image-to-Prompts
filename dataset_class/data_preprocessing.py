@@ -24,6 +24,9 @@ def clip_img_process(cfg: configuration.CFG, image: np.array) -> Tensor:
         cfg: configuration.CFG, needed to load img_processor from Huggingface CLIPProcessor
         img: image convert to np.array type
     """
+    if not type(image) == np.ndarray:
+        raise TypeError('image must be np.ndarray type')
+
     return torch.as_tensor(cfg.img_processor(images=image)['pixel_values'])
 
 
@@ -143,5 +146,10 @@ def normalize_words(words: np.ndarray, unique=True) -> list:
     else:
         words = __normalize_words(words)
     return words
+
+
+def check_zero(x: np.ndarray) -> bool:
+    """ Returns True if the NumPy array `x` contains any 0 values."""
+    return np.any(x == 0)
 
 
