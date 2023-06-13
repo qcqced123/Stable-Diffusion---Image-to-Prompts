@@ -4,9 +4,8 @@ import rasterio
 from rasterio.enums import Resampling
 from torch.utils.data import Dataset
 from torch import Tensor
-
 import configuration
-from .data_preprocessing import img_transform, tokenizing, clip_img_process, load_style_embedding
+from data_preprocessing import img_transform, tokenizing, clip_img_process, generate_tokenizing
 
 
 class SD2Dataset(Dataset):
@@ -44,3 +43,18 @@ class SD2Dataset(Dataset):
         del image
         gc.collect()
         return style_image, clip_image, target
+
+
+class GenerateDataset(Dataset):
+    """ This dataset class for re-pretraining generate model (GPT2) """
+    def __init__(self, cfg: configuration.CFG, df: pd.DataFrame) -> None:
+        self.cfg = cfg
+        self.df = df
+        self.tokenizer = generate_tokenizing
+
+    def __len__(self) -> int:
+        return len(self.df)
+
+    def __getitem__(self, item) -> dict[Tensor, Tensor, Tensor]:
+        prompt = self.tokenizer(self.cfg, self.df.iloc[item, 1])
+        return prompt

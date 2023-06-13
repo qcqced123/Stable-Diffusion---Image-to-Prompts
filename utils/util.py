@@ -87,6 +87,7 @@ def sync_config(json_config: json) -> None:
     CFG.style_model_arch = json_config.pipeline_setting.style_model_arch
     CFG.model = json_config.pipeline_setting.model
     CFG.style_model = json_config.pipeline_setting.style_model
+    CFG.generate_model = json_config.pipeline_setting.generate_model
     CFG.image_pooling = json_config.pipeline_setting.image_pooling
     CFG.text_pooling = json_config.pipeline_setting.text_pooling
 

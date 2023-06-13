@@ -15,7 +15,9 @@ class CFG:
     style_model_arch = 'StyleExtractModel'  # model.model.py -> StyleModel
     model = 'openai/clip-vit-large-patch14'
     style_model = 'efficientnet_b7'
+    generate_model = 'gpt2'
     tokenizer = AutoTokenizer.from_pretrained(model)
+    generate_tokenizer = AutoTokenizer.from_pretrained(generate_model)
     img_processor = CLIPImageProcessor.from_pretrained(model)
     image_pooling = 'MeanPooling'  # mean, attention, max, weightedlayer, concat, conv1d, lstm
     text_pooling = 'MeanPooling'  # mean, attention, max, weightedlayer, concat, conv1d, lstm

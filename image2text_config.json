@@ -13,6 +13,7 @@
         "style_model_arch": "StyleExtractModel",
         "model": "openai/clip-vit-large-patch14",
         "style_model": "convnext_base_384_in22ft1k",
+        "generate_model": "gpt2",
         "image_pooling": "CLIPGEMPooling",
         "text_pooling": "GEMPooling"
     },

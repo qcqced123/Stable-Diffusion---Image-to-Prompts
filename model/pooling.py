@@ -1,7 +1,9 @@
 import torch
 import torch.nn as nn
-from torch import Tensor
 import torch.nn.functional as F
+from torch import Tensor
+from transformers import AutoConfig
+from .model_utils import *
 
 
 # WeightedLayerPooling: Use Intermediate Layer's Embedding
@@ -93,6 +95,7 @@ class CLIPGEMPooling(nn.Module):
     """
     Generalized Mean Pooling for Natural Language Processing
     This class version of GEMPooling for CLIP, Transfer from NLP Task Code
+    ViT don't use attention mask, because input image shape will be same
 
     Mean Pooling <= GEMPooling <= Max Pooling
     Because of doing exponent to each token embeddings, GEMPooling is like as weight to more activation token
@@ -103,18 +106,26 @@ class CLIPGEMPooling(nn.Module):
     [Reference]
     https://paperswithcode.com/method/generalized-mean-pooling
     """
-    def __init__(self, auto_cfg) -> None:
+    def __init__(self, auto_cfg: AutoConfig.from_pretrained) -> None:
         super(CLIPGEMPooling, self).__init__()
-        self.eps = 1e-6
 
-    def forward(self, last_hidden_state, p: int = 4) -> Tensor:
+    @staticmethod
+    def forward(last_hidden_state, p: int = 4) -> Tensor:
         """
         last_hidden_state.size: [batch_size, patches_sequence, hidden_size]
         1) Pow last_hidden_state with p and then take a averaging
         2) pow sum_embeddings with 1/p
         """
-        sum_embeddings = torch.mean(torch.pow(last_hidden_state, p), 1) + self.eps
-        gem_embeddings = torch.pow(sum_embeddings, 1 / p) + self.eps
+        p_embeddings = zero_filtering(torch.pow(last_hidden_state, p))
+        # Check NaN value in Embedding after applying torch.pow
+        if check_nan(p_embeddings):
+            p_embeddings = nan_filtering(p_embeddings)
+        sum_embeddings = torch.mean(p_embeddings, 1)
+
+        gem_embeddings = zero_filtering(torch.pow(sum_embeddings, 1. / p))
+        # Check NaN value in Embedding after applying torch.pow
+        if check_nan(gem_embeddings):
+            gem_embeddings = nan_filtering(gem_embeddings)
         return gem_embeddings
 
 
@@ -146,11 +157,20 @@ class GEMPooling(nn.Module):
         4) Average
         """
         input_mask_expanded = attention_mask.unsqueeze(-1).expand(last_hidden_state.size()).float()
-        sum_embeddings = torch.sum(torch.pow(last_hidden_state * input_mask_expanded, p), 1) + self.eps
+        p_embeddings = zero_filtering(torch.pow(last_hidden_state * input_mask_expanded, p))
+        # Check NaN value in Embedding after applying torch.pow
+        if check_nan(p_embeddings):
+            p_embeddings = nan_filtering(p_embeddings)
+        sum_embeddings = torch.sum(p_embeddings, 1)
+
         sum_mask = input_mask_expanded.sum(1)
         sum_mask = torch.clamp(sum_mask, min=1e-9)
+
         tmp_embeddings = sum_embeddings / sum_mask
-        gem_embeddings = torch.pow(tmp_embeddings, 1/p) + self.eps
+        gem_embeddings = zero_filtering(torch.pow(tmp_embeddings, 1/p))
+        # Check NaN value in Embedding after applying torch.pow
+        if check_nan(gem_embeddings):
+            gem_embeddings = nan_filtering(gem_embeddings)
         return gem_embeddings
 
 

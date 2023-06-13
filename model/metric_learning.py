@@ -6,6 +6,7 @@ from typing import Iterable, Dict
 from torch import Tensor
 import sentence_transformers
 from sentence_transformers.util import cos_sim
+from .model_utils import *
 from .loss import CrossEntropyLoss
 
 
@@ -102,7 +103,6 @@ class CLIPMultipleNegativeRankingLoss(nn.Module):
     def __init__(self, reduction: str, scale: float = 20.0, similarity_fct=cos_sim) -> None:
         super().__init__()
         self.reduction = reduction
-        self.eps = 1e-6
         self.scale = scale
         self.similarity_fct = similarity_fct
         self.reduction = reduction
@@ -116,13 +116,17 @@ class CLIPMultipleNegativeRankingLoss(nn.Module):
         when `i==j` and low similarity when `i!=j`.
         Example a[i] should match with b[i]
         """
-        similarity_scores = self.similarity_fct(embeddings_a, embeddings_b) * self.scale + self.eps
+        similarity_scores = zero_filtering(self.similarity_fct(embeddings_a, embeddings_b)) * self.scale
+        if check_nan(similarity_scores):
+            """ Check NaN Value in similarity_scores """
+            similarity_scores = nan_filtering(similarity_scores)
 
         labels = torch.tensor(
             range(len(similarity_scores)),
             dtype=torch.long,
             device=similarity_scores.device,
         )
+
         return self.cross_entropy_loss(similarity_scores, labels)
 
 

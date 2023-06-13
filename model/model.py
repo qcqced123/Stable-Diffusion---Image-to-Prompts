@@ -4,6 +4,8 @@ import timm
 import model.pooling as pooling
 from torch import Tensor
 from transformers import AutoConfig, AutoModel
+
+import configuration
 from model.model_utils import freeze, reinit_topk
 
 
@@ -13,16 +15,15 @@ class SD2Model(nn.Module):
     In OpenAI CLIP, Image and Text are encoded in same space
     So, extract embeddings from image and then use them for inference text prompt
     And add additional pooling layer to ViT last hidden state embedding
-    Because in paper & code, they use CLS token pooling before fully-connected layer
-    in common sense, Mean Pooling more good performance than CLS token pooling,
-    So apply GEMPooling instead of CLS token pooling, which is more good performance in detect object
-    and then, background called style feature extract from other CNN based Model such as Efficientnet, ResNet
+    Because paper & code, use CLS pooling before FCN in common, Mean pooling more good performance than CLS pooling,
+    So apply GEMPooling instead of CLS pooling, which is more good performance in detect object
+    After then, background called style feature extract from other CNN based Model (ConvNext, Resnet)
 
     [Reference]
     https://github.com/openai/CLIP/blob/main/clip/model.py
     https://www.kaggle.com/code/tanreinama/style-extract-from-vgg-clip-object-extract
     """
-    def __init__(self, cfg) -> None:
+    def __init__(self, cfg: configuration.CFG) -> None:
         super().__init__()
         self.cfg = cfg
         self.drop = 0.0
@@ -116,25 +117,78 @@ class SD2Model(nn.Module):
         forward pass function with mode (vision or text)
         Later, We must copy vision model's last_hidden_state
         Because, One Embedding goes to Open AI CLIP Embedding Space and the other goes to GPT-2 Decoder
+            - tensor deepcopy method for decoder neeeded
+            - linear projection layer to decoder layer needed
+            - make structure similarly to BLIP (BlipForConditionalGeneration => GPT2)
         """
         if mode == 'vision':
             outputs = self.vision_model(inputs)
-            feature = outputs.last_hidden_state
-            embedding = self.vision_pooling(feature)  # [batch_size, hidden_size(1024)]
 
-            # clip_feature = embedding / embedding.norm(dim=-1, keepdim=True)  # normalize
-            # style_feature = style_features / style_features.norm(dim=-1, keepdim=True)  # normalize
-            # logit = self.vision_fc(torch.cat([clip_feature, style_feature], dim=-1))
-            logit = self.vision_fc(torch.cat([embedding, style_features], dim=-1))
+            feature = outputs.last_hidden_state
+            encoder_hidden_states = torch.clone(outputs.last_hidden_state)  # goes to decoder's input
+
+            embedding = self.vision_pooling(feature)  # [batch_size, hidden_size(1024)]
+            logit = self.vision_fc(torch.cat([embedding, style_features], dim=-1))  # encoder's input
 
         else:  # mode == 'text'
             outputs = self.text_model(**inputs)
             feature = outputs.last_hidden_state
             embedding = self.text_pooling(feature, inputs['attention_mask'])
-            # text_features = embedding / embedding.norm(dim=-1, keepdim=True)  # normalize
             logit = self.text_fc(embedding)
 
         return logit
+
+
+class ReTrainGenerateModel(nn.Module):
+    """
+    (Append 2023-05-29)
+    Add image-captioning model(GPT2) for generate prompt, whole architecture is similar with BLIP Style
+    This model class will be used to re-pretrained pretrained GPT2 with prompt solely
+    And then, fine-tune by cross-entropy which is matching loss from generate prompt by GPT2 and ground-truth in other
+    Args:
+        cfg: configuration.CFG
+    Reference:
+        https://huggingface.co/gpt2
+        https://huggingface.co/docs/transformers/model_doc/vision-encoder-decoder
+    """
+    def __init__(self, cfg) -> None:
+        super().__init__()
+        self.cfg = cfg
+        self.auto_cfg = AutoConfig.from_pretrained(
+            cfg.generate_model,
+            output_hidden_states=True
+        )
+        self.model = AutoModel.from_pretrained(
+            cfg.generate_model,
+            config=self.auto_cfg
+        )
+
+        if cfg.reinit:
+            self._init_weights(self.fc)
+            reinit_topk(self.model, self.cfg.num_reinit)
+
+        if cfg.freeze:
+            freeze(self.model.embeddings)
+            freeze(self.model.encoder.layer[:self.cfg.num_freeze])
+
+        if cfg.gradient_checkpoint:
+            self.model.gradient_checkpointing_enable()
+
+    @staticmethod
+    def _init_weights(module) -> None:
+        """ over-ride initializes weights of the given module function (+initializes LayerNorm) """
+        if isinstance(module, nn.Linear):
+            module.weight.data.normal_(mean=0.0, std=0.02)
+            if module.bias is not None:
+                module.bias.data.zero_()
+        elif isinstance(module, nn.Embedding):
+            module.weight.data.normal_(mean=0.0, std=0.02)
+            if module.padding_idx is not None:
+                module.weight.data[module.padding_idx].zero_()
+        elif isinstance(module, nn.LayerNorm):
+            """ reference from torch.nn.Layernorm with elementwise_affine=True """
+            module.weight.data.fill_(1.0)
+            module.bias.data.zero_()
 
 
 class StyleExtractModel(nn.Module):
@@ -156,7 +210,7 @@ class StyleExtractModel(nn.Module):
     [Reference]
     https://www.kaggle.com/code/tanreinama/style-extract-from-vgg-clip-object-extract
     """
-    def __init__(self, cfg) -> None:
+    def __init__(self, cfg: configuration.CFG) -> None:
         super().__init__()
         self.cfg = cfg
         self.style_model = timm.create_model(
