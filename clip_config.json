@@ -27,7 +27,7 @@
     },
     "data_settings": {
         "n_folds": 5,
-        "max_len": 77,
+        "max_len": 128,
         "epochs": 5,
         "batch_size": 128,
         "val_batch_size": 64

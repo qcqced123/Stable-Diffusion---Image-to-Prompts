@@ -17,7 +17,7 @@ class CFG:
     model = 'openai/clip-vit-large-patch14'
     style_model = 'efficientnet_b7'
     text_encoder = 'sentence-transformers/all-MiniLM-L6-v2'
-    tokenizer = AutoTokenizer.from_pretrained(model)  # Processor = Text Tokenizer + Image Processor
+    tokenizer = AutoTokenizer.from_pretrained(text_encoder)  # Processor = Text Tokenizer + Image Processor
     img_processor = AutoImageProcessor.from_pretrained(model)
     image_pooling = 'MeanPooling'  # mean, attention, max, weightedlayer, concat, conv1d, lstm
 

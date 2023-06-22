@@ -1,0 +1,105 @@
+{
+    "os": "Linux-5.19.0-45-generic-x86_64-with-glibc2.35",
+    "python": "3.9.13",
+    "heartbeatAt": "2023-06-22T11:57:02.103954",
+    "startedAt": "2023-06-22T11:57:01.460051",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "/home/qcqced/\ubc14\ud0d5\ud654\uba74/ML_Test/image2text/train.py",
+    "codePath": "train.py",
+    "git": {
+        "remote": "https://github.com/qcqced123/image2text.git",
+        "commit": "c63c7c57c4afc57046407f4d97a314a0f84d1157"
+    },
+    "email": "97833081+qcqced123@users.noreply.github.com",
+    "root": "/home/qcqced/\ubc14\ud0d5\ud654\uba74/ML_Test/image2text",
+    "host": "qcqced-B550M-H",
+    "username": "qcqced",
+    "executable": "/home/qcqced/anaconda3/bin/python",
+    "cpu_count": 6,
+    "cpu_count_logical": 12,
+    "cpu_freq": {
+        "current": 3.1115833333333334,
+        "min": 2200.0,
+        "max": 3700.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 3.636,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 2.2,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 2.2,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 2.2,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 2.2,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 2.2,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 4.64,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3.344,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 4.125,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3.521,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3.483,
+            "min": 2200.0,
+            "max": 3700.0
+        },
+        {
+            "current": 3.59,
+            "min": 2200.0,
+            "max": 3700.0
+        }
+    ],
+    "disk": {
+        "total": 680.4048233032227,
+        "used": 165.1250762939453
+    },
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 3090",
+            "memory_total": 25769803776
+        }
+    ],
+    "memory": {
+        "total": 23.370285034179688
+    }
+}

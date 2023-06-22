@@ -1,5 +1,8 @@
 import gc
 import math
+
+import torch
+
 import dataset_class.dataclass as dataset_class
 import model.metric as model_metric
 import model.metric_learning as metric_learning
@@ -78,7 +81,6 @@ class CLIPTrainer:
 
         model.to(self.cfg.device)
         style_model.to(self.cfg.device)
-        text_encoder.to(self.cfg.device)
 
         criterion = getattr(metric_learning, self.cfg.loss_fn)(self.cfg.reduction)
         val_metrics = getattr(model_metric, self.cfg.metrics)()
@@ -102,21 +104,19 @@ class CLIPTrainer:
         model.train(), style_model.eval()
         for step, (style_images, clip_images, labels) in enumerate(tqdm(loader_train)):
             optimizer.zero_grad()
-            for k, v in labels.items():
-                labels[k] = v.to(self.cfg.device)  # prompt to GPU
-
             clip_images = clip_images.squeeze().to(self.cfg.device)  # clip image to GPU
             batch_size = self.cfg.batch_size
+
             with torch.no_grad():
                 style_images = style_images.to(self.cfg.device)  # style image to GPU
                 style_features = style_model(style_images)  # style image to style feature
-                text_features = text_encoder.encode(labels)  # convert prompt to embedding by sentence transformers
+                text_features = torch.from_numpy(text_encoder.encode(labels)).to(self.cfg.device)
 
             with torch.cuda.amp.autocast(enabled=self.cfg.amp_scaler):
                 image_features = model(clip_images, style_features=style_features)
                 """ Checking normalization of each vectors are needed """
-                image_features = image_features / image_features.norm(dim=-1, keepdim=True) * math.sqrt(384)
-                text_features = text_features / text_features.norm(dim=-1, keepdim=True) * math.sqrt(384)
+                image_features = image_features / image_features.norm(dim=-1, keepdim=True)  # * math.sqrt(384)
+                # text_features = text_features / text_features.norm(dim=-1, keepdim=True)   # * math.sqrt(384)
                 loss = criterion(image_features, text_features)
 
             if self.cfg.n_gradient_accumulation_steps > 1:
@@ -138,6 +138,9 @@ class CLIPTrainer:
             gc.collect()
 
         train_loss = losses.avg.detach().cpu().numpy()
+        del style_images, style_features, text_features, image_features, clip_images
+        torch.cuda.empty_cache()
+        gc.collect()
         return train_loss
 
     # Validation Function
@@ -148,19 +151,16 @@ class CLIPTrainer:
         # style_model.eval()
         with torch.no_grad():
             for step, (style_images, clip_images, labels) in enumerate(tqdm(loader_valid)):
-                for k, v in labels.items():
-                    labels[k] = v.to(self.cfg.device)  # prompt to GPU
-
                 clip_images = clip_images.squeeze().to(self.cfg.device)  # clip image to GPU
                 val_batch_size = clip_images.shape[0]
 
                 style_images = style_images.to(self.cfg.device)  # style image to GPU
                 style_features = style_model(style_images)  # style image to style feature
-                text_features = text_encoder.encode(labels)  # convert prompt to embedding by sentence transformers
+                text_features = torch.from_numpy(text_encoder.encode(labels)).to(self.cfg.device)
 
                 image_features = model(clip_images, style_features=style_features)
                 """ Checking normalization of each vectors are needed """
-                # image_features = image_features / image_features.norm(dim=-1, keepdim=True) * math.sqrt(384)
+                image_features = image_features / image_features.norm(dim=-1, keepdim=True) # * math.sqrt(384)
                 # text_features = text_features / text_features.norm(dim=-1, keepdim=True) * math.sqrt(384)
 
                 for i in range(val_batch_size):
@@ -168,6 +168,8 @@ class CLIPTrainer:
                     metrics.update(val_metric.detach(), 1)
 
         metric = metrics.avg.detach().cpu().numpy()
+        del style_images, style_features, text_features, image_features, clip_images
+        torch.cuda.empty_cache()
         gc.collect()
         return metric
 
