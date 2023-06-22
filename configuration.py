@@ -1,5 +1,6 @@
 import torch
-from transformers import AutoTokenizer, CLIPImageProcessor
+from transformers import AutoTokenizer, AutoImageProcessor, BlipForConditionalGeneration
+
 # from model.metric import *
 
 
@@ -15,12 +16,10 @@ class CFG:
     style_model_arch = 'StyleExtractModel'  # model.model.py -> StyleModel
     model = 'openai/clip-vit-large-patch14'
     style_model = 'efficientnet_b7'
-    generate_model = 'gpt2'
-    tokenizer = AutoTokenizer.from_pretrained(model)
-    generate_tokenizer = AutoTokenizer.from_pretrained(generate_model)
-    img_processor = CLIPImageProcessor.from_pretrained(model)
+    text_encoder = 'sentence-transformers/all-MiniLM-L6-v2'
+    tokenizer = AutoTokenizer.from_pretrained(model)  # Processor = Text Tokenizer + Image Processor
+    img_processor = AutoImageProcessor.from_pretrained(model)
     image_pooling = 'MeanPooling'  # mean, attention, max, weightedlayer, concat, conv1d, lstm
-    text_pooling = 'MeanPooling'  # mean, attention, max, weightedlayer, concat, conv1d, lstm
 
     """ Common Options """
     wandb = True
@@ -80,10 +79,8 @@ class CFG:
     stop_mode = 'min'
     freeze = False
     vision_num_freeze = 2
-    text_num_freeze = 2
     reinit = True
     vision_num_reinit = 0
-    text_num_reinit = 0
     awp = False
     nth_awp_start_epoch = 10
     awp_eps = 1e-2

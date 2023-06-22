@@ -5,19 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c9885c79-d8e5-4090-bf8d-ba84d8ae3b1f" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/clip_config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/configuration.py" beforeDir="false" afterPath="$PROJECT_DIR$/configuration.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataset_class/data_folder/.ipynb_checkpoints/Untitled-checkpoint.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/dataset_class/data_folder/.ipynb_checkpoints/Untitled-checkpoint.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataset_class/data_folder/Untitled.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/dataset_class/data_folder/Untitled.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dataset_class/data_preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataset_class/data_preprocessing.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dataset_class/dataclass.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataset_class/dataclass.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/example_extract_style.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/example_extract_style.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/image2text_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/image2text_config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/image2text_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/blip_config.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/metric_learning.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/metric_learning.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/model.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/model_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/model_utils.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/pooling.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/pooling.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/train.py" beforeDir="false" afterPath="$PROJECT_DIR$/train.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trainer/train_loop.py" beforeDir="false" afterPath="$PROJECT_DIR$/trainer/train_loop.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/trainer/trainer.py" beforeDir="false" afterPath="$PROJECT_DIR$/trainer/trainer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/trainer/trainer_utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/trainer/trainer_utils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/utils/util.py" beforeDir="false" afterPath="$PROJECT_DIR$/utils/util.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -53,6 +51,7 @@
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/qcqced/Desktop/GitHub/image2text&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -65,6 +64,7 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/dataset_class/data_folder/SDDB2_2M_75" />
       <recent name="$PROJECT_DIR$/dataset_class/data_folder/SDDB2_2M_75/SDDB2-images" />
       <recent name="$PROJECT_DIR$/dataset_class/data_folder/ChatGPT_SDDB2" />
@@ -202,7 +202,11 @@
       <workItem from="1685692075139" duration="1558000" />
       <workItem from="1685789575092" duration="9000" />
       <workItem from="1686631121955" duration="6000" />
-      <workItem from="1686632272535" duration="3453000" />
+      <workItem from="1686632272535" duration="4673000" />
+      <workItem from="1686702895973" duration="13496000" />
+      <workItem from="1686724005476" duration="15000" />
+      <workItem from="1687148914559" duration="613000" />
+      <workItem from="1687407120414" duration="12818000" />
     </task>
     <servers />
   </component>

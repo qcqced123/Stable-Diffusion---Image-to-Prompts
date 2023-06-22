@@ -6,16 +6,15 @@
         "load_pretrained": false,
         "resume": false,
         "state_dict": "",
-        "name": "SD2Trainer",
+        "name": "CLIPTrainer",
         "loop": "train_loop",
         "dataset": "SD2Dataset",
-        "model_arch": "SD2Model",
+        "model_arch": "CLIPModel",
         "style_model_arch": "StyleExtractModel",
         "model": "openai/clip-vit-large-patch14",
         "style_model": "convnext_base_384_in22ft1k",
-        "generate_model": "gpt2",
-        "image_pooling": "CLIPGEMPooling",
-        "text_pooling": "GEMPooling"
+        "text_encoder": "sentence-transformers/all-MiniLM-L6-v2",
+        "image_pooling": "CLIPGEMPooling"
     },
     "common_settings": {
         "wandb": true,
@@ -50,7 +49,7 @@
     "optimizer_options": {
         "optimizer": "AdamW",
         "llrd": true,
-        "layerwise_lr": 5e-6,
+        "layerwise_lr": 5e-5,
         "layerwise_lr_decay": 0.9,
         "layerwise_weight_decay": 1e-2,
         "layerwise_adam_epsilon": 1e-6,
@@ -72,11 +71,9 @@
     "model_utils": {
         "stop_mode": "max",
         "freeze": true,
-        "vision_num_freeze": 16,
-        "text_num_freeze": 8,
+        "vision_num_freeze": 8,
         "reinit": true,
         "vision_num_reinit": 2,
-        "text_num_reinit": 1,
         "awp": false,
         "nth_awp_start_epoch": 2,
         "awp_eps": 1e-2,

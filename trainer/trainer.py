@@ -4,6 +4,7 @@ import dataset_class.dataclass as dataset_class
 import model.metric as model_metric
 import model.metric_learning as metric_learning
 import model.model as model_arch
+from sentence_transformers import SentenceTransformer
 from torch.utils.data import DataLoader
 from dataset_class.data_preprocessing import *
 from utils.helper import *
@@ -12,8 +13,20 @@ from model.metric import *
 from tqdm.auto import tqdm
 
 
-class SD2Trainer:
-    """ For OpenAI CLIP Fine-Tuned Pipeline with Multiple Negative Ranking Loss, Style-Extractor """
+class CLIPTrainer:
+    """
+    For Vision Encoder-Decoder Model Fine-Tuned Pipeline with three type model:
+        1) Vision Encoder: CLIP Vision Encoder
+        2) Text Encoder(Only Forward): sentence-transformers/all-MiniLM-L6-v2
+        3) Style Extractor: convnext_base_384_in22ft1k
+
+    This trainer class has Two objectives functions:
+        Objective Function 1: Image & Text Matching Loss by Multiple Negative Ranking Loss
+
+    Reference:
+        https://github.com/huggingface/transformers/blob/main/src/transformers/models/vision_encoder_decoder/modeling_vision_encoder_decoder.py
+
+    """
     def __init__(self, cfg, generator) -> None:
         self.cfg = cfg
         self.model_name = self.cfg.model.split('/')[1]
@@ -59,14 +72,18 @@ class SD2Trainer:
         """ set train & validation options for main train loop """
         model = getattr(model_arch, self.cfg.model_arch)(self.cfg)
         style_model = getattr(model_arch, self.cfg.style_model_arch)(self.cfg)
+        text_encoder = SentenceTransformer('all-MiniLM-L6-v2')
         if self.cfg.resume:
             model.load_state_dict(torch.load(self.cfg.checkpoint_dir + self.cfg.state_dict))
 
         model.to(self.cfg.device)
         style_model.to(self.cfg.device)
+        text_encoder.to(self.cfg.device)
 
         criterion = getattr(metric_learning, self.cfg.loss_fn)(self.cfg.reduction)
         val_metrics = getattr(model_metric, self.cfg.metrics)()
+
+        # Need to apply Grouped Param optimizer, but not yet implemented
         optimizer = getattr(transformers, self.cfg.optimizer)(
             params=model.parameters(),
             lr=self.cfg.layerwise_lr,
@@ -74,10 +91,10 @@ class SD2Trainer:
             correct_bias=not self.cfg.layerwise_use_bertadam
         )
         lr_scheduler = get_scheduler(self.cfg, optimizer, len_train)
-        return model, style_model, criterion, val_metrics, optimizer, lr_scheduler
+        return model, style_model, text_encoder, criterion, val_metrics, optimizer, lr_scheduler
 
     # Train Function
-    def train_fn(self, loader_train, model, style_model, criterion, optimizer, lr_scheduler):
+    def train_fn(self, loader_train, model, style_model, text_encoder, criterion, optimizer, lr_scheduler):
         """ Training Function """
         torch.autograd.set_detect_anomaly(True)
         scaler = torch.cuda.amp.GradScaler(enabled=self.cfg.amp_scaler)
@@ -93,16 +110,14 @@ class SD2Trainer:
             with torch.no_grad():
                 style_images = style_images.to(self.cfg.device)  # style image to GPU
                 style_features = style_model(style_images)  # style image to style feature
+                text_features = text_encoder.encode(labels)  # convert prompt to embedding by sentence transformers
 
             with torch.cuda.amp.autocast(enabled=self.cfg.amp_scaler):
-                image_features = model(clip_images, 'vision', style_features=style_features)
-                text_features = model(labels, 'text')
-
+                image_features = model(clip_images, style_features=style_features)
                 """ Checking normalization of each vectors are needed """
                 image_features = image_features / image_features.norm(dim=-1, keepdim=True) * math.sqrt(384)
                 text_features = text_features / text_features.norm(dim=-1, keepdim=True) * math.sqrt(384)
-
-                loss = (criterion(image_features, text_features) + criterion(text_features, image_features)) / 2
+                loss = criterion(image_features, text_features)
 
             if self.cfg.n_gradient_accumulation_steps > 1:
                 loss = loss / self.cfg.n_gradient_accumulation_steps
@@ -126,7 +141,7 @@ class SD2Trainer:
         return train_loss
 
     # Validation Function
-    def valid_fn(self, loader_valid, model, style_model, val_metrics) -> float:
+    def valid_fn(self, loader_valid, model, style_model, text_encoder, val_metrics) -> float:
         """ Validation Functions """
         metrics = AverageMeter()
         model.eval(), style_model.eval()
@@ -141,12 +156,12 @@ class SD2Trainer:
 
                 style_images = style_images.to(self.cfg.device)  # style image to GPU
                 style_features = style_model(style_images)  # style image to style feature
+                text_features = text_encoder.encode(labels)  # convert prompt to embedding by sentence transformers
 
-                image_features = model(clip_images, 'vision', style_features=style_features)
-                text_features = model(labels, 'text')
-
-                image_features = image_features / image_features.norm(dim=-1, keepdim=True) * math.sqrt(384)
-                text_features = text_features / text_features.norm(dim=-1, keepdim=True) * math.sqrt(384)
+                image_features = model(clip_images, style_features=style_features)
+                """ Checking normalization of each vectors are needed """
+                # image_features = image_features / image_features.norm(dim=-1, keepdim=True) * math.sqrt(384)
+                # text_features = text_features / text_features.norm(dim=-1, keepdim=True) * math.sqrt(384)
 
                 for i in range(val_batch_size):
                     val_metric = val_metrics(image_features[i], text_features[i]).mean()
@@ -157,7 +172,7 @@ class SD2Trainer:
         return metric
 
 
-class ReTrainGenerateTrainer:
+class BLIPTrainer:
     """ Trainer class for generate model such as GPT2 """
     def __init__(self, cfg, generator) -> None:
         self.cfg = cfg

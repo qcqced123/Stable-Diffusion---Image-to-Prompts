@@ -87,9 +87,8 @@ def sync_config(json_config: json) -> None:
     CFG.style_model_arch = json_config.pipeline_setting.style_model_arch
     CFG.model = json_config.pipeline_setting.model
     CFG.style_model = json_config.pipeline_setting.style_model
-    CFG.generate_model = json_config.pipeline_setting.generate_model
+    CFG.text_encoder = json_config.pipeline_setting.text_encoder
     CFG.image_pooling = json_config.pipeline_setting.image_pooling
-    CFG.text_pooling = json_config.pipeline_setting.text_pooling
 
     """ Common Options """
     CFG.wandb = json_config.common_settings.wandb
@@ -147,9 +146,7 @@ def sync_config(json_config: json) -> None:
     CFG.stop_mode = json_config.model_utils.stop_mode
     CFG.reinit = json_config.model_utils.reinit
     CFG.vision_num_freeze = json_config.model_utils.vision_num_freeze
-    CFG.text_num_freeze = json_config.model_utils.text_num_freeze
     CFG.vision_num_reinit = json_config.model_utils.vision_num_reinit
-    CFG.text_num_reinit = json_config.model_utils.text_num_reinit
     CFG.awp = json_config.model_utils.awp
     CFG.nth_awp_start_epoch = json_config.model_utils.nth_awp_start_epoch
     CFG.awp_eps = json_config.model_utils.awp_eps

@@ -27,15 +27,15 @@ def train_loop(cfg: any) -> None:
         val_score_max = -np.inf
         train_input = getattr(trainer, cfg.name)(cfg, g)  # init object
         loader_train, loader_valid, train = train_input.make_batch(fold)
-        model, style_model, criterion, val_metrics, optimizer, lr_scheduler = train_input.model_setting(len(train))
+        model, style_model, text_encoder, criterion, val_metrics, optimizer, lr_scheduler = train_input.model_setting(len(train))
 
         for epoch in range(cfg.epochs):
             print(f'[{epoch + 1}/{cfg.epochs}] Train & Validation')
             train_loss = train_input.train_fn(
-                loader_train, model, style_model, criterion, optimizer, lr_scheduler
+                loader_train, model, style_model, text_encoder, criterion, optimizer, lr_scheduler
             )
             valid_metric = train_input.valid_fn(
-                loader_valid, model, style_model, val_metrics
+                loader_valid, model, style_model, text_encoder, val_metrics
             )
             wandb.log({
                 '<epoch> Train Loss': train_loss,

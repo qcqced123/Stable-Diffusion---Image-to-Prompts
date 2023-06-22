@@ -44,44 +44,44 @@ def img_transform(image: np.ndarray) -> Tensor:
     return transform(image=image)['image']
 
 
-def tokenizing(cfg: configuration.CFG, text: str):
-    """
-    Preprocess text function for CLIP
-    Args:
-        cfg: configuration.CFG, needed to load tokenizer from Huggingface AutoTokenizer
-        text: text from dataframe or any other dataset, please pass str type
-    """
-    inputs = cfg.tokenizer(
-        text,
-        max_length=cfg.max_len,
-        padding='max_length',
-        truncation=True,
-        return_tensors=None,
-        add_special_tokens=True,
-    )
-    for k, v in inputs.items():
-        inputs[k] = torch.as_tensor(v)
-    return inputs
-
-
-def generate_tokenizing(cfg: configuration.CFG, text: str):
-    """
-    Preprocess text function for Generate Model
-    Args:
-        cfg: configuration.CFG, needed to load tokenizer from Huggingface AutoTokenizer
-        text: text from dataframe or any other dataset, please pass str type
-    """
-    inputs = cfg.generate_tokenizer(
-        text,
-        max_length=cfg.max_len,
-        padding='max_length',
-        truncation=True,
-        return_tensors=None,
-        add_special_tokens=True,
-    )
-    for k, v in inputs.items():
-        inputs[k] = torch.as_tensor(v)
-    return inputs
+# def tokenizing(cfg: configuration.CFG, text: str):
+#     """
+#     Preprocess text function for CLIP
+#     Args:
+#         cfg: configuration.CFG, needed to load tokenizer from Huggingface AutoTokenizer
+#         text: text from dataframe or any other dataset, please pass str type
+#     """
+#     inputs = cfg.tokenizer(
+#         text,
+#         max_length=cfg.max_len,
+#         padding='max_length',
+#         truncation=True,
+#         return_tensors=None,
+#         add_special_tokens=True,
+#     )
+#     for k, v in inputs.items():
+#         inputs[k] = torch.as_tensor(v)
+#     return inputs
+#
+#
+# def generate_tokenizing(cfg: configuration.CFG, text: str):
+#     """
+#     Preprocess text function for Generate Model
+#     Args:
+#         cfg: configuration.CFG, needed to load tokenizer from Huggingface AutoTokenizer
+#         text: text from dataframe or any other dataset, please pass str type
+#     """
+#     inputs = cfg.generate_tokenizer(
+#         text,
+#         max_length=cfg.max_len,
+#         padding='max_length',
+#         truncation=True,
+#         return_tensors=None,
+#         add_special_tokens=True,
+#     )
+#     for k, v in inputs.items():
+#         inputs[k] = torch.as_tensor(v)
+#     return inputs
 
 
 def kfold(df: pd.DataFrame, cfg) -> pd.DataFrame:

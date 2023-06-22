@@ -7,7 +7,7 @@ from dataclasses import dataclass
 
 
 def get_optimizer_grouped_parameters(model, layerwise_lr, layerwise_weight_decay, layerwise_lr_decay):
-    """ Grouped Version: Layer-wise learning rate decay """
+    """ Grouped wise version: Layer-wise learning rate decay """
     no_decay = ["bias", "LayerNorm.bias", "LayerNorm.weight"]
     # initialize lr for task specific layer
     optimizer_grouped_parameters = [{"params": [p for n, p in model.named_parameters() if "model" not in n],
@@ -33,6 +33,7 @@ def get_optimizer_grouped_parameters(model, layerwise_lr, layerwise_weight_decay
 
 
 def get_optimizer_params(model, encoder_lr, decoder_lr, weight_decay):
+    """ Layer wise version: Layer-wise learning rate decay """
     no_decay = ["bias", "LayerNorm.bias", "LayerNorm.weight"]
     optimizer_parameters = [
         {'params': [p for n, p in model.model.named_parameters() if not any(nd in n for nd in no_decay)],
@@ -45,8 +46,11 @@ def get_optimizer_params(model, encoder_lr, decoder_lr, weight_decay):
     return optimizer_parameters
 
 
-def collate(inputs):
-    """ Descending sort inputs by length of sequence """
+def collate(inputs) -> Tensor:
+    """
+    Slicing inputs to the maximum length of the batch not to waste computation & speed up for training
+    when actual maximum length of the batch is shorter than the max_len value which is set by configuration.py.
+    """
     mask_len = int(inputs["attention_mask"].sum(axis=1).max())
     for k, v in inputs.items():
         inputs[k] = inputs[k][:, :mask_len]

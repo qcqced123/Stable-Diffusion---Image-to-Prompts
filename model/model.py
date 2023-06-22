@@ -9,7 +9,7 @@ import configuration
 from model.model_utils import freeze, reinit_topk
 
 
-class SD2Model(nn.Module):
+class CLIPModel(nn.Module):
     """
     Model class for Open AI CLIP
     In OpenAI CLIP, Image and Text are encoded in same space
@@ -19,9 +19,10 @@ class SD2Model(nn.Module):
     So apply GEMPooling instead of CLS pooling, which is more good performance in detect object
     After then, background called style feature extract from other CNN based Model (ConvNext, Resnet)
 
-    [Reference]
-    https://github.com/openai/CLIP/blob/main/clip/model.py
-    https://www.kaggle.com/code/tanreinama/style-extract-from-vgg-clip-object-extract
+    Not use CLIP's text encoder, use encoder for competition's original transformer, sentence-transformer
+    Reference:
+        https://github.com/openai/CLIP/blob/main/clip/model.py
+        https://www.kaggle.com/code/tanreinama/style-extract-from-vgg-clip-object-extract
     """
     def __init__(self, cfg: configuration.CFG) -> None:
         super().__init__()
@@ -32,15 +33,11 @@ class SD2Model(nn.Module):
             output_hidden_states=True
         )
         self.vision_config = self.auto_cfg.vision_config
-        self.text_config = self.auto_cfg.text_config
-
         self.model = AutoModel.from_pretrained(
             cfg.model,
             config=self.auto_cfg
         )
         self.vision_model = self.model.vision_model
-        self.text_model = self.model.text_model
-
         self.vision_fc = nn.Sequential(
             nn.Linear(2944, 4096),  # will be added with style feature => 1024(ViT) + 1920(Style Model) = 2944
             nn.SiLU(),
@@ -56,10 +53,6 @@ class SD2Model(nn.Module):
             nn.Linear(4096, 384)
         )
         self.vision_pooling = getattr(pooling, cfg.image_pooling)(self.auto_cfg)  # for text pooling
-
-        self.text_fc = nn.Linear(self.text_config.hidden_size, 384)  # for text embedding
-        self.text_pooling = getattr(pooling, cfg.text_pooling)(self.auto_cfg)  # for text pooling
-
         if self.cfg.load_pretrained:
             """ option for load checkpoint """
             self.model.load_state_dict(
@@ -70,17 +63,12 @@ class SD2Model(nn.Module):
         if cfg.reinit:
             """ option for re-initialize FCN layers & Top-k transformer Encoder layers """
             self._init_weights(self.vision_fc)
-            self._init_weights(self.text_fc)
             self.reinit_topk(self.vision_model, cfg.vision_num_reinit)
-            self.reinit_topk(self.text_model, cfg.text_num_reinit)
 
         if cfg.freeze:
             """ option for freeze Bottom-k transformer Encoder layers """
             freeze(self.vision_model.embeddings)
             freeze(self.vision_model.encoder.layer[:cfg.vision_num_freeze])
-
-            freeze(self.text_model.embeddings)
-            freeze(self.text_model.encoder.layer[:cfg.text_num_freeze])
 
         if cfg.gradient_checkpoint:
             self.model.gradient_checkpointing_enable()
@@ -112,7 +100,7 @@ class SD2Model(nn.Module):
             module.weight.data.fill_(1.0)
             module.bias.data.zero_()
 
-    def forward(self, inputs: dict, mode: str, style_features: Tensor = None) -> list[Tensor]:
+    def forward(self, inputs: dict, style_features: Tensor = None) -> list[Tensor]:
         """
         forward pass function with mode (vision or text)
         Later, We must copy vision model's last_hidden_state
@@ -121,74 +109,11 @@ class SD2Model(nn.Module):
             - linear projection layer to decoder layer needed
             - make structure similarly to BLIP (BlipForConditionalGeneration => GPT2)
         """
-        if mode == 'vision':
-            outputs = self.vision_model(inputs)
-
-            feature = outputs.last_hidden_state
-            encoder_hidden_states = torch.clone(outputs.last_hidden_state)  # goes to decoder's input
-
-            embedding = self.vision_pooling(feature)  # [batch_size, hidden_size(1024)]
-            logit = self.vision_fc(torch.cat([embedding, style_features], dim=-1))  # encoder's input
-
-        else:  # mode == 'text'
-            outputs = self.text_model(**inputs)
-            feature = outputs.last_hidden_state
-            embedding = self.text_pooling(feature, inputs['attention_mask'])
-            logit = self.text_fc(embedding)
-
+        outputs = self.vision_model(inputs)
+        feature = outputs.last_hidden_state
+        embedding = self.vision_pooling(feature)  # [batch_size, hidden_size(1024)]
+        logit = self.vision_fc(torch.cat([embedding, style_features], dim=-1))  # encoder's input
         return logit
-
-
-class ReTrainGenerateModel(nn.Module):
-    """
-    (Append 2023-05-29)
-    Add image-captioning model(GPT2) for generate prompt, whole architecture is similar with BLIP Style
-    This model class will be used to re-pretrained pretrained GPT2 with prompt solely
-    And then, fine-tune by cross-entropy which is matching loss from generate prompt by GPT2 and ground-truth in other
-    Args:
-        cfg: configuration.CFG
-    Reference:
-        https://huggingface.co/gpt2
-        https://huggingface.co/docs/transformers/model_doc/vision-encoder-decoder
-    """
-    def __init__(self, cfg) -> None:
-        super().__init__()
-        self.cfg = cfg
-        self.auto_cfg = AutoConfig.from_pretrained(
-            cfg.generate_model,
-            output_hidden_states=True
-        )
-        self.model = AutoModel.from_pretrained(
-            cfg.generate_model,
-            config=self.auto_cfg
-        )
-
-        if cfg.reinit:
-            self._init_weights(self.fc)
-            reinit_topk(self.model, self.cfg.num_reinit)
-
-        if cfg.freeze:
-            freeze(self.model.embeddings)
-            freeze(self.model.encoder.layer[:self.cfg.num_freeze])
-
-        if cfg.gradient_checkpoint:
-            self.model.gradient_checkpointing_enable()
-
-    @staticmethod
-    def _init_weights(module) -> None:
-        """ over-ride initializes weights of the given module function (+initializes LayerNorm) """
-        if isinstance(module, nn.Linear):
-            module.weight.data.normal_(mean=0.0, std=0.02)
-            if module.bias is not None:
-                module.bias.data.zero_()
-        elif isinstance(module, nn.Embedding):
-            module.weight.data.normal_(mean=0.0, std=0.02)
-            if module.padding_idx is not None:
-                module.weight.data[module.padding_idx].zero_()
-        elif isinstance(module, nn.LayerNorm):
-            """ reference from torch.nn.Layernorm with elementwise_affine=True """
-            module.weight.data.fill_(1.0)
-            module.bias.data.zero_()
 
 
 class StyleExtractModel(nn.Module):
@@ -249,3 +174,52 @@ class StyleExtractModel(nn.Module):
         g4 = self.gram_matrix(embedding4)
         g = [self.avg(g1).squeeze(2), self.avg(g2).squeeze(2), self.avg(g3).squeeze(2), self.avg(g4).squeeze(2)]
         return torch.cat(g, dim=1)
+
+
+class BLIPModel(nn.Module):
+    """
+    Model class for BLIP Visual Question Answering Architecture
+    Args:
+        cfg: configuration.CFG
+    Reference:
+        https://huggingface.co/Salesforce/blip-vqa-base
+        https://huggingface.co/docs/transformers/model_doc/blip
+    """
+    def __init__(self, cfg) -> None:
+        super().__init__()
+        self.cfg = cfg
+        self.auto_cfg = AutoConfig.from_pretrained(
+            cfg.generate_model,
+            output_hidden_states=True
+        )
+        self.model = AutoModel.from_pretrained(
+            cfg.generate_model,
+            config=self.auto_cfg
+        )
+
+        if cfg.reinit:
+            self._init_weights(self.fc)
+            reinit_topk(self.model, self.cfg.num_reinit)
+
+        if cfg.freeze:
+            freeze(self.model.embeddings)
+            freeze(self.model.encoder.layer[:self.cfg.num_freeze])
+
+        if cfg.gradient_checkpoint:
+            self.model.gradient_checkpointing_enable()
+
+    @staticmethod
+    def _init_weights(module) -> None:
+        """ over-ride initializes weights of the given module function (+initializes LayerNorm) """
+        if isinstance(module, nn.Linear):
+            module.weight.data.normal_(mean=0.0, std=0.02)
+            if module.bias is not None:
+                module.bias.data.zero_()
+        elif isinstance(module, nn.Embedding):
+            module.weight.data.normal_(mean=0.0, std=0.02)
+            if module.padding_idx is not None:
+                module.weight.data[module.padding_idx].zero_()
+        elif isinstance(module, nn.LayerNorm):
+            """ reference from torch.nn.Layernorm with elementwise_affine=True """
+            module.weight.data.fill_(1.0)
+            module.bias.data.zero_()
