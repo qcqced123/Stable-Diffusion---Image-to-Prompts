@@ -1,8 +1,6 @@
 import gc
 import math
-
 import torch
-
 import dataset_class.dataclass as dataset_class
 import model.metric as model_metric
 import model.metric_learning as metric_learning
@@ -21,7 +19,8 @@ class CLIPTrainer:
     For Vision Encoder-Decoder Model Fine-Tuned Pipeline with three type model:
         1) Vision Encoder: CLIP Vision Encoder
         2) Text Encoder(Only Forward): sentence-transformers/all-MiniLM-L6-v2
-        3) Style Extractor: convnext_base_384_in22ft1k
+            - Sentence-Transformers.encode() normalize default value is False
+        3) Style Extractor(Forward & Backward): convnext_base_384_in22ft1k
 
     This trainer class has Two objectives functions:
         Objective Function 1: Image & Text Matching Loss by Multiple Negative Ranking Loss
@@ -106,16 +105,16 @@ class CLIPTrainer:
             optimizer.zero_grad()
             clip_images = clip_images.squeeze().to(self.cfg.device)  # clip image to GPU
             batch_size = self.cfg.batch_size
+            style_images = style_images.to(self.cfg.device)  # style image to GPU
 
             with torch.no_grad():
-                style_images = style_images.to(self.cfg.device)  # style image to GPU
-                style_features = style_model(style_images)  # style image to style feature
                 text_features = torch.from_numpy(text_encoder.encode(labels)).to(self.cfg.device)
 
             with torch.cuda.amp.autocast(enabled=self.cfg.amp_scaler):
+                style_features = style_model(style_images)  # style image to style feature
                 image_features = model(clip_images, style_features=style_features)
                 """ Checking normalization of each vectors are needed """
-                image_features = image_features / image_features.norm(dim=-1, keepdim=True)  # * math.sqrt(384)
+                # image_features = image_features / image_features.norm(dim=-1, keepdim=True)  # * math.sqrt(384)
                 # text_features = text_features / text_features.norm(dim=-1, keepdim=True)   # * math.sqrt(384)
                 loss = criterion(image_features, text_features)
 
@@ -160,7 +159,7 @@ class CLIPTrainer:
 
                 image_features = model(clip_images, style_features=style_features)
                 """ Checking normalization of each vectors are needed """
-                image_features = image_features / image_features.norm(dim=-1, keepdim=True) # * math.sqrt(384)
+                # image_features = image_features / image_features.norm(dim=-1, keepdim=True) # * math.sqrt(384)
                 # text_features = text_features / text_features.norm(dim=-1, keepdim=True) * math.sqrt(384)
 
                 for i in range(val_batch_size):
