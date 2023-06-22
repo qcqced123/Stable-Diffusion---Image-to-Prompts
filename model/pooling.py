@@ -110,7 +110,7 @@ class CLIPGEMPooling(nn.Module):
         super(CLIPGEMPooling, self).__init__()
 
     @staticmethod
-    def forward(last_hidden_state, p: int = 4) -> Tensor:
+    def forward(last_hidden_state, p: int = 2) -> Tensor:
         """
         last_hidden_state.size: [batch_size, patches_sequence, hidden_size]
         1) Pow last_hidden_state with p and then take a averaging
@@ -147,7 +147,7 @@ class GEMPooling(nn.Module):
         super(GEMPooling, self).__init__()
         self.eps = 1e-6
 
-    def forward(self, last_hidden_state, attention_mask, p: int = 4) -> Tensor:
+    def forward(self, last_hidden_state, attention_mask, p: int = 2) -> Tensor:
         """
         1) Expand Attention Mask from [batch_size, max_len] to [batch_size, max_len, hidden_size]
             1-1) For remove padding token, padding token's attention mask is 0

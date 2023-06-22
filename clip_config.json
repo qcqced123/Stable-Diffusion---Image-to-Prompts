@@ -27,10 +27,10 @@
     },
     "data_settings": {
         "n_folds": 5,
-        "max_len": 128,
+        "max_len": 77,
         "epochs": 5,
         "batch_size": 128,
-        "val_batch_size": 64
+        "val_batch_size": 128
     },
     "gradient_settings": {
         "amp_scaler": true,
@@ -71,9 +71,9 @@
     "model_utils": {
         "stop_mode": "max",
         "freeze": true,
-        "vision_num_freeze": 8,
+        "vision_num_freeze": 4,
         "reinit": true,
-        "vision_num_reinit": 2,
+        "vision_num_reinit": 4,
         "awp": false,
         "nth_awp_start_epoch": 2,
         "awp_eps": 1e-2,

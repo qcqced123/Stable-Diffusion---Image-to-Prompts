@@ -105,13 +105,13 @@ class CLIPTrainer:
             optimizer.zero_grad()
             clip_images = clip_images.squeeze().to(self.cfg.device)  # clip image to GPU
             batch_size = self.cfg.batch_size
-            style_images = style_images.to(self.cfg.device)  # style image to GPU
 
             with torch.no_grad():
+                style_images = style_images.to(self.cfg.device)  # style image to GPU
+                style_features = style_model(style_images)  # style image to style feature
                 text_features = torch.from_numpy(text_encoder.encode(labels)).to(self.cfg.device)
 
             with torch.cuda.amp.autocast(enabled=self.cfg.amp_scaler):
-                style_features = style_model(style_images)  # style image to style feature
                 image_features = model(clip_images, style_features=style_features)
                 """ Checking normalization of each vectors are needed """
                 # image_features = image_features / image_features.norm(dim=-1, keepdim=True)  # * math.sqrt(384)
@@ -137,8 +137,6 @@ class CLIPTrainer:
             gc.collect()
 
         train_loss = losses.avg.detach().cpu().numpy()
-        del style_images, style_features, text_features, image_features, clip_images
-        torch.cuda.empty_cache()
         gc.collect()
         return train_loss
 
@@ -167,8 +165,6 @@ class CLIPTrainer:
                     metrics.update(val_metric.detach(), 1)
 
         metric = metrics.avg.detach().cpu().numpy()
-        del style_images, style_features, text_features, image_features, clip_images
-        torch.cuda.empty_cache()
         gc.collect()
         return metric
 
