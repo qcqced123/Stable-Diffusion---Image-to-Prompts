@@ -5,14 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c9885c79-d8e5-4090-bf8d-ba84d8ae3b1f" name="변경" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/clip_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/clip_config.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/pooling.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/pooling.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/trainer/trainer.py" beforeDir="false" afterPath="$PROJECT_DIR$/trainer/trainer.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wandb/debug-internal.log" beforeDir="false" afterPath="$PROJECT_DIR$/wandb/debug-internal.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wandb/debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/wandb/debug.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wandb/latest-run" beforeDir="false" afterPath="$PROJECT_DIR$/wandb/latest-run" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_075413-5fhnrq9w/files/output.log" beforeDir="false" afterPath="$PROJECT_DIR$/wandb/run-20230623_075413-5fhnrq9w/files/output.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_075413-5fhnrq9w/files/wandb-summary.json" beforeDir="false" afterPath="$PROJECT_DIR$/wandb/run-20230623_075413-5fhnrq9w/files/wandb-summary.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_075413-5fhnrq9w/logs/debug-internal.log" beforeDir="false" afterPath="$PROJECT_DIR$/wandb/run-20230623_075413-5fhnrq9w/logs/debug-internal.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_075413-5fhnrq9w/logs/debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/wandb/run-20230623_075413-5fhnrq9w/logs/debug.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_075413-5fhnrq9w/run-5fhnrq9w.wandb" beforeDir="false" afterPath="$PROJECT_DIR$/wandb/run-20230623_075413-5fhnrq9w/run-5fhnrq9w.wandb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,23 +39,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/qcqced/바탕화면/ML_Test/image2text&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/home/qcqced/바탕화면/ML_Test/GoogleAi4Code",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -216,6 +214,8 @@
       <workItem from="1687474156301" duration="71000" />
       <workItem from="1687474309797" duration="129000" />
       <workItem from="1687474622763" duration="113000" />
+      <workItem from="1687485581281" duration="65000" />
+      <workItem from="1687493999264" duration="14000" />
     </task>
     <servers />
   </component>
