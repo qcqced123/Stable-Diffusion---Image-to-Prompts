@@ -1,12 +1,11 @@
 import gc
 import pandas as pd
 import rasterio
-import torch
 from rasterio.enums import Resampling
 from torch.utils.data import Dataset
 from torch import Tensor
 import configuration
-from .data_preprocessing import img_transform, tokenizing, clip_img_process
+from .data_preprocessing import img_transform, clip_img_process
 
 
 class SD2Dataset(Dataset):

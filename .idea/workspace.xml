@@ -5,12 +5,91 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c9885c79-d8e5-4090-bf8d-ba84d8ae3b1f" name="변경" comment="">
+      <change afterPath="$PROJECT_DIR$/sd2-make-dataframe-for-public-dataset.ipynb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/sd2-sddb2-embedding-extract.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_075413-5fhnrq9w/files/output.log" beforeDir="false" afterPath="$PROJECT_DIR$/wandb/run-20230623_075413-5fhnrq9w/files/output.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_075413-5fhnrq9w/files/wandb-summary.json" beforeDir="false" afterPath="$PROJECT_DIR$/wandb/run-20230623_075413-5fhnrq9w/files/wandb-summary.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_075413-5fhnrq9w/logs/debug-internal.log" beforeDir="false" afterPath="$PROJECT_DIR$/wandb/run-20230623_075413-5fhnrq9w/logs/debug-internal.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_075413-5fhnrq9w/logs/debug.log" beforeDir="false" afterPath="$PROJECT_DIR$/wandb/run-20230623_075413-5fhnrq9w/logs/debug.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_075413-5fhnrq9w/run-5fhnrq9w.wandb" beforeDir="false" afterPath="$PROJECT_DIR$/wandb/run-20230623_075413-5fhnrq9w/run-5fhnrq9w.wandb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blip_config.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/clip_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/clip_config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset_class/data_folder/.ipynb_checkpoints/Untitled-checkpoint.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset_class/data_folder/Untitled.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset_class/data_preprocessing.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataset_class/data_preprocessing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dataset_class/dataclass.py" beforeDir="false" afterPath="$PROJECT_DIR$/dataset_class/dataclass.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/example_extract_style.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/Stable Diffusion2 DB 2M Dataset Example.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/Style Extractor Example Code.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/metric.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/metric.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/model.py" beforeDir="false" afterPath="$PROJECT_DIR$/model/model.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/style_extract.ipynb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/trainer/trainer.py" beforeDir="false" afterPath="$PROJECT_DIR$/trainer/trainer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/debug-cli.qcqced.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/debug-internal.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/debug.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/latest-run" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230622_205701-65cu6vns/files/conda-environment.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230622_205701-65cu6vns/files/config.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230622_205701-65cu6vns/files/output.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230622_205701-65cu6vns/files/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230622_205701-65cu6vns/files/wandb-metadata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230622_205701-65cu6vns/files/wandb-summary.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230622_205701-65cu6vns/logs/debug-internal.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230622_205701-65cu6vns/logs/debug.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230622_205701-65cu6vns/run-65cu6vns.wandb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_003913-rbbfnexp/files/conda-environment.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_003913-rbbfnexp/files/config.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_003913-rbbfnexp/files/output.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_003913-rbbfnexp/files/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_003913-rbbfnexp/files/wandb-metadata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_003913-rbbfnexp/files/wandb-summary.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_003913-rbbfnexp/logs/debug-internal.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_003913-rbbfnexp/logs/debug.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_003913-rbbfnexp/run-rbbfnexp.wandb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_074332-07afv152/files/conda-environment.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_074332-07afv152/files/config.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_074332-07afv152/files/output.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_074332-07afv152/files/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_074332-07afv152/files/wandb-metadata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_074332-07afv152/files/wandb-summary.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_074332-07afv152/logs/debug-internal.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_074332-07afv152/logs/debug.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_074332-07afv152/run-07afv152.wandb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_074603-gtqkzrzz/files/conda-environment.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_074603-gtqkzrzz/files/config.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_074603-gtqkzrzz/files/output.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_074603-gtqkzrzz/files/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_074603-gtqkzrzz/files/wandb-metadata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_074603-gtqkzrzz/files/wandb-summary.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_074603-gtqkzrzz/logs/debug-internal.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_074603-gtqkzrzz/logs/debug.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_074603-gtqkzrzz/run-gtqkzrzz.wandb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_074816-50aqo0tx/files/conda-environment.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_074816-50aqo0tx/files/config.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_074816-50aqo0tx/files/output.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_074816-50aqo0tx/files/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_074816-50aqo0tx/files/wandb-metadata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_074816-50aqo0tx/files/wandb-summary.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_074816-50aqo0tx/logs/debug-internal.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_074816-50aqo0tx/logs/debug.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_074816-50aqo0tx/run-50aqo0tx.wandb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_075034-6ygvsb8v/files/conda-environment.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_075034-6ygvsb8v/files/config.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_075034-6ygvsb8v/files/output.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_075034-6ygvsb8v/files/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_075034-6ygvsb8v/files/wandb-metadata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_075034-6ygvsb8v/files/wandb-summary.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_075034-6ygvsb8v/logs/debug-internal.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_075034-6ygvsb8v/logs/debug.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_075034-6ygvsb8v/run-6ygvsb8v.wandb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_075413-5fhnrq9w/files/conda-environment.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_075413-5fhnrq9w/files/config.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_075413-5fhnrq9w/files/output.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_075413-5fhnrq9w/files/requirements.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_075413-5fhnrq9w/files/wandb-metadata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_075413-5fhnrq9w/files/wandb-summary.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_075413-5fhnrq9w/logs/debug-internal.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_075413-5fhnrq9w/logs/debug.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/wandb/run-20230623_075413-5fhnrq9w/run-5fhnrq9w.wandb" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,23 +118,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/qcqced/바탕화면/ML_Test/GoogleAi4Code",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/qcqced/바탕화면/ML_Test/GoogleAi4Code&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -64,11 +143,11 @@
       <recent name="$PROJECT_DIR$/dataset_class/data_folder/ChatGPT_SDDB2" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/dataset_class" />
       <recent name="$PROJECT_DIR$/dataset_class/data_folder/30k_public" />
       <recent name="$PROJECT_DIR$/dataset_class/data_folder/SDDB2_2M_75" />
       <recent name="$PROJECT_DIR$/dataset_class/data_folder/90k_public" />
-      <recent name="$PROJECT_DIR$/dataset_class/data_folder/ChatGPT_SDDB2" />
     </key>
   </component>
   <component name="RunManager">
@@ -216,6 +295,9 @@
       <workItem from="1687474622763" duration="113000" />
       <workItem from="1687485581281" duration="65000" />
       <workItem from="1687493999264" duration="14000" />
+      <workItem from="1687745435635" duration="3906000" />
+      <workItem from="1689127562594" duration="76000" />
+      <workItem from="1689127747312" duration="19000" />
     </task>
     <servers />
   </component>

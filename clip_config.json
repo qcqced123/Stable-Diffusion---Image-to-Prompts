@@ -29,8 +29,8 @@
         "n_folds": 5,
         "max_len": 77,
         "epochs": 5,
-        "batch_size": 128,
-        "val_batch_size": 128
+        "batch_size": 256,
+        "val_batch_size": 256
     },
     "gradient_settings": {
         "amp_scaler": true,
@@ -71,9 +71,9 @@
     "model_utils": {
         "stop_mode": "max",
         "freeze": true,
-        "vision_num_freeze": 4,
+        "vision_num_freeze": 6,
         "reinit": true,
-        "vision_num_reinit": 4,
+        "vision_num_reinit": 2,
         "awp": false,
         "nth_awp_start_epoch": 2,
         "awp_eps": 1e-2,
