@@ -10,3 +10,4 @@
 ### Strategy
 #### **[CLIP with Style Extractor, NO Decoder]**  
 
+![Modeling Overview](/assets/modeling_overview.png)
